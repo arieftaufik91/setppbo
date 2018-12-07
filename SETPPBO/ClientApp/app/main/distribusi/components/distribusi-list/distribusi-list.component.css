@@ -1,0 +1,11 @@
+.mat-button.mat-green[disabled], .mat-icon-button[disabled][disabled] {
+    color:  rgba(0,0,0,.38);
+}
+
+.mat-button.mat-green, .mat-icon-button.mat-green {
+    color: #04c524;
+}
+
+.content-toolbar {
+    margin-left: -3% !important;
+}

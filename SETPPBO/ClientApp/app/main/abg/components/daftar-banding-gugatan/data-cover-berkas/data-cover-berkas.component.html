@@ -1,0 +1,112 @@
+<div class='linebottom'></div>
+<div class="main-content">
+    <div class="container-fluid">
+      <div class="content" *ngIf="rows">
+            <div class="toolbar" fxFlex fxLayout="row">
+                    <label>Filter                 </label>
+
+                    <input [matDatepicker]="pickerTglAwal" id="tglawal" placeholder="Tanggal Terima Awal"  [(ngModel)]="inputTglAwal" />
+                    <mat-datepicker-toggle matSuffix [for]="pickerTglAwal"></mat-datepicker-toggle>
+                    <mat-datepicker #pickerTglAwal></mat-datepicker>
+
+                    <label>    s.d.     </label>
+
+                    <input [matDatepicker]="pickerTglAkhir" id="tglakhir" placeholder="Tanggal Terima Akhir"  [(ngModel)]="inputTglAkhir" />
+                    <mat-datepicker-toggle matSuffix [for]="pickerTglAkhir"></mat-datepicker-toggle>
+                    <mat-datepicker #pickerTglAkhir></mat-datepicker>
+
+
+                    
+
+                    <input type="button" (click)="FilterByName()" value="Apply"/>
+              </div>
+          <div class="toolbar px-24 py-8" fxFlex fxLayout="row" fxLayoutAlign="space-between center">
+              <div class="content-toolbar" fxFlex="60" fxLayout="row" fxLayoutAlign="start center">
+                  <button [disabled]="selected.length == rows.length" matTooltip="Pilih Semua" mat-mini-fab color="primary" (click)="selectAll()">
+                      <mat-icon>done_all</mat-icon>
+                  </button>
+                  &nbsp;&nbsp;&nbsp;
+                  <button [disabled]="selected.length <= 0" matTooltip="Batal Pilih Semua" mat-mini-fab color="warn" (click)="deselectAll()">
+                      <mat-icon>clear</mat-icon>
+                  </button>
+                  &nbsp;&nbsp;&nbsp;
+                  <button [disabled]="selected.length <= 0" matTooltip="Cetak" mat-mini-fab color="primary" (click)="print()">
+                      <mat-icon>print</mat-icon>
+                  </button>
+              </div>
+              <layout-search-bar (search)="updateFilter($event)" fxFlex></layout-search-bar>
+          </div> 
+          &nbsp;&nbsp;&nbsp;
+          <div class="controls">
+              <div>
+                  <label for="per-page">
+                      Jumlah Baris:
+                  </label>
+                  <select (change)="changeRowLimits($event)">
+                        <option *ngFor="let limit of rowLimits" [value]="limit.value">{{limit.key}}</option>
+                </select>
+              </div>
+          </div>
+          <ngx-datatable 
+              class="material"
+              [rows]="rows"
+              [columnMode]="'force'"
+              [headerHeight]="50"
+              [footerHeight]="50"
+              [rowHeight]="'auto'"
+              [selected]="selected"
+              [selectionType]="'multiClick'"
+              [limit]="limit"
+              [scrollbarH]="true">
+              <ngx-datatable-column name="Subbag" prop="RefPembagianBerkasId">
+                    <ng-template let-row="row" ngx-datatable-cell-template>
+                        {{row?.RefPembagianBerkasId}}
+                    </ng-template>
+              </ngx-datatable-column>
+              <ngx-datatable-column name="No Sengketa" prop="NoSengketa">
+                    <ng-template let-row="row" ngx-datatable-cell-template>
+                        {{row?.NoSengketa}}
+                    </ng-template>
+              </ngx-datatable-column>
+              <ngx-datatable-column name="Pemeriksaan" prop="RefJenisPemeriksaanUr">
+                    <ng-template let-row="row" ngx-datatable-cell-template>
+                        {{row?.RefJenisPemeriksaanUr}}
+                    </ng-template>
+              </ngx-datatable-column>
+              <ngx-datatable-column name="Pemohon" prop="PemohonName">
+                    <ng-template let-row="row" ngx-datatable-cell-template>
+                        {{row?.PemohonName}}
+                    </ng-template>
+              </ngx-datatable-column>
+              <ngx-datatable-column name="NPWP" prop="Npwp">
+                    <ng-template let-row="row" ngx-datatable-cell-template>
+                        {{row?.Npwp}}
+                    </ng-template>
+              </ngx-datatable-column>
+              <ngx-datatable-column name="Alamat" prop="AlamatPemohon">
+                    <ng-template let-row="row" ngx-datatable-cell-template>
+                        {{row?.AlamatPemohon}}
+                    </ng-template>
+              </ngx-datatable-column>
+              <ngx-datatable-column name="Jenis Pajak" prop="Jenis_pajak">
+                    <ng-template let-row="row" ngx-datatable-cell-template>
+                        {{row?.Jenis_pajak}}
+                    </ng-template>
+              </ngx-datatable-column>
+              <ngx-datatable-column name="Tahun Pajak" prop="Tahun_pajak">
+                    <ng-template let-row="row" ngx-datatable-cell-template>
+                        {{row?.Tahun_pajak}}
+                    </ng-template>
+              </ngx-datatable-column>
+              <ngx-datatable-column name="Tanggal Terima" prop="TglTerimaPermohonan">
+                <ng-template let-row="row" ngx-datatable-cell-template>
+                    {{row?.TglTerimaPermohonan | date:'dd-MM-yyyy'}}
+                </ng-template>
+              </ngx-datatable-column>
+          </ngx-datatable>
+      </div>
+    </div>
+  </div>
+                
+        
+

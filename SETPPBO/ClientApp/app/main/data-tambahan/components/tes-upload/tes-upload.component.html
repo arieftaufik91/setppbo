@@ -1,0 +1,95 @@
+<div class="dialog-content-wrapper">
+    <div mat-dialog-title class="mat-accent-bg p-16 m-0" fxLayout="row" fxLayoutAlign="space-between center">
+      <span class="title dialog-title">Data Tambahan Form</span>
+      <button aria-label="Close dialog" mat-icon-button (click)="onNoClick()">
+        <mat-icon>close</mat-icon>
+      </button>
+    </div>
+    <div mat-dialog-content class="p-24 m-0">
+      <form [formGroup]="formGroup" novalidate fxFlex fxLayout="column">
+        <mat-form-field>
+          <input matInput id="PermohonanId" formControlName="PermohonanId" placeholder="PermohonanId"  />
+          <mat-error *ngIf="formGroup.controls['PermohonanId'].errors">
+            <div [hidden]="!formGroup.controls['PermohonanId'].errors.required"></div>
+          </mat-error>
+        </mat-form-field>
+     
+        <mat-form-field>
+          <input matInput id="NoSuratPengantar" formControlName="NoSuratPengantar" placeholder="NoSuratPengantar" />
+          <mat-error *ngIf="formGroup.controls['NoSuratPengantar'].errors">
+            <div [hidden]="!formGroup.controls['NoSuratPengantar'].errors.required">bulan wajib diisi!</div>
+          </mat-error>
+        </mat-form-field>
+          <mat-form-field>
+              <input matInput [matDatepicker]="pickerTglSuratPengantar" id="TglSuratPengantar" formControlName="TglSuratPengantar" placeholder="Tanggal Surat Pengantar" />
+              <mat-datepicker-toggle matSuffix [for]="pickerTglSuratPengantar"></mat-datepicker-toggle>
+              <mat-datepicker #pickerTglSuratPengantar></mat-datepicker>
+              <mat-error *ngIf="formGroup.controls['TglSuratPengantar'].errors">
+                  <div [hidden]="!formGroup.controls['TglSuratPengantar'].errors.required">Tanggal Surat Pengantar wajib diisi!</div>
+              </mat-error>
+          </mat-form-field>
+        <mat-form-field>
+            <input matInput [matDatepicker]="pickerTglKirim" id="TglKirim" formControlName="TglKirim" placeholder="Tanggal Terima" />
+            <mat-datepicker-toggle matSuffix [for]="pickerTglKirim"></mat-datepicker-toggle>
+            <mat-datepicker #pickerTglKirim></mat-datepicker>
+            <mat-error *ngIf="formGroup.controls['TglKirim'].errors">
+                <div [hidden]="!formGroup.controls['TglKirim'].errors.required">Tanggal Surat Kirim wajib diisi!</div>
+            </mat-error>
+        </mat-form-field>
+        <mat-form-field>
+            <input matInput [matDatepicker]="pickerTglTerima" id="TglTerima" formControlName="TglTerima" placeholder="Tanggal Terima" />
+            <mat-datepicker-toggle matSuffix [for]="pickerTglTerima"></mat-datepicker-toggle>
+            <mat-datepicker #pickerTglTerima></mat-datepicker>
+            <mat-error *ngIf="formGroup.controls['TglTerima'].errors">
+                <div [hidden]="!formGroup.controls['TglTerima'].errors.required">Tanggal Surat Diterima wajib diisi!</div>
+            </mat-error>
+        </mat-form-field>
+      <mat-form-field>
+        <input matInput id="RefCaraKirimID" formControlName="RefCaraKirimID" placeholder="RefCaraKirimID"/>
+        <mat-error *ngIf="formGroup.controls['RefCaraKirimID'].errors">
+          <div [hidden]="!formGroup.controls['RefCaraKirimID'].errors.required">Cara Kirim Wajib diisi!</div>
+        </mat-error>
+      </mat-form-field>
+    
+    </form>
+  
+    <form [formGroup]="uploadForm">
+      <div formArrayName="itemRows">
+        <div *ngFor="let itemrow of uploadForm.controls.itemRows.controls; let i=index"  [formGroupName]="i">
+                <input #file type="file" id="FileId" name="FileId" formControlName="FileId" placeholder="FileId" (change)="upload(file.files)"  >
+              
+            
+          <mat-form-field>
+              <input matInput id="Uraian" name="Uraian" formControlName="Uraian" placeholder="Uraian" >
+            
+            </mat-form-field>
+            <mat-form-field>
+                <input matInput id="Keterangan" name="Keterangan" formControlName="Keterangan" placeholder="Keterangan" >
+              
+              </mat-form-field>
+        
+          <button *ngIf="uploadForm.controls.itemRows.controls.length > 1" (click)="deleteRow(i)" class="btn btn-danger">Delete Button</button>
+      </div>
+      <button type="button" (click)="addNewRow()" class="btn btn-primary">Add new Row</button>
+    </div>
+    </form>
+  </div>
+  
+          
+  <button mat-raised-button (click)="onOkClick()" [disabled]="isEdit? formGroup.pristine : formGroup.invalid" color="primary" type="button" tabindex="2">Simpan</button>
+  
+   
+      <button mat-raised-button (click)="onNoClick()" tabindex="-1">Batal</button>
+  
+  </div>
+  
+  <div>
+      <br/>
+      <span style="font-weight:bold;color:green;" *ngIf="progress > 0 && progress < 100">
+        {{progress}}%
+      </span>
+      
+      <span style="font-weight:bold;color:green;" *ngIf="message">
+        {{message}}
+      </span>
+  </div>

@@ -1,0 +1,10 @@
+.wing-button-crud {
+    padding: 0px;
+}
+.wing-button-add {
+    width: 64px;
+}
+
+.wing-button-add button {
+    box-shadow: none !important;
+}

@@ -1,0 +1,35 @@
+div.wing-search {
+    position        : absolute;
+    top             : 55px;
+    left            : 33px;
+    z-index         : 99;
+    width           : calc(100% - 65px);
+    height          : 63px;
+    background-color: white;
+}
+
+.media-xs {
+    top  : 96px !important;
+    left : 17px !important;
+    width: calc(100% - 34px) !important;
+}
+
+.media-sm {
+    top  : 96px !important;
+    left : 32px !important;
+    width: calc(100% - 64px) !important;
+}
+
+.media-lg {
+    top : 55px !important;
+    left: 33px !important;
+}
+
+div.wing-search input {
+    padding-left    : 32px;
+    width           : 100% !important;
+    min-height      : 64px;
+    border          : none;
+    font-size       : 16px;
+    background-color: transparent;
+}

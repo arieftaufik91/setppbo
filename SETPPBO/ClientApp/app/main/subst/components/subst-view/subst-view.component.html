@@ -1,0 +1,87 @@
+<!-- <mat-card>
+        <mat-card-content> -->
+<mat-step>
+  <div mat-dialog-title class="mat-accent-bg p-16 m-0" fxLayout="row" fxLayoutAlign="space-between center">
+      <span class="title dialog-title">Form SubSt</span>
+      <button aria-label="Close dialog" mat-icon-button (click)="onNoClick()">
+          <mat-icon>close</mat-icon>
+      </button>
+
+  </div>
+
+  <div mat-dialog-content class="p-24 m-0">
+      <form [formGroup]="formGroup" novalidate fxFlex fxLayout="column">
+        <mat-form-field>
+          <input matInput id="NoSengketa" formControlName="NoSengketa" placeholder="No. Sengketa" maxlength="128" required/>
+          <mat-error *ngIf="formGroup.controls['NoSengketa'].errors">
+              <div [hidden]="!formGroup.controls['NoSengketa'].errors.required">No Sengketa wajib diisi!</div>
+              <div [hidden]="!formGroup.controls['NoSengketa'].errors.maxlength">No Sengketa tidak sesuai!</div>
+          </mat-error>
+      </mat-form-field>
+      
+        <mat-form-field>
+          <input matInput id="NoSubSt" formControlName="NoSubSt" placeholder="No. SubSt" required />
+          <mat-error *ngIf="formGroup.controls['NoSubSt'].errors">
+              <div [hidden]="!formGroup.controls['NoSubSt'].errors.required">No. SubSt wajib diisi!</div>
+          </mat-error>
+      </mat-form-field>
+    
+       <mat-form-field>
+            <input matInput id="TglSubSt" formControlName="TglSubSt" placeholder="Tgl SubSt" required readonly="readonly" />
+            <mat-error *ngIf="formGroup.controls['TglSubSt'].errors">
+                <div [hidden]="!formGroup.controls['TglSubSt'].errors.required">Tanggal SubSt wajib diisi!</div>
+            </mat-error>
+        </mat-form-field>
+     
+       <mat-form-field>
+            <input matInput id="TglTerimaSubSt" formControlName="TglTerimaSubSt" placeholder="Tgl Terima SubSt" required readonly="readonly" />
+            <mat-error *ngIf="formGroup.controls['TglTerimaSubSt'].errors">
+                <div [hidden]="!formGroup.controls['TglTerimaSubSt'].errors.required">Tanggal Terima SubSt wajib diisi!</div>
+            </mat-error>
+        </mat-form-field>
+    
+       <mat-form-field>
+        <input matInput id="TextRefCaraKirimSubStUr" formControlName="TextRefCaraKirimSubStUr" placeholder="Cara Kirim" required readonly="readonly" />
+        <mat-error *ngIf="formGroup.controls['TextRefCaraKirimSubStUr'].errors">
+            <div [hidden]="!formGroup.controls['TextRefCaraKirimSubStUr'].errors.required">Cara Kirim wajib diisi!</div>
+        </mat-error>
+        </mat-form-field>
+    
+
+ 
+        <mat-form-field>
+          <input matInput id="NamaPengirimSubSt" formControlName="NamaPengirimSubSt" placeholder="Nama Pengirim SubSt" required />
+          <mat-error *ngIf="formGroup.controls['NamaPengirimSubSt'].errors">
+              <div [hidden]="!formGroup.controls['NamaPengirimSubSt'].errors.required">Nama Pengirim SubSt wajib diisi!</div>
+          </mat-error>
+      </mat-form-field>
+   
+
+ 
+        <mat-form-field>
+          <input matInput id="AlamatPengirimSubSt" formControlName="AlamatPengirimSubSt" placeholder="Alamat" required />
+          <input matInput id="KotaPengirimSubSt" formControlName="KotaPengirimSubSt" placeholder="Kota" required />
+          <input matInput id="KodePosPengirimSubSt" formControlName="KodePosPengirimSubSt" placeholder="Kode Pos" required />
+          <mat-error *ngIf="formGroup.controls['AlamatPengirimSubSt'].errors">
+              <div [hidden]="!formGroup.controls['AlamatPengirimSubSt'].errors.required">Alamat Pengirim wajib diisi!</div>
+          </mat-error>
+      </mat-form-field>
+   
+
+      
+      <mat-form-field>
+        <input matInput id="TglTerimaAbgSubSt" formControlName="TglTerimaAbgSubSt" placeholder="Tgl Terima ABG SubSt" required readonly="readonly" />
+        <mat-error *ngIf="formGroup.controls['TglTerimaAbgSubSt'].errors">
+            <div [hidden]="!formGroup.controls['TglTerimaAbgSubSt'].errors.required">Tanggal Terima ABG SubSt wajib diisi!</div>
+        </mat-error>
+    </mat-form-field> 
+
+    
+      </form>
+  </div>
+ 
+</mat-step>
+    <!-- </mat-card-content>
+    
+    </mat-card> -->
+

@@ -1,0 +1,88 @@
+<app-penetapan-add></app-penetapan-add>
+
+<div class="main-content">
+    <div class="container-fluid">
+      <div class="content" *ngIf="rows">
+            <h3 style="text-align: center">
+                Pilih Berkas Sengketa
+            </h3>
+        <div class="toolbar px-24 py-8" fxFlex fxLayout="row" fxLayoutAlign="space-between center">
+            <div class="content-toolbar" fxFlex="60" fxLayout="row" fxLayoutAlign="start center">
+                <button [disabled]="selected.length == rows.length" matTooltip="Pilih Semua" mat-mini-fab color="green" (click)="selectAll()">
+                    <mat-icon>done_all</mat-icon>
+                </button>
+                &nbsp;&nbsp;&nbsp;
+                <button [disabled]="selected.length <= 0" matTooltip="Batal Pilih Semua" mat-mini-fab color="warn" (click)="deselectAll()">
+                    <mat-icon>clear</mat-icon>
+                </button>
+                &nbsp;&nbsp;&nbsp;
+              
+            </div>
+            <layout-search-bar (search)="updateFilter($event)" fxFlex></layout-search-bar>
+        </div>    
+        <div class="controls">
+            <div>
+                <label for="per-page">
+                    Jumlah Baris:
+                </label>
+                <select (change)="changeRowLimits($event)">
+                      <option *ngFor="let limit of rowLimits" [value]="limit.value">{{limit.key}}</option>
+              </select>
+            </div>
+        </div>
+        <ngx-datatable 
+            class="material"
+            [rows]="rows"
+            [columnMode]="'force'"
+            [headerHeight]="50"
+            [footerHeight]="50"
+            [rowHeight]="'auto'"
+            [selected]="selected"
+            [selectionType]="'multiClick'"
+            [limit]="limit">
+            <!--ngx-datatable-column [width]="30" [sortable]="false" [canAutoResize]="false" [draggable]="false" [resizeable]="false">
+                <ng-template ngx-datatable-header-template let-value="value" let-allRowsSelected="allRowsSelected" let-selectFn="selectFn">
+                    <input type="checkbox" [checked]="allRowsSelected" (change)="selectFn(!allRowsSelected)"/>
+                  </ng-template>
+                <ng-template ngx-datatable-cell-template let-value="value" let-isSelected="isSelected" let-onCheckboxChangeFn="onCheckboxChangeFn">
+                    <input type="checkbox" [checked]="isSelected" (change)="onCheckboxChangeFn($event)"/>
+                </ng-template>
+            </ngx-datatable-column-->
+            <ngx-datatable-column name="No Sengketa" prop="NoSengketa">
+                <ng-template let-row="row" ngx-datatable-cell-template>
+                    {{row?.NoSengketa}}
+                </ng-template>
+            </ngx-datatable-column>
+            <ngx-datatable-column name="Jenis Sengketa" prop="jenisSengketa">
+                <ng-template let-row="row" ngx-datatable-cell-template>
+                    {{row?.jenisSengketa}}
+                </ng-template>
+            </ngx-datatable-column>
+            <ngx-datatable-column name="Nama Pemohon" prop="Nama">
+                <ng-template let-row="row" ngx-datatable-cell-template>
+                    {{row?.Nama}}
+                </ng-template>
+            </ngx-datatable-column>
+            <ngx-datatable-column name="Penunjukan Majelis" prop="Majelis">
+                <ng-template let-row="row" ngx-datatable-cell-template>
+                    {{row?.Majelis}}
+                </ng-template>
+            </ngx-datatable-column>
+            <ngx-datatable-column name="Jenis Pemeriksaan" prop="jenisPemeriksaan">
+                <ng-template let-row="row" ngx-datatable-cell-template>
+                    {{row?.jenisPemeriksaan}}
+                </ng-template>
+            </ngx-datatable-column>
+           
+        </ngx-datatable>
+        
+      </div>
+      <br />
+      <br />
+      <button mat-raised-button (click)="onOkClick()"   color="primary" type="button" >Simpan</button>
+      <button mat-raised-button (click)="onNoClick()" color="primary" type="button">Batal</button>
+      <br />
+      <br />
+      <!--button (click)="submitDocument()" [disabled]="selected.length <= 0" style="margin-top:2%" class="btn btn-primary pull-right">Distribusi</button-->
+    </div>
+</div>

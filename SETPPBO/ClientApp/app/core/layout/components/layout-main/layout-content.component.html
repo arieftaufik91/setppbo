@@ -1,0 +1,16 @@
+<layout-loader></layout-loader>
+<div class="page-layout carded fullwidth single-scroll" [perfect-scrollbar] [usePSClass]>
+    <div class="top-bg mat-accent-bg"></div>
+    <div class="center">
+        <div class="header white-fg p-8" fxLayout="row" fxLayoutAlign="start center">
+            <a href="" [routerLink]="'/'" class="header-icon">
+                <mat-icon>home</mat-icon>
+            </a>
+            <mat-icon>keyboard_arrow_right</mat-icon>
+            <mc-breadcrumbs></mc-breadcrumbs>
+        </div>
+        <div class="content-card mat-white-bg">
+            <router-outlet></router-outlet>
+        </div>
+    </div>
+</div>

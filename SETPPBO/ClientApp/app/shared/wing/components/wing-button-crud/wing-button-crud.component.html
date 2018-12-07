@@ -1,0 +1,47 @@
+<div class="wing-button-crud" fxLayout="row" fxLayoutAlign="mid center">
+  <wing-button-icon matTooltip="Kembali" *ngIf="backLink !=''" [routerLink]="backLink" icon="arrow_back"></wing-button-icon>
+
+  <wing-divider-vertical *ngIf="backLink"></wing-divider-vertical>
+  
+  <div *ngIf="buttonAdd.visible" class="wing-button-add" fxLayout="row" fxLayoutAlign="center center">
+    <button [@myRotation]="state" matTooltip="{{buttonAdd.tooltip}}" mat-mini-fab (click)="onAddClick()">
+      <mat-icon>{{buttonAdd.icon}}</mat-icon>
+    </button>
+  </div>
+  
+  <wing-divider-vertical *ngIf="buttonAdd.visible"></wing-divider-vertical>
+  
+  <div *ngIf="buttonDelete.visible" class="wing-button-delete">
+    <button [@myState]="state" matTooltip="{{buttonDelete.tooltip}}" mat-icon-button color="warn" (click)="onDeleteClick($event)">
+      <mat-icon>{{buttonDelete.icon}}</mat-icon>
+    </button>
+  </div>
+  
+  <div *ngIf="buttonEdit.visible" class="wing-button-edit">
+    <button [@myState]="state" matTooltip="{{buttonEdit.tooltip}}" mat-icon-button color="primary" (click)="onEditClick($event)">
+      <mat-icon>{{buttonEdit.icon}}</mat-icon>
+    </button>
+  </div>
+  
+  <div *ngIf="buttonView.visible" class="wing-button-view">
+    <button [@myState]="state" matTooltip="{{buttonView.tooltip}}" mat-icon-button color="accent" (click)="onViewClick($event)">
+      <mat-icon>{{buttonView.icon}}</mat-icon>
+    </button>
+  </div>
+  
+  <div *ngIf="buttonAdditional1.visible">
+    <button [@myState]="state" matTooltip="{{buttonAdditional1.tooltip}}" mat-icon-button color="accent" (click)="onAdditional1Click($event)">
+      <mat-icon>{{buttonAdditional1.icon}}</mat-icon>
+    </button>
+  </div>
+  <div *ngIf="buttonAdditional2.visible">
+    <button [@myState]="state" matTooltip="{{buttonAdditional2.tooltip}}" mat-icon-button color="accent" (click)="onAdditional2Click($event)">
+      <mat-icon>{{buttonAdditional2.icon}}</mat-icon>
+    </button>
+  </div>
+  <div *ngIf="buttonAdditional3.visible">
+    <button [@myState]="state" matTooltip="{{buttonAdditional3.tooltip}}" mat-icon-button color="accent" (click)="onAdditional3Click()">
+      <mat-icon>{{buttonAddtional3.icon}}</mat-icon>
+    </button>
+  </div>
+</div>

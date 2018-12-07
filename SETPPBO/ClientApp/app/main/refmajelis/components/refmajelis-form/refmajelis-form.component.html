@@ -1,0 +1,134 @@
+<div class="dialog-content-wrapper">
+  <div mat-dialog-title class="mat-accent-bg p-16 m-0" fxLayout="row" fxLayoutAlign="space-between center">
+    <span class="title dialog-title">Ref Majelis Form</span>
+    <button aria-label="Close dialog" mat-icon-button (click)="onNoClick()">
+      <mat-icon>close</mat-icon>
+    </button>
+  </div>
+
+  <div mat-dialog-content class="p-24 m-0">
+    <form [formGroup]="formGroup" novalidate fxFlex fxLayout="column">
+      <mat-form-field>
+        <input matInput id="Kode" formControlName="Kode" placeholder="Kode" required/>
+        <mat-error *ngIf="formGroup.controls['Kode'].errors">
+          <div [hidden]="!formGroup.controls['Kode'].errors.required">Kode Wajib diisi!</div>
+        </mat-error>
+      </mat-form-field>
+      <mat-form-field>
+        <input matInput id="Majelis" formControlName="Majelis" placeholder="Majelis" required/>
+        <mat-error *ngIf="formGroup.controls['Majelis'].errors">
+          <div [hidden]="!formGroup.controls['Majelis'].errors.required">Majelis Wajib diisi!</div>
+        </mat-error>
+      </mat-form-field>
+      <mat-form-field>
+        <input matInput id="Harsinom" formControlName="Harsinom" placeholder="Harsinom" required/>
+        <mat-error *ngIf="formGroup.controls['Harsinom'].errors">
+          <div [hidden]="!formGroup.controls['Harsinom'].errors.required">Harsinom Wajib diisi!</div>
+        </mat-error>
+      </mat-form-field>
+      <mat-form-field>
+        <input matInput id="HakimKetuaID" formControlName="HakimKetuaID" placeholder="HakimKetuaID" required/>
+        <mat-error *ngIf="formGroup.controls['HakimKetuaID'].errors">
+          <div [hidden]="!formGroup.controls['HakimKetuaID'].errors.required">Hakim Ketua Wajib diisi!</div>
+        </mat-error>
+      </mat-form-field>
+      <mat-form-field>
+        <input matInput id="NamaHakimKetua" formControlName="NamaHakimKetua" placeholder="NamaHakimKetua" required/>
+        <mat-error *ngIf="formGroup.controls['NamaHakimKetua'].errors">
+          <div [hidden]="!formGroup.controls['NamaHakimKetua'].errors.required">NamaHakimKetua Wajib diisi!</div>
+        </mat-error>
+      </mat-form-field>
+      <mat-form-field>
+        <input matInput id="NIPHakimKetua" formControlName="NIPHakimKetua" placeholder="NIPHakimKetua" required/>
+        <mat-error *ngIf="formGroup.controls['NIPHakimKetua'].errors">
+          <div [hidden]="!formGroup.controls['NIPHakimKetua'].errors.required">NIPHakimKetua Wajib diisi!</div>
+        </mat-error>
+      </mat-form-field>
+      <mat-form-field>
+        <input matInput id="HakimAnggota1ID" formControlName="HakimAnggota1ID" placeholder="HakimAnggota1ID" required/>
+        <mat-error *ngIf="formGroup.controls['HakimAnggota1ID'].errors">
+          <div [hidden]="!formGroup.controls['HakimAnggota1ID'].errors.required">HakimAnggota1ID Wajib diisi!</div>
+        </mat-error>
+      </mat-form-field>
+      <mat-form-field>
+        <input matInput id="NamaHakimAnggota1" formControlName="NamaHakimAnggota1" placeholder="NamaHakimAnggota1" required/>
+        <mat-error *ngIf="formGroup.controls['NamaHakimAnggota1'].errors">
+          <div [hidden]="!formGroup.controls['NamaHakimAnggota1'].errors.required">NamaHakimAnggota1Wajib diisi!</div>
+        </mat-error>
+      </mat-form-field>
+      <mat-form-field>
+        <input matInput id="NIPHakimAnggota1" formControlName="NIPHakimAnggota1" placeholder="NIPHakimAnggota1" required/>
+        <mat-error *ngIf="formGroup.controls['NIPHakimAnggota1'].errors">
+          <div [hidden]="!formGroup.controls['NIPHakimAnggota1'].errors.required">NIPHakimAnggota1 diisi!</div>
+        </mat-error>
+      </mat-form-field>
+      <mat-form-field>
+        <input matInput id="HakimAnggota2ID" formControlName="HakimAnggota2ID" placeholder="HakimAnggota2ID" required/>
+        <mat-error *ngIf="formGroup.controls['HakimAnggota2ID'].errors">
+          <div [hidden]="!formGroup.controls['HakimAnggota2ID'].errors.required">HakimAnggota2ID Wajib diisi!</div>
+        </mat-error>
+      </mat-form-field>
+      <mat-form-field>
+        <input matInput id="NamaHakimAnggota2" formControlName="NamaHakimAnggota2" placeholder="NamaHakimAnggota2" required/>
+        <mat-error *ngIf="formGroup.controls['NamaHakimAnggota2'].errors">
+          <div [hidden]="!formGroup.controls['NamaHakimAnggota2'].errors.required">NNamaHakimAnggota2 diisi!</div>
+        </mat-error>
+      </mat-form-field>
+      <mat-form-field>
+        <input matInput id="NIPHakimAnggota2" formControlName="NIPHakimAnggota2" placeholder="NIPHakimAnggota2" required/>
+        <mat-error *ngIf="formGroup.controls['NIPHakimAnggota2'].errors">
+          <div [hidden]="!formGroup.controls['NIPHakimAnggota2'].errors.required">NIPHakimAnggota2 diisi!</div>
+        </mat-error>
+      </mat-form-field>
+      <mat-form-field>
+        <input matInput id="SPID" formControlName="SPID" placeholder="SPID" required/>
+        <mat-error *ngIf="formGroup.controls['SPID'].errors">
+          <div [hidden]="!formGroup.controls['SPID'].errors.required">SPID Wajib diisi!</div>
+        </mat-error>
+      </mat-form-field>
+      <mat-form-field>
+        <input matInput id="NamaSP" formControlName="NamaSP" placeholder="NamaSP" required/>
+        <mat-error *ngIf="formGroup.controls['NamaSP'].errors">
+          <div [hidden]="!formGroup.controls['NamaSP'].errors.required">NamaSP diisi!</div>
+        </mat-error>
+      </mat-form-field>
+      <mat-form-field>
+        <input matInput id="NIPSP" formControlName="NIPSP" placeholder="NIPSP" required/>
+        <mat-error *ngIf="formGroup.controls['NIPSP'].errors">
+          <div [hidden]="!formGroup.controls['NIPSP'].errors.required">NIPSP diisi!</div>
+        </mat-error>
+      </mat-form-field>
+      <mat-form-field>
+        <input matInput id="PSP1ID" formControlName="PSP1ID" placeholder="PSP1ID" required/>
+        <mat-error *ngIf="formGroup.controls['PSP1ID'].errors">
+          <div [hidden]="!formGroup.controls['PSP1ID'].errors.required">PSP1ID Wajib diisi!</div>
+        </mat-error>
+      </mat-form-field>
+      <mat-form-field>
+        <input matInput id="PSP2ID" formControlName="PSP2ID" placeholder="PSP2ID" required/>
+        <mat-error *ngIf="formGroup.controls['PSP2ID'].errors">
+          <div [hidden]="!formGroup.controls['PSP2ID'].errors.required">PSP2ID Wajib diisi!</div>
+        </mat-error>
+      </mat-form-field>
+      <mat-form-field>
+        <input matInput id="RefJenisKasusID" formControlName="RefJenisKasusID" placeholder="RefJenisKasusID" required/>
+        <mat-error *ngIf="formGroup.controls['RefJenisKasusID'].errors">
+          <div [hidden]="!formGroup.controls['RefJenisKasusID'].errors.required">RefJenisKasusID Wajib diisi!</div>
+        </mat-error>
+      </mat-form-field>
+      <mat-form-field>
+        <input matInput id="TotalBerkas" formControlName="TotalBerkas" placeholder="TotalBerkas" required/>
+        <mat-error *ngIf="formGroup.controls['TotalBerkas'].errors">
+          <div [hidden]="!formGroup.controls['TotalBerkas'].errors.required">TotalBerkas Wajib diisi!</div>
+        </mat-error>
+      </mat-form-field>
+    </form>
+  </div>
+
+
+  <div mat-dialog-actions class="m-0 p-16" fxLayout="row" fxLayoutAlign="space-between center">
+    <button mat-raised-button (click)="onOkClick()" [disabled]="isEdit? formGroup.pristine : formGroup.invalid" color="primary" type="button" tabindex="2">Simpan</button>
+    <button mat-raised-button (click)="onNoClick()" tabindex="-1">Batal</button>
+  </div>
+
+

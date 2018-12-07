@@ -1,0 +1,98 @@
+.wing-toolbar, .wing-toolbar .title { 
+    width: 100%; 
+}
+
+.wing-toolbar .title {
+    padding: 0 24px;
+}
+
+.wing-toolbar .title p {
+    margin: 0;
+    font-size: 1.8rem;
+    color: #B0BEC5;
+    font-weight: 550;
+}
+
+.wing-toolbar .add, .wing-toolbar .back {
+    border-right: 1px solid rgba(0, 0, 0, 0.12) !important;
+    padding: 0 10px !important;
+}
+.wing-toolbar .add button {
+    box-shadow: none !important;
+    background-color: #00C853;
+}
+
+.wing-toolbar .del {
+    color: #D50000;
+}
+
+.wing-toolbar .edit {
+    color: #FFD600;
+}
+
+.wing-toolbar .view {
+    color: #0091EA;
+}
+
+.wing-toolbar .back {
+    color: #B0BEC5;
+}
+
+.wing-toolbar .controls {
+    width: 100%;
+}
+
+.search {
+    padding: 0 10px;
+}
+.search-input {
+    padding: 0 10px;
+    width: 100%;
+    background-color: white;
+}
+.search-input > mat-icon {
+    margin-left: 10px
+}
+.search-input input{
+    text-decoration: none;
+    border:none;
+    width: 100%;
+    padding: 0 10px;
+}
+
+::ng-deep .add .mat-mini-fab .mat-button-wrapper{
+    line-height: 22px !important;
+}
+
+::ng-deep .ngx-datatable.material .datatable-body .datatable-body-row.active .datatable-body-cell {
+    color: #1967d2 !important;
+    font-weight: bold;
+}
+
+::ng-deep .ngx-datatable.material .datatable-body .datatable-body-row.active:hover .datatable-body-cell {
+    color: #1967d2 !important;
+    font-weight: bold;
+}
+
+::ng-deep .ngx-datatable.material.single-selection .datatable-body-row.active, 
+::ng-deep .ngx-datatable.material.single-selection .datatable-body-row.active .datatable-row-group, 
+::ng-deep .ngx-datatable.material.multi-selection .datatable-body-row.active, 
+::ng-deep .ngx-datatable.material.multi-selection .datatable-body-row.active .datatable-row-group, 
+::ng-deep .ngx-datatable.material.multi-click-selection .datatable-body-row.active,
+::ng-deep .ngx-datatable.material.multi-click-selection .datatable-body-row.active .datatable-row-group {
+    background-color: #e8f0fe !important;
+}
+::ng-deep .ngx-datatable.material.single-selection .datatable-body-row.active:hover, 
+::ng-deep .ngx-datatable.material.single-selection .datatable-body-row.active:hover .datatable-row-group, 
+::ng-deep .ngx-datatable.material.multi-selection .datatable-body-row.active:hover,
+::ng-deep .ngx-datatable.material.multi-selection .datatable-body-row.active:hover .datatable-row-group, 
+::ng-deep .ngx-datatable.material.multi-click-selection .datatable-body-row.active:hover,
+::ng-deep .ngx-datatable.material.multi-click-selection .datatable-body-row.active:hover .datatable-row-group {
+    background-color: #e8f0fe !important;
+}
+
+::ng-deep .datatable-body-cell,
+::ng-deep .datatable-header {
+    display: flex !important;
+    align-items: center !important;
+}

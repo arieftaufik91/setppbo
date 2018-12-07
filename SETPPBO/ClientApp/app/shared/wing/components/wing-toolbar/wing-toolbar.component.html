@@ -1,0 +1,57 @@
+<div *ngIf="!searchShow" class="wing-toolbar" fxLayout="row" fxLayoutAlign="space-between center">
+  <div class="controls" fxLayout="row" fxLayoutAlign="start center">
+    <div *ngIf="back" class="back">
+      <button mat-icon-button [routerLink]="back">
+        <mat-icon>arrow_back</mat-icon>
+      </button>
+    </div> <!-- Back Button -->
+    
+    <div *ngIf="add.visible" class="add">
+      <button [@rotation]="state" [matTooltip]="add.tooltip" mat-mini-fab (click)="Add()">
+        <mat-icon>{{add.icon}}</mat-icon>
+      </button>
+    </div> <!-- Add Button -->
+    
+    <div *ngIf="del.visible" class="del">
+      <button [@transition]="state" [matTooltip]="del.tooltip" mat-icon-button (click)="Del($event)">
+        <mat-icon>{{del.icon}}</mat-icon>
+      </button>
+    </div> <!-- Delete Button -->
+    
+    <div *ngIf="edit.visible" class="edit">
+      <button [@transition]="state" [matTooltip]="edit.tooltip" mat-icon-button (click)="Edit($event)">
+        <mat-icon>{{edit.icon}}</mat-icon>
+      </button>
+    </div> <!-- Edit Button -->
+    
+    <div *ngIf="view.visible" class="view">
+      <button [@transition]="state" [matTooltip]="view.tooltip" mat-icon-button (click)="View($event)">
+        <mat-icon>{{view.icon}}</mat-icon>
+      </button>
+    </div> <!-- View Button -->
+
+    <ng-container [ngTemplateOutlet]="custom"></ng-container>
+
+  </div> <!-- Controls -->
+
+  <div class="title" fxLayout="row" fxLayoutAlign="start center">
+    <p>{{title}}</p>
+  </div>
+
+  <div *ngIf="search.visible" class="search" fxLayout="row" fxLayoutAlign="end center">
+      <button [matTooltip]="search.tooltip" mat-icon-button (click)="SearchShow($event)">
+        <mat-icon>{{search.icon}}</mat-icon>
+      </button>
+      <button [matTooltip]="reset.tooltip" mat-icon-button (click)="Reset($event)">
+        <mat-icon>{{reset.icon}}</mat-icon>
+      </button>
+  </div> <!-- Search -->
+</div>
+
+<div *ngIf="searchShow" class="search-input" fxFlex fxLayout="row" fxLayoutAlign="start center">
+    <mat-icon>search</mat-icon>
+    <input type="text" placeholder="Masukkan Kata Kunci" #search (input)="SearchByInput($event)" (keydown.enter)="Search($event)">
+    <button matTooltip="Tutup" mat-icon-button (click)="SearchShow($event)">
+      <mat-icon>close</mat-icon>
+    </button>
+</div>

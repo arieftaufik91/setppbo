@@ -1,0 +1,18 @@
+<div class="dialog-content-wrapper">
+    <div mat-dialog-title class="mat-accent-bg p-16 m-0" fxLayout="row" fxLayoutAlign="space-between center">
+        <span class="title dialog-title">Log Detail</span>
+        <button aria-label="Close dialog" mat-icon-button (click)="onOkClick()">
+            <mat-icon>close</mat-icon>
+        </button>
+    </div>
+    <div mat-dialog-content class="p-24 m-0">
+        <ngx-datatable #table class="material" [rows]="items" [columns]="columns" [columnMode]="'force'" [rowHeight]="'40'" [headerHeight]="50" [footerHeight]="50" [limit]="itemLimit" style="width:800px">
+        </ngx-datatable>
+    </div>
+    <div mat-dialog-actions class="m-0 p-16" fxLayout="row" fxLayoutAlign="end">
+        <button mat-raised-button (click)="onOkClick()" color="primary"
+                type="button" tabindex="1">
+            Close
+        </button>
+    </div>
+</div>

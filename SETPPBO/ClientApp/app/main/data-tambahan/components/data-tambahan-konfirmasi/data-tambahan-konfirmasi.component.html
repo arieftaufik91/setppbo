@@ -1,0 +1,49 @@
+<div class="toolbar px-24 py-8" fxFlex fxLayout="row" fxLayoutAlign="space-between center">
+  <div class="content-toolbar" fxFlex="60" fxLayout="row" fxLayoutAlign="start center">
+    <h3 class="md-title">Konfirmasi Data Tambahan</h3>
+  </div>
+</div>
+<div class="content p-24">
+    <div *ngIf="item"> 
+  <p>Data Tambahan telah disimpan, selanjutnya silakan cetak Tanda Terima Data Tambahan</p>
+  <mat-card>
+    <mat-card-content>
+        <table>
+            <tr>
+              <td>No. Sengketa</td>
+              <td>{{item.NoSengketa}}</td>
+            </tr>
+            <tr>
+              <td>No. Surat Permohonan</td>
+              <td>{{item.NoSuratPermohonan}}</td>
+            </tr>
+            <tr>
+              <td>No. Surat Data Tambahan</td>
+              <td>{{item.NoSuratPengantar}}</td>
+            </tr>
+            <tr>
+              <td>Tanggal Surat Data Tambahan</td>
+              <td>{{item.TglSuratPengantar | date:'dd-MM-yyyy'}}</td>
+            </tr>
+          </table>
+    </mat-card-content>
+  </mat-card>
+  <p>Data sudah disimpan</p>
+    </div>
+
+  <a href={{downloadlink}} download class="btn btn-primary">Cetak Tanda Terima</a>
+    <div style="position: absolute; left: -2000px; top: 0;">
+       {{message}}
+    </div >
+   
+
+
+
+  <!--button mat-raised-button kendo-button (click)="pdf.saveAs('Tanda Terima Pencabutan.pdf');" color="primary">Cetak Tanda Terima</button>
+  <div style="position: absolute; left: -2000px; top: 0;">
+      <kendo-pdf-export #pdf paperSize="A4">
+          <app-tanda-terima-pencabutan [data]="item"></app-tanda-terima-pencabutan>
+      </kendo-pdf-export>
+  </div -->
+  
+</div>

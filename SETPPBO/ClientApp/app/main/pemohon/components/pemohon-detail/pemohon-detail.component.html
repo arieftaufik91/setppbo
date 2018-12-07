@@ -1,0 +1,80 @@
+<div class="dialog-content-wrapper">
+    <div mat-dialog-title class="mat-accent-bg p-16 m-0" fxLayout="row" fxLayoutAlign="space-between center">
+        <span class="title dialog-title">Pemohon</span>
+        <button aria-label="Close dialog" mat-icon-button (click)="onNoClick()">
+            <mat-icon>close</mat-icon>
+        </button>
+    </div>
+    <div mat-dialog-content class="p-24 m-0">
+        <table class="table">
+            <tr>
+                <th>
+                    <strong>Nama</strong>
+                </th>
+                <td>
+                    {{item?.Nama}}
+                </td>
+            </tr>
+            <tr>
+                <th>
+                    <strong>NPWP</strong>
+                </th>
+                <td>
+                    {{item?.Npwp}}
+                    <a mat-button color="primary" (click)="onViewNpwp()" *ngIf="item?.Npwp" title="Download NPWP File"><mat-icon>archive</mat-icon> File</a>
+                </td>
+            </tr>
+            <tr>
+                <th>
+                    <strong>Contact Person</strong>
+                </th>
+                <td>
+                    {{item?.ContactPerson}}
+                </td>
+            </tr>
+            <tr>
+                <th>
+                    <strong>Alamat</strong>
+                </th>
+                <td>
+                    {{item?.Alamat}}
+                </td>
+            </tr>
+            <tr>
+                <th>
+                    <strong>Kota</strong>
+                </th>
+                <td>
+                    {{item?.Kota}}
+                </td>
+            </tr>
+            <tr>
+                <th>
+                    <strong>KodePos</strong>
+                </th>
+                <td>
+                    {{item?.KodePos}}
+                </td>
+            </tr>
+            <tr>
+                <th>
+                    <strong>Email</strong>
+                </th>
+                <td>
+                    {{item?.Email}}
+                </td>
+            </tr>
+            <!--<tr>
+                <th>
+                    <strong>Tgl Verifikasi</strong>
+                </th>
+                <td>
+                    {{item?.TglKodeVerifikasi}}
+                </td>
+            </tr>-->
+        </table>
+    </div>
+    <div mat-dialog-actions class="m-0 p-16" fxLayout="row" fxLayoutAlign="space-between center">
+        <button mat-raised-button (click)="onNoClick()" tabindex="-1">Kembali</button>
+    </div>
+</div>

@@ -1,0 +1,56 @@
+<div class="dialog-content-wrapper">
+    <div mat-dialog-title class="mat-accent-bg p-16 m-0" fxLayout="row" fxLayoutAlign="space-between center">
+        <span class="title dialog-title">Form Verifikasi Pemohon</span>
+        <button aria-label="Close dialog" mat-icon-button (click)="onNoClick()">
+            <mat-icon>close</mat-icon>
+        </button>
+    </div>
+
+    <div mat-dialog-content class="p-24 m-0">
+        <table class="table">
+            <tr>
+                <th>
+                    <strong>Nama</strong>
+                </th>
+                <td>
+                    {{item?.Nama}}
+                </td>
+            </tr>
+            <tr>
+                <th>
+                    <strong>NPWP</strong>
+                </th>
+                <td>
+                    {{item?.Npwp}}
+                    <a mat-button color="primary" (click)="onViewNpwp()" *ngIf="item?.Npwp" title="Download NPWP File"><mat-icon>archive</mat-icon> File</a>
+                </td>
+            </tr>
+        </table>
+    </div>
+    <!--<div mat-dialog-content class="p-24 m-0">
+        <form [formGroup]="formGroup" novalidate fxFlex fxLayout="column">
+            <mat-form-field>
+                <input matInput id="nama" formControlName="nama" placeholder="Nama" disabled="disabled" required />
+                <mat-error *ngIf="formGroup.controls['nama'].errors">
+                    <div [hidden]="!formGroup.controls['nama'].errors.required">Nama wajib diisi!</div>
+                </mat-error>
+            </mat-form-field>
+            <mat-form-field>
+                <input matInput id="npwp" formControlName="npwp" placeholder="NPWP" minlength="15" maxlength="15" disabled="disabled" type="number" required />
+                <mat-error *ngIf="formGroup.controls['npwp'].errors">
+                    <div [hidden]="!formGroup.controls['npwp'].errors.required">NPWP wajib diisi!</div>
+                    <div [hidden]="!formGroup.controls['npwp'].errors.type">
+                        NPWP tidak sesuai!
+                    </div>
+                </mat-error>
+            </mat-form-field>
+            <button mat-button color="primary" (click)="onViewNpwp()">View NPWP File</button>
+        </form>
+    </div>-->
+
+    <div mat-dialog-actions class="m-0 p-16" fxLayout="row" fxLayoutAlign="space-between center">
+        <button mat-button (click)="onNoClick()" tabindex="-1">Batal</button>
+        <button mat-raised-button (click)="onNotOkClick()" [disabled]="formGroup.invalid" tabindex="1">Tidak Valid</button>
+        <button mat-raised-button (click)="onOkClick()" [disabled]="formGroup.invalid" color="primary" type="button" tabindex="2">Verifikasi Pemohon</button>
+    </div>
+</div>

@@ -1,0 +1,32 @@
+
+
+<div class="toolbar px-24 py-8" fxFlex fxLayout="row" fxLayoutAlign="space-between center">
+    <div class="content-toolbar" fxFlex="60" fxLayout="row" fxLayoutAlign="start center">
+        <button [disabled]="selected.length <= 0" matTooltip="Ubah" mat-icon-button color="primary" (click)="editRefPermohonan()">
+            <mat-icon>edit</mat-icon>
+        </button>
+       &nbsp;&nbsp;&nbsp;
+   </div>
+        <layout-search-bar (search)="updateFilter($event)" fxFlex></layout-search-bar>
+</div>
+<ngx-datatable #table
+             class="material"
+             [rows]="items"
+             [columns]="columns"
+             [columnMode]="'force'"
+             [rowHeight]="'40'"
+             [selected]="selected"
+             [selectionType]="'single'"
+             [selectCheck]="singleSelectCheck"
+             (select)="onSelect($event)"
+             [headerHeight]="50"
+             [footerHeight]="50"
+             [externalPaging]="true"
+             [count]="count"
+             [offset]="offset"
+             [limit]="limit"
+             (page)="setPage($event)">
+  <ng-template #tglSurat let-value="value" ngx-datatable-cell-template>
+      {{value | date: 'dd/MM/yyyy'}}
+  </ng-template>
+</ngx-datatable>

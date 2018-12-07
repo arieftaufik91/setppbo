@@ -1,0 +1,192 @@
+<div class="content p-24" fxFlex fxLayoutAlign="space-between center">
+    <div fxFlex fxLayout="row" fxLayoutAlign="space-between start">
+        <div fxFlex="50" fxLayout="column" fxLayoutAlign="space-around center">
+            <div style="
+            border-left:1px solid lightgrey;
+            border-top:1px solid lightgrey;
+            border-bottom: 3px outset lightgrey;
+            border-right: 3px outset lightgrey;
+            width: 90%">
+                <div style="padding: 20px">
+                <h3>
+                    Penyampaian Salinan Bantahan
+                </h3>
+                <form [formGroup]="formSalinanBantahan" novalidate fxLayout="column">
+                    <mat-form-field style="width:100%">
+                        <input matInput id="NoSengketa" formControlName="NoSengketa" placeholder="Nomor Sengketa" required />
+                        <mat-error *ngIf="formSalinanBantahan.controls['NoSengketa'].errors">
+                            <div [hidden]="!formSalinanBantahan.controls['NoSengketa'].errors.required">No. Sengketa wajib diisi!</div>
+                        </mat-error>
+                    </mat-form-field>
+              
+                    <mat-form-field style="width:100%">
+                    <input matInput id="NoSuratPermintaanSalinan" formControlName="NoSuratPermintaanSalinan" placeholder="No Permintaan Salinan"/>
+                        <!--mat-error *ngIf="formSalinanBantahan.controls['NoSuratPermintaanSalinan'].errors">
+                            <div [hidden]="!formSalinanBantahan.controls['NoSuratPermintaanSalinan'].errors.required">Nomor Tanda Terima wajib diisi!</div>
+                        </mat-error-->
+                    </mat-form-field>
+              
+                    <mat-form-field style="width:100%">
+                        <input matInput [matDatepicker]="pickerTglSuratPermintaanSalinan" id="TglSuratPermintaanSalinan" formControlName="TglSuratPermintaanSalinan" placeholder="Tanggal Surat Permintaan Salinan" required />
+                        <mat-datepicker-toggle matSuffix [for]="pickerTglSuratPermintaanSalinan"></mat-datepicker-toggle>
+                        <mat-datepicker #pickerTglSuratPermintaanSalinan></mat-datepicker>
+                        <mat-error *ngIf="formSalinanBantahan.controls['TglSuratPermintaanSalinan'].errors">
+                            <div [hidden]="!formSalinanBantahan.controls['TglSuratPermintaanSalinan'].errors.required">Tanggal Surat Permintaan Salinan wajib diisi!</div>
+                        </mat-error>
+                    </mat-form-field>
+              
+                    <mat-form-field style="width:100%">
+                        <mat-select placeholder="Penandatangan" formControlName="Penandatangan">
+                            <mat-option value="PAN">
+                                Sekretaris
+                            </mat-option>
+                            <mat-option value="PAN.Wk">
+                                Wakil Sekretaris
+                            </mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                </form>
+
+                <div fxLayout="row" fxLayoutAlign="space-between center" style="padding-top:20px">
+                    <button mat-raised-button 
+                        (click)="onSimpanClick()" 
+                        [disabled]="isEdit? formSalinanBantahan.pristine : formSalinanBantahan.invalid" 
+                        color="primary"
+                        type="button" 
+                        tabindex="2">
+                        Simpan
+                    </button>
+                    <a href={{downloadSalinanBantahanLink}} download 
+                        class="btn btn-primary" 
+                        *ngIf="isSalinanBantahanSaved"
+                        (click)="onCetakClick()"
+                        tabindex = "-1">
+                        Cetak
+                    </a>
+                    <!--button mat-raised-button 
+                        color="primary" 
+                        [disabled]="!isTandaTerimaSaved"
+                        (click)="onCetakTandaTerimaClick()" 
+                        tabindex="-1">
+                        Cetak
+                    </button-->
+                </div>
+            </div>
+            </div>
+        </div> 
+
+        <div fxFlex fxLayout="column" fxLayoutAlign="space-between center">
+            <div style="
+            border-left:1px solid lightgrey;
+            border-top:1px solid lightgrey;
+            border-bottom: 3px outset lightgrey;
+            border-right: 3px outset lightgrey;
+            width: 90%">
+                <div style="padding:20px">
+                    <h3>Data Termohon</h3>
+                    <form [formGroup]="formDataTermohon" novalidate fxLayout="column">
+                        <div style="margin-bottom: 20px">
+                            <label style="font-weight: normal !important;color:rgba(0,0,0,.54); font-size: 11px">Nama Termohon</label>
+                            <p-dropdown formControlName="NamaTermohon" [(ngModel)]="selectedNamaTermohon" (onChange)="onTermohonChanged()" [options]="termohonLevelSatu" [filter]="true" optionLabel="UraianJabatan" [autoWidth]="false" [style]="{'width':'100%'}"></p-dropdown>
+                        </div>
+  
+                        <div style="margin-bottom: 20px">
+                            <label style="font-weight: normal !important;color:rgba(0,0,0,.54); font-size: 11px">Nama Up Termohon</label>
+                            <p-dropdown formControlName="NamaUpTermohon" [(ngModel)]="selectedNamaUpTermohon" (onChange)="onUpTermohonChanged()" [options]="termohonLevelDua" [filter]="true" optionLabel="UraianOrganisasi" [autoWidth]="false" [style]="{'width':'100%'}"></p-dropdown>
+                        </div>
+
+                        <mat-form-field style="width:100%">
+                            <input matInput id="AlamatTermohon" formControlName="AlamatTermohon" placeholder="Alamat Termohon" required />
+                            <mat-error *ngIf="formDataTermohon.controls['AlamatTermohon'].errors">
+                                <div [hidden]="!formDataTermohon.controls['AlamatTermohon'].errors.required">Alamat Termohon wajib diisi!</div>
+                            </mat-error>
+                        </mat-form-field>
+
+                        <mat-form-field style="width:100%">
+                            <input matInput id="KotaTermohon" formControlName="KotaTermohon" placeholder="Kota Termohon" required />
+                            <mat-error *ngIf="formDataTermohon.controls['KotaTermohon'].errors">
+                                <div [hidden]="!formDataTermohon.controls['KotaTermohon'].errors.required">Kota Termohon wajib diisi!</div>
+                            </mat-error>
+                        </mat-form-field>
+
+                        <!--mat-form-field style="width:100%">
+                            <input matInput id="NamaTermohon" formControlName="NamaTermohon" placeholder="Termohon" required />
+                            <mat-error *ngIf="formDataTermohon.controls['NamaTermohon'].errors">
+                                <div [hidden]="!formDataTermohon.controls['NamaTermohon'].errors.required">Termohon wajib diisi!</div>
+                            </mat-error>
+                        </mat-form-field>
+
+                        <mat-form-field style="width:100%">
+                            <input matInput id="AlamatTermohon" formControlName="AlamatTermohon" placeholder="Alamat Termohon" required />
+                            <mat-error *ngIf="formDataTermohon.controls['AlamatTermohon'].errors">
+                                <div [hidden]="!formDataTermohon.controls['AlamatTermohon'].errors.required">Alamat Termohon wajib diisi!</div>
+                            </mat-error>
+                        </mat-form-field>
+
+                        <mat-form-field style="width:100%">
+                            <input matInput id="KotaTermohon" formControlName="KotaTermohon" placeholder="Kota Termohon" required />
+                            <mat-error *ngIf="formDataTermohon.controls['KotaTermohon'].errors">
+                                <div [hidden]="!formDataTermohon.controls['KotaTermohon'].errors.required">Kota Termohon wajib diisi!</div>
+                            </mat-error>
+                        </mat-form-field-->
+
+                        <!--div style="margin-bottom: 20px">
+                            <label style="font-weight: normal !important;color:rgba(0,0,0,.54); font-size: 11px">Provinsi</label>
+                            <p-dropdown formControlName="Provinsi" [(ngModel)]="selectedProvinsi" (onChange)="onProvinsiChanged()" [options]="provinsi" [filter]="true" optionLabel="NamaProvinsi" [autoWidth]="false" [style]="{'width':'100%'}"></p-dropdown>
+                          </div>
+          
+                          <div-- style="margin-bottom: 20px">
+                            <label style="font-weight: normal !important;color:rgba(0,0,0,.54); font-size: 11px">Kota</label>
+                            <p-dropdown formControlName="KotaTermohon" [(ngModel)]="selectedCity" [options]="kota" [filter]="true" optionLabel="NamaKota" [autoWidth]="false" [style]="{'width':'100%'}"></p-dropdown>
+                          </div-->
+
+                        <mat-form-field style="width:100%">
+                            <input matInput id="NoSuratBantahan" formControlName="NoSuratBantahan" placeholder="No Surat Bantahan" required />
+                            <mat-error *ngIf="formDataTermohon.controls['NoSuratBantahan'].errors">
+                                <div [hidden]="!formDataTermohon.controls['NoSuratBantahan'].errors.required">No Surat Bantahan wajib diisi!</div>
+                            </mat-error>
+                        </mat-form-field>
+
+                        <mat-form-field style="width:100%">
+                            <input matInput [matDatepicker]="pickerTglSuratBantahan" id="" formControlName="TglSuratBantahan" placeholder="Tanggal Surat" required />
+                            <mat-datepicker-toggle matSuffix [for]="pickerTglSuratBantahan"></mat-datepicker-toggle>
+                            <mat-datepicker #pickerTglSuratBantahan></mat-datepicker>
+                            <mat-error *ngIf="formDataTermohon.controls['TglSuratBantahan'].errors">
+                                <div [hidden]="!formDataTermohon.controls['TglSuratBantahan'].errors.required">Tanggal Surat wajib diisi!</div>
+                            </mat-error>
+                        </mat-form-field>
+
+                        <mat-form-field style="width:100%">
+                            <input matInput id="NoSuratPermohonan" formControlName="NoSuratPermohonan" placeholder="No. Surat {{tipePermohonan}}" required />
+                            <mat-error *ngIf="formDataTermohon.controls['NoSuratPermohonan'].errors">
+                                <div [hidden]="!formDataTermohon.controls['NoSuratPermohonan'].errors.required">No. Surat {{tipePermohonan}} wajib diisi!</div>
+                            </mat-error>
+                        </mat-form-field>
+
+
+                        <mat-form-field style="width:100%">
+                            <input matInput disabled=true [matDatepicker]="pickerTglSuratPermohonan" id="" formControlName="TglSuratPermohonan" placeholder="Tgl Surat Permohonan" required />
+                            <mat-datepicker-toggle disabled=true matSuffix [for]="pickerTglSuratPermohonan"></mat-datepicker-toggle>
+                            <mat-datepicker #pickerTglSuratPermohonan disabled=true></mat-datepicker>
+                            <mat-error *ngIf="formDataTermohon.controls['TglSuratPermohonan'].errors">
+                                <div [hidden]="!formDataTermohon.controls['TglSuratPermohonan'].errors.required">TglSuratPermohonan wajib diisi!</div>
+                            </mat-error>
+                        </mat-form-field>
+                    </form>
+
+                    <div fxLayout="row" fxLayoutAlign="space-between center" style="padding-top:20px">
+                            <button mat-raised-button 
+                                (click)="onSimpanDataClick()" 
+                                color="primary"
+                                type="button" 
+                                tabindex="2">
+                                Simpan
+                            </button>
+                            
+                        </div>
+                </div>
+            </div>
+        </div>
+        
+    </div>
+</div>

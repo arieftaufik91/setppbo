@@ -1,0 +1,57 @@
+<div *ngFor="let item of model" id="group-menu" class="nav-group nav-item">
+    <div *ngIf="item.Type=='group'; then navGroup; else navItem"></div>
+    <ng-template #navGroup>
+        <div class="group-title">
+            <!-- <i class="nav-link-icon mat-icon material-icons" role="img" aria-hidden="true">{{item.Icon}}</i> -->
+            <span class="hint-text">{{item.Name}}</span>
+        </div>
+        <div class="group-items" *ngFor="let menu of item.Items">
+            <div id="nav-vertical-collapse" class="nav-collapse nav-item" [ngClass]="{'open':menu.Expanded}" *ngIf="menu.Type=='collapse'">
+                <a class="nav-link" matripple (click)="handleClick($event, menu)">
+                <i class="nav-link-icon mat-icon material-icons" role="img" aria-hidden="true">{{menu.Icon}}</i>
+                <span class="nav-link-title">{{menu.Name}}</span>
+                <i class="collapse-arrow mat-icon material-icons" role="img" aria-hidden="true">keyboard_arrow_right</i>
+            </a>
+                <div class="children" [@slideInOut]="menu.Expanded?'true':'false'">
+                    <div class="nav-item" *ngFor="let child of menu.Items" (click)="handleClick($event, child)">
+                        <a class="nav-link" matripple routerLinkActive="active" [routerLinkActiveOptions]="{exact:child.Exact}" [routerLink]="child.Link">
+                            <!-- <i class="nav-link-icon mat-icon material-icons" role="img" aria-hidden="true">{{menu.Icon}}</i> -->
+                            <span class="nav-link-title">{{child.Name}}</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div id="nav-vertical-item" class="nav-item" (click)="handleClick($event, menu)" *ngIf="menu.Type=='item'">
+                <a class="nav-link" matripple routerLinkActive="active" [routerLinkActiveOptions]="{exact:menu.Exact}" [routerLink]="menu.Link">
+                <i class="nav-link-icon mat-icon material-icons" role="img" aria-hidden="true">{{menu.Icon}}</i>
+                <span class="nav-link-title">{{menu.Name}}</span>
+            </a>
+            </div>
+        </div>
+    </ng-template>
+    <ng-template #navItem>
+        <div class="group-items">
+            <div id="nav-vertical-collapse" class="nav-collapse nav-item" [ngClass]="{'open':item.Expanded}" *ngIf="item.Type=='collapse'">
+                <a class="nav-link" matripple (click)="handleClick($event, item)">
+                    <i class="nav-link-icon mat-icon material-icons" role="img" aria-hidden="true">{{item.Icon}}</i>
+                    <span class="nav-link-title">{{item.Name}}</span>
+                    <i class="collapse-arrow mat-icon material-icons" role="img" aria-hidden="true">keyboard_arrow_right</i>
+                </a>
+                <div class="children" [@slideInOut]="item.Expanded?'true':'false'">
+                    <div class="nav-item" *ngFor="let child of item.Items">
+                        <a class="nav-link" matripple routerLinkActive="active" [routerLinkActiveOptions]="{exact:child.Exact}" [routerLink]="child.Link">
+                            <!-- <i class="nav-link-icon mat-icon material-icons" role="img" aria-hidden="true">{{item.Icon}}</i> -->
+                            <span class="nav-link-title">{{child.Name}}</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div id="nav-vertical-item" class="nav-item" (click)="handleClick($event, item)" *ngIf="item.Type=='item'">
+                <a class="nav-link" matripple routerLinkActive="active" [routerLinkActiveOptions]="{exact:item.Exact}" [routerLink]="item.Link">
+                    <i class="nav-link-icon mat-icon material-icons" role="img" aria-hidden="true">{{item.Icon}}</i>
+                    <span class="nav-link-title">{{item.Name}}</span>
+                </a>
+            </div>
+        </div>
+    </ng-template>
+</div>

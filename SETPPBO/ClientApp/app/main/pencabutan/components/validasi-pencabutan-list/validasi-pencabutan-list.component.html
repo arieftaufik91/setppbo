@@ -1,0 +1,127 @@
+<div *ngIf="!isSaved; else konfirmasiPage">
+<div class="toolbar px-24 py-8" fxFlex fxLayout="row" fxLayoutAlign="space-between center">
+  <div class="content-toolbar" fxFlex="60" fxLayout="row" fxLayoutAlign="start center">
+
+      <button  [disabled]="selected.length <= 0 || isValidated()" matTooltip="Validasi Pencabutan" mat-mini-fab color="accent" (click)="validasiPencabutan()">
+          <mat-icon>add</mat-icon>
+      </button>
+       &nbsp;&nbsp;&nbsp;
+       <button [disabled]="selected.length <= 0" matTooltip="Detail Pencabutan" mat-icon-button  color="primary" (click)="showDetail()">
+          <mat-icon>visibility</mat-icon>
+      </button>
+    
+  </div>
+  <layout-search-bar (search)="updateFilter($event)" fxFlex></layout-search-bar>
+</div>
+  <div class="content p-24">
+    <ngx-datatable #table 
+    class="material" 
+    [rows]="items" 
+    [columnMode]="'force'" 
+    [rowHeight]="'40'" 
+    [selected]="selected"
+    [selectionType]="'single'" 
+    [selectCheck]="singleSelectCheck" 
+    (select)='onSelect($event)'
+    [headerHeight]="50" 
+    [footerHeight]="50"
+    [limit]="10">
+
+    <ngx-datatable-column name="No. Sengketa" prop="NoSengketa">
+      <ng-template let-row="row" ngx-datatable-cell-template>
+          {{row.NoSengketa}}
+      </ng-template>
+    </ngx-datatable-column>
+
+    <ngx-datatable-column name="No. Surat Banding/Gugatan" prop="NoSuratPermohonan">
+      <ng-template let-row="row" ngx-datatable-cell-template>
+          {{row.NoSuratPermohonan}}
+      </ng-template>
+    </ngx-datatable-column>
+
+    <ngx-datatable-column name="Tanggal Surat" prop="TglSuratPermohonan">
+      <ng-template let-row="row" ngx-datatable-cell-template>
+          {{row.TglSuratPermohonan | date:'dd-MM-yyyy'}}
+      </ng-template>
+    </ngx-datatable-column>
+
+    <ngx-datatable-column name="Tanggal Terima" prop="TglTerimaPermohonan">
+      <ng-template let-row="row" ngx-datatable-cell-template>
+          {{row.TglTerimaPermohonan | date:'dd-MM-yyyy'}}
+      </ng-template>
+    </ngx-datatable-column>
+
+    <ngx-datatable-column name="Nama Pemohon" prop="Nama">
+      <ng-template let-row="row" ngx-datatable-cell-template>
+          {{row.Nama}}
+      </ng-template>
+    </ngx-datatable-column>
+
+    <ngx-datatable-column name="Posisi Berkas">
+      <ng-template let-row="row" ngx-datatable-cell-template>
+          {{row.Uraian}}
+      </ng-template>
+    </ngx-datatable-column>
+
+    <ngx-datatable-column name="Status">
+      <ng-template let-row="row" ngx-datatable-cell-template>
+          <span *ngIf="row.TglValidasiPencabutan==null;else sudahValid">Belum divalidasi</span>
+          <ng-template #sudahValid>Sudah divalidasi</ng-template>
+      </ng-template>
+    </ngx-datatable-column>
+
+    <!--ngx-datatable-column name="Action" prop="PermohonanId">
+      <ng-template let-row="row" let-value="value" ngx-datatable-cell-template>
+        <a title="Detail" href='javascript:void (0)' (click)="showDetail(value)"> <i class='fa fa-search-plus'> </i> </a>
+        <span *ngIf="row.TglValidasiPencabutan==null">
+          <a title="Validasi Pencabutan" href='javascript:void (0)' (click)="validasiPencabutan(row)" style="padding-left: 10px"> <i class="fa fa-check-circle"></i> </a>
+        </span>
+      </ng-template>
+    </ngx-datatable-column-->
+      
+    </ngx-datatable>
+</div>
+</div>
+
+<ng-template #konfirmasiPage>
+    <div class="toolbar px-24 py-8" fxFlex fxLayout="row" fxLayoutAlign="space-between center">
+      <div class="content-toolbar" fxFlex="60" fxLayout="row" fxLayoutAlign="start center">
+        <h3 class="md-title">Konfirmasi Pencabutan</h3>
+      </div>
+    </div>
+    <div class="content p-24">
+      <p>Data Pencabutan telah disimpan, selanjutnya silakan cetak Tanda Terima Data Pencabutan</p>
+      <mat-card>
+        <mat-card-content>
+            <table>
+                <tr>
+                  <td>No. Sengketa</td>
+                  <td>{{item.NoSengketa}}</td>
+                </tr>
+                <tr>
+                  <td>No. Surat Permohonan</td>
+                  <td>{{item.NoSuratPermohonan}}</td>
+                </tr>
+                <tr>
+                  <td>No. Surat Pencabutan</td>
+                  <td>{{item.NoSuratPencabutan}}</td>
+                </tr>
+                <tr>
+                  <td>Tanggal Pencabutan</td>
+                  <td>{{item.TglSuratPencabutan | date:'dd-MM-yyyy'}}</td>
+                </tr>
+              </table>
+        </mat-card-content>
+      </mat-card>
+      <p>Data sudah disimpan</p>
+      <!--button mat-raised-button kendo-button (click)="pdf.saveAs('Tanda Terima Pencabutan.pdf');" color="primary">Cetak Tanda Terima</button>
+      <div style="position: absolute; left: -2000px; top: 0;">
+        <kendo-pdf-export #pdf paperSize="A4">
+            <app-tanda-terima-pencabutan [data]="item"></app-tanda-terima-pencabutan>
+        </kendo-pdf-export>
+      </div -->
+    </div>
+    <div>
+      <button class="back-button" mat-raised-button color="primary" (click)="backToList()">Kembali</button>
+    </div>
+  </ng-template>

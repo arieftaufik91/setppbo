@@ -1,0 +1,196 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup Label="Globals">
+    <SccProjectName>SAK</SccProjectName>
+    <SccProvider>SAK</SccProvider>
+    <SccAuxPath>SAK</SccAuxPath>
+    <SccLocalPath>SAK</SccLocalPath>
+  </PropertyGroup>
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp2.1</TargetFramework>
+    <TypeScriptCompileBlocked>true</TypeScriptCompileBlocked>
+     <RazorCompileOnPublish>true</RazorCompileOnPublish>
+    <TypeScriptToolsVersion>Latest</TypeScriptToolsVersion>
+    <IsPackable>false</IsPackable>
+    <PackageId>SETPPBO</PackageId>
+    <PackageVersion>2.1.0</PackageVersion>
+    <Authors>Pusintek</Authors>
+    <Description>Pusintek Web Application Platform</Description>
+    <PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
+    <PackageReleaseNotes>First release</PackageReleaseNotes>
+    <Copyright>Copyright 2018 (c) Pusintek. All rights reserved.</Copyright>
+    <PackageTags>NetCore Angular Pusintek PWP</PackageTags>
+    <Version>2.1.0</Version>
+    <PackageProjectUrl>http://dev.ecorp.kemenkeu.go.id/SETPPBO</PackageProjectUrl>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <PackageLicenseUrl>http://dev.ecorp.kemenkeu.go.id/SETPPBO</PackageLicenseUrl>
+    <ApplicationIcon>wwwroot\favicon.ico</ApplicationIcon>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="DocumentFormat.OpenXml" Version="2.8.1" />
+    <PackageReference Include="KemenkeuID.AspNetCore" Version="2.0.0" />
+    <PackageReference Include="Microsoft.AspNetCore.All" Version="2.0.0" />
+    <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="2.0.0" />
+    <PackageReference Include="Pusintek.AspNetcore.DocIO" Version="1.1.3" />
+    <PackageReference Include="sautinsoft.pdfmetamorphosis" Version="7.0.6.4" />
+    <PackageReference Include="SkiaSharp" Version="1.60.3" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <DotNetCliToolReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Tools" Version="2.0.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <!-- Files not to publish (note that the 'dist' subfolders are re-added below) -->
+    <Compile Remove="ClientApp\app\components\**" />
+    <Compile Remove="ClientApp\app\core\layout\data\**" />
+    <Compile Remove="ClientApp\app\main\referensidokumen\**" />
+    <Compile Remove="ClientApp\app\main\refjenisnormawaktu\**" />
+    <Compile Remove="ClientApp\app\main\refnormawaktu\**" />
+    <Compile Remove="ClientApp\dist\**" />
+    <Compile Remove="Models\**" />
+    <Compile Remove="wwwroot\assets\data\**" />
+    <Compile Remove="wwwroot\dist\**" />
+    <Content Remove="ClientApp\**" />
+    <Content Remove="Models\**" />
+    <Content Remove="wwwroot\assets\data\**" />
+    <Content Remove="wwwroot\dist\**" />
+    <EmbeddedResource Remove="ClientApp\app\components\**" />
+    <EmbeddedResource Remove="ClientApp\app\core\layout\data\**" />
+    <EmbeddedResource Remove="ClientApp\app\main\referensidokumen\**" />
+    <EmbeddedResource Remove="ClientApp\app\main\refjenisnormawaktu\**" />
+    <EmbeddedResource Remove="ClientApp\app\main\refnormawaktu\**" />
+    <EmbeddedResource Remove="ClientApp\dist\**" />
+    <EmbeddedResource Remove="Models\**" />
+    <EmbeddedResource Remove="wwwroot\assets\data\**" />
+    <EmbeddedResource Remove="wwwroot\dist\**" />
+    <None Remove="ClientApp\app\components\**" />
+    <None Remove="ClientApp\app\core\layout\data\**" />
+    <None Remove="ClientApp\app\main\referensidokumen\**" />
+    <None Remove="ClientApp\app\main\refjenisnormawaktu\**" />
+    <None Remove="ClientApp\app\main\refnormawaktu\**" />
+    <None Remove="ClientApp\dist\**" />
+    <None Remove="Models\**" />
+    <None Remove="wwwroot\assets\data\**" />
+    <None Remove="wwwroot\dist\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Remove="ClientApp\app\core\layout\components\layout-nav\nav-menu.component - Copy.ts" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Include="Models\AspNetRoleClaims.cs" />
+    <Compile Include="Models\AspNetRoles.cs" />
+    <Compile Include="Models\AspNetUserClaims.cs" />
+    <Compile Include="Models\AspNetUserLogins.cs" />
+    <Compile Include="Models\AspNetUserRoles.cs" />
+    <Compile Include="Models\AspNetUsers.cs" />
+    <Compile Include="Models\AspNetUserTokens.cs" />
+    <Compile Include="Models\Audit.cs" />
+    <Compile Include="Models\ConfigFtp.cs" />
+    <Compile Include="Models\ConfigSmtp.cs" />
+    <Compile Include="Models\DataTambahan.cs" />
+    <Compile Include="Models\Kelengkapan.cs" />
+    <Compile Include="Models\LogError.cs" />
+    <Compile Include="Models\MainDbContext.cs" />
+    <Compile Include="Models\Paging.cs" />
+    <Compile Include="Models\Pemohon.cs" />
+    <Compile Include="Models\PemohonMajelis.cs" />
+    <Compile Include="Models\Penomoran.cs" />
+    <Compile Include="Models\Permohonan.cs" />
+    <Compile Include="Models\RefAlasan.cs" />
+    <Compile Include="Models\RefCaraKirim.cs" />
+    <Compile Include="Models\RefConfig.cs" />
+    <Compile Include="Models\RefDokumen.cs" />
+    <Compile Include="Models\RefHakim.cs" />
+    <Compile Include="Models\RefJenisKasus.cs" />
+    <Compile Include="Models\RefJenisKetetapan.cs" />
+    <Compile Include="Models\RefJenisNormaWaktu.cs" />
+    <Compile Include="Models\RefJenisPajak.cs" />
+    <Compile Include="Models\RefJenisPemeriksaan.cs" />
+    <Compile Include="Models\RefJenisPenomoran.cs" />
+    <Compile Include="Models\RefJenisPermohonan.cs" />
+    <Compile Include="Models\RefKodeTermohon.cs" />
+    <Compile Include="Models\RefMajelis.cs" />
+    <Compile Include="Models\RefNormaWaktu.cs" />
+    <Compile Include="Models\RefStatus.cs" />
+    <Compile Include="Models\RefTemplate.cs" />
+    <Compile Include="Models\Role.cs" />
+    <Compile Include="Models\SampleData.cs" />
+    <Compile Include="Models\SuratPengantar.cs" />
+    <Compile Include="Models\UserRole.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Include=".template.config\template.json" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Areas\Core\Data\" />
+    <Folder Include="Areas\Core\Views\" />
+    <Folder Include="ClientApp\app\main\berkas-sidang\components\" />
+    <Folder Include="ClientApp\app\main\berkas-sidang\models\" />
+    <Folder Include="ClientApp\app\main\berkas-sidang\services\" />
+    <Folder Include="ClientApp\app\main\dashboard\components\" />
+    <Folder Include="ClientApp\app\main\dashboard\models\" />
+    <Folder Include="ClientApp\app\main\dashboard\services\" />
+    <Folder Include="ClientApp\app\main\refmajelis\components\" />
+    <Folder Include="ClientApp\app\main\refmajelis\models\" />
+    <Folder Include="ClientApp\app\main\refmajelis\services\" />
+    <Folder Include="ClientApp\app\main\subst\components\" />
+    <Folder Include="ClientApp\app\main\subst\models\" />
+    <Folder Include="ClientApp\app\main\subst\services\" />
+    <Folder Include="ClientApp\app\shared\components\" />
+    <Folder Include="Template\" />
+    <Folder Include="wwwroot\template\datatambahan\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="wwwroot\assets\Template1\pdf3.docx" />
+    <None Include="wwwroot\assets\Template1\pdf3.pdf" />
+    <None Include="wwwroot\assets\Template1\pdf4.docx" />
+    <None Include="wwwroot\assets\Template1\pdf4.pdf" />
+    <None Include="wwwroot\assets\Template1\PenetapanHT.docx" />
+    <None Include="wwwroot\assets\Template1\PenetapanHT.pdf" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Reference Include="DocumentFormat.OpenXml">
+      <HintPath>..\..\..\..\Desktop\xml\lib\net40\DocumentFormat.OpenXml.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+
+  <Target Name="DebugRunWebpack" BeforeTargets="Build" Condition=" '$(Configuration)' == 'Debug' And !Exists('wwwroot\dist') ">
+    <!-- Ensure Node.js is installed -->
+    <Exec Command="node --version" ContinueOnError="true">
+      <Output TaskParameter="ExitCode" PropertyName="ErrorCode" />
+    </Exec>
+    <Error Condition="'$(ErrorCode)' != '0'" Text="Node.js is required to build and run this project. To continue, please install Node.js from https://nodejs.org/, and then restart your command prompt or IDE." />
+
+    <!-- In development, the dist files won't exist on the first run or when cloning to
+         a different machine, so rebuild them if not already present. -->
+    <Message Importance="high" Text="Performing first-run Webpack build..." />
+    <Exec Command="node node_modules/webpack/bin/webpack.js --config webpack.config.vendor.js" />
+    <Exec Command="node node_modules/webpack/bin/webpack.js" />
+  </Target>
+
+  <Target Name="PublishRunWebpack" AfterTargets="ComputeFilesToPublish">
+    <!-- As part of publishing, ensure the JS resources are freshly built in production mode -->
+    <Exec Command="npm install" />
+    <Exec Command="node node_modules/webpack/bin/webpack.js --config webpack.config.vendor.js --env.prod" />
+    <Exec Command="node node_modules/webpack/bin/webpack.js" />
+
+    <!-- Include the newly-built files in the publish output -->
+    <ItemGroup>
+      <DistFiles Include="wwwroot\dist\**; ClientApp\dist\**" />
+      <ResolvedFileToPublish Include="@(DistFiles->'%(FullPath)')" Exclude="@(ResolvedFileToPublish)">
+        <RelativePath>%(DistFiles.Identity)</RelativePath>
+        <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+      </ResolvedFileToPublish>
+    </ItemGroup>
+  </Target>
+
+</Project>

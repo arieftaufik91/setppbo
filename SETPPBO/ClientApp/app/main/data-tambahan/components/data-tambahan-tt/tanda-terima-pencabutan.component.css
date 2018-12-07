@@ -1,0 +1,54 @@
+.header-custom{
+    text-align: center;
+    padding-bottom: 20px;
+    color: black;
+    background-color: gray;
+}
+
+.title-custom{
+    padding-top: 10px;
+}
+
+.content-custom{
+    padding-top: 20px;
+    padding-bottom: 20px;
+    margin: auto;
+    width: 50%;
+    font-size: 10px;
+}
+
+.footer-custom{
+    padding-top: 20px;
+    text-align:center;
+    color:black;
+    margin-left: 50%;
+    font-size: 10px;
+}
+
+.smallfont{
+    font-size: 7px;
+}
+
+.no-gutters {
+    margin-right: 0;
+    margin-left: 0;
+}
+
+h6{
+    text-align: center;
+    font-weight: bold;
+}
+
+td{
+    padding-right: 10px;
+}
+
+img{
+    padding-top: 20px;
+}
+
+hr{
+    color: black;
+    background-color: black;
+    height: 1px;
+}

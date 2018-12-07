@@ -1,0 +1,60 @@
+<div class="dialog-content-wrapper">
+    <div mat-dialog-title class="mat-accent-bg p-16 m-0" fxLayout="row" fxLayoutAlign="space-between center">
+        <span class="title dialog-title">Menu Form</span>
+        <button (click)="onNoClick()" aria-label="Close dialog" mat-icon-button>
+            <mat-icon>close</mat-icon>
+        </button>
+    </div>
+    <div mat-dialog-content class="p-24 m-0" fxLayout="row" fxLayoutAlign="start center">
+        <form [formGroup]="formGroup" novalidate fxFlex="300px">
+            <div class="form-container">
+                <mat-form-field>
+                    <mat-select placeholder="Tipe Menu" formControlName="type" (change)='onTypeChange()' required>
+                        <mat-option *ngFor="let refType of refTypes" [value]="refType.value">
+                            {{ refType.viewValue }}
+                        </mat-option>
+                    </mat-select>
+                    <mat-error *ngIf="formGroup.controls['type'].errors">
+                        <div [hidden]="!formGroup.controls['type'].errors.required">Tipe menu wajib diisi!</div>
+                    </mat-error>
+                </mat-form-field>
+                <mat-form-field hintLabel="Max 50 karakter">
+                    <input matInput #nameInput formControlName="name" maxlength="50" placeholder="Menu Name" required />
+                    <mat-hint align="end">{{nameInput.value?.length || 0}}/50</mat-hint>
+                    <mat-error *ngIf="formGroup.controls['name'].errors">
+                        <div [hidden]="!formGroup.controls['name'].errors.required">Nama menu wajib diisi!</div>
+                    </mat-error>
+                </mat-form-field>
+                <mat-form-field hintLabel="Max 20 karakter" *ngIf="!isGroupType && !isCollapseType">
+                    <input matInput #linkInput formControlName="link" maxlength="20" placeholder="Menu Link" />
+                    <mat-hint align="end">{{linkInput.value?.length || 0}}/20</mat-hint>
+                </mat-form-field>
+                <mat-form-field hintLabel="Max 20 karakter" *ngIf="!isGroupType">
+                    <input matInput #iconInput formControlName="icon" maxlength="20" placeholder="Menu Icon" />
+                    <mat-hint align="end">{{iconInput.value?.length || 0}}/20</mat-hint>
+                </mat-form-field>
+                <mat-form-field>
+                    <input matInput #orderInput formControlName="order" type="number" placeholder="Menu Order" />
+                </mat-form-field>
+                <section>
+                    <mat-checkbox formControlName="exact">
+                        Exact
+                    </mat-checkbox>
+                </section>
+            </div>
+            <div>
+                <label>Roles Selection</label>
+                <mat-divider></mat-divider>
+                <mat-selection-list dense #roles>
+                    <mat-list-option *ngFor="let role of allRoles" [selected]="role.IsChecked" (click)="selectChange(roles)" [value]="role.RoleName">
+                        {{role.RoleName}}
+                    </mat-list-option>
+                </mat-selection-list>
+            </div>
+        </form>
+    </div>
+    <div mat-dialog-actions class="m-0 p-16" fxLayout="row" fxLayoutAlign="space-between center">
+        <button mat-raised-button [disabled]="isEdit ? formGroup.pristine : formGroup.invalid" color="primary" type="button" (click)="onOkClick()" tabindex="2">Simpan</button>
+        <button mat-raised-button (click)="onNoClick()" tabindex="-1">Batal</button>
+    </div>
+</div>

@@ -1,0 +1,54 @@
+<div>
+    <div mat-dialog-title class="mat-accent-bg p-16 m-0" fxLayout="row" fxLayoutAlign="space-between center">
+        <span class="title dialog-title">Form Penetapan Baru</span>
+        <!-- <button aria-label="Close dialog" mat-icon-button (click)="onNoClick()">
+            <mat-icon>close</mat-icon>
+        </button> -->
+    </div>
+  
+    <div class="content p-24" fxFlex fxLayoutAlign="space-between center">
+      <div fxFlex fxLayout="row" fxLayoutAlign="space-between start">
+          <div fxFlex="50" fxLayout="column" fxLayoutAlign="space-around center">
+              <div style="
+              border-left:1px solid lightgrey;
+              border-top:1px solid lightgrey;
+              border-bottom: 3px outset lightgrey;
+              border-right: 3px outset lightgrey;
+              width: 90%">
+                  <div style="padding: 20px">
+                  <form [formGroup]="formGroup"  class="form-container">
+                      <mat-form-field>
+                          <input matInput id="NoPenetapan" formControlName="NoPenetapan" placeholder="Nomor Penetapan" />
+                      </mat-form-field>
+                      
+                      <mat-form-field>
+                        <input matInput [matDatepicker]="pickerTglPenetapan" id="TglPenetapan" formControlName="TglPenetapan" placeholder="Tanggal Konsep Penetapan" required/>
+                        <mat-datepicker-toggle matSuffix [for]="pickerTglPenetapan"></mat-datepicker-toggle>
+                        <mat-datepicker #pickerTglPenetapan></mat-datepicker>
+                        <mat-error *ngIf="formGroup.controls['TglPenetapan'].errors">
+                            <div [hidden]="!formGroup.controls['TglPenetapan'].errors.required">Tanggal Penetapan wajib diisi!</div>
+                        </mat-error>
+                    </mat-form-field>
+                      <mat-form-field>
+                              <mat-select placeholder="Tempat Sidang" formControlName="selectedkota" [ngModel]="selectedkotamodel" (ngModelChange)="onChange($event)">
+                             
+                              <mat-option *ngFor="let kota of refKota" [value]="kota.kotaId">
+                                  {{kota.kotapenetapan}}
+                              </mat-option>
+                          </mat-select>
+                    </mat-form-field>
+                    <!-- <mat-form-field>
+                      <input matInput id="PejabatPenandatangan" formControlName="PejabatPenandatangan" placeholder="Pejabat Penandatangan"  />
+                      <mat-error *ngIf="formGroup.controls['PejabatPenandatangan'].errors">
+                          <div [hidden]="!formGroup.controls['PejabatPenandatangan'].errors.required">Pejabat Penandatangan wajib diisi!</div>
+                      </mat-error>
+                  </mat-form-field> -->
+                  </form>
+                  </div>
+                  </div>
+              </div>
+          </div>
+      </div>
+  
+       
+   

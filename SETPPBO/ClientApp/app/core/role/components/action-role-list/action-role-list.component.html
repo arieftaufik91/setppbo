@@ -1,0 +1,13 @@
+<div class="toolbar px-24 py-8" fxFlex fxLayout="row" fxLayoutAlign="space-between center">
+    <div class="content-toolbar" fxFlex="60" fxLayout="row" fxLayoutAlign="start center">
+        <button *ngIf="selected.length > 0" matTooltip="Update" mat-mini-fab color="accent" (click)="onEditClick()">
+            <mat-icon>assignment</mat-icon>
+        </button>
+    </div>
+    <layout-search-bar (search)="updateFilter($event)" fxFlex></layout-search-bar>
+</div>
+<div class="content p-24">
+    <ngx-datatable #table class="material" [rows]="roles" [columns]="columns" [columnMode]="'force'" [rowHeight]="'40'" [selectCheck]="singleSelectCheck" [selected]="selected"
+                   [selectionType]="'single'" [headerHeight]="50" [footerHeight]="50" [limit]="10">
+    </ngx-datatable>
+</div>

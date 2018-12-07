@@ -1,0 +1,53 @@
+<mat-sidenav-container fullscreen>
+    <mat-sidenav #sidenav mode="over"></mat-sidenav>
+
+    <div id="layout-main-content">
+        <div id="wrapper">
+            <layout-nav (onMenuClick)="onLinkClick()" (childEvent)="handleSidenav(); mouseOvered=false" [ngClass]="{'folded':sidenavFolded, 'folded-open':mouseOvered, 'close':isMobileView && !sidenavOpened}"
+                (mouseover)="mouseOvered=true" (mouseout)="mouseOvered=false" class="left-navbar mat-dark-700-bg initialized">
+            </layout-nav>
+            <div class="content-wrapper">
+                <div id="toolbar" class="below mat-white-500-bg">
+                    <mat-toolbar class="p-0 mat-elevation-z1">
+                        <div fxFlexFill fxFlex fxLayout="row" fxLayoutAlign="start center">
+                            <div fxFlex="1 0 auto" fxLayout="row" fxLayoutAlign="start center">
+                                <button mat-icon-button (click)="sidenavOpened=true" class="toggle-button-navbar" fxHide.gt-md>
+                                    <i class="material-icons">menu</i>
+                                </button>
+                                <div class="toolbar-separator" fxHide.gt-md></div>
+                            </div>
+                            <div fxFlex="0 1 auto" fxLayout="row" fxLayoutAlign="start center">
+                                <div class="toolbar-separator"></div>
+                                <button mat-button [matMenuTriggerFor]="menu" class="user-button">
+                                    <div fxLayout="row" fxLayoutAlign="center center">
+                                        <img class="avatar" src="{{userInfo.Gravatar}}">
+                                        <span class="username mr-12" fxHide fxShow.gt-sm>{{userInfo.Nama}}</span>
+                                        <i class="material-icons" fxHide.xs>keyboard_arrow_down</i>
+                                    </div>
+                                </button>
+                                <mat-menu #menu="matMenu">
+                                    <button mat-menu-item> Profil </button>
+                                    <a mat-menu-item href="/Account/Logout"> Logout </a>
+                                </mat-menu>
+                            </div>
+                        </div>
+                    </mat-toolbar>
+                </div>
+                <layout-content class="transitionUp"></layout-content>
+                <div id="footer" class="below mat-dark-900-bg">
+                    <mat-toolbar class="footer-toolbar">
+                        <div fxFlex fxLayout="row" fxLayoutAlign="center center" fxLayoutAlign.gt-xs="space-between center">
+                            <div fxFlex="0 0 auto" fxLayout="row" fxLayoutAlign="start center">
+                                <span>Copyright 2018 by Pusintek</span>
+                            </div>
+                            <div fxHide fxLayout="row" fxLayoutAlign="start center" fxShow.gt-xs>
+                                <span>Version 2.0.0</span>
+                            </div>
+                        </div>
+                    </mat-toolbar>
+                </div>
+                <div *ngIf="sidenavOpened" class="layout-nav-backdrop" (click)="onLinkClick()"></div>
+            </div>
+        </div>
+    </div>
+</mat-sidenav-container>

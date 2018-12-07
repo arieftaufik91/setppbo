@@ -1,0 +1,18 @@
+<div class="toolbar">
+    <wing-toolbar 
+      [state]="state" 
+      [add]="{visible: false, icon: 'remove_red_eye', tooltip: 'Silahkan Pilih Kota'}" 
+      [del]="{visible: false}" 
+      [edit]="{visible: false}" 
+      [view]="{visible: true, icon: 'view_list', tooltip: 'Lihat Detail'}"
+      (_edit)="onClickEdit()" 
+      (_view)="onClickView()"
+      (_search)="onSearch($event)"
+      (_reset)="reset($event)"
+    >
+    </wing-toolbar>
+</div>
+<ngx-datatable #table class="material" [rows]="items" [columns]="colABG" [columnMode]="'force'" [rowHeight]="'40'"
+  [selected]="selected" [selectionType]="'single'" [selectCheck]="singleSelectCheck" [headerHeight]="40" [footerHeight]="50"
+  [limit]="10" (select)='onSelect($event)'>
+</ngx-datatable>

@@ -1,0 +1,81 @@
+
+<div class="main-content">
+    <div class="container-fluid">
+        <div class="row" style="padding-top:2%">
+            <div class="col-lg-3 col-md-6 col-sm-6">
+                <a (click)="scroll('daftar_sengketa_masuk')" href="javascript:void(0)">
+                    <div class="card card-stats" >
+                        <div class="card-header" data-background-color="blue">
+                            <!--i class="material-icons">content_copy</i-->
+                            <img src="/assets/images/dokumen-white.png" width="50px" height="50px">
+                        </div>
+                        <div class="card-content">
+                            <p class="category">Total Berkas yang Masuk</p>
+                            <h3 class="title">{{jumlahBerkasMasuk}}</h3>
+                        </div>
+                    </div>
+                </a>
+            </div>
+            <div class="col-lg-3 col-md-6 col-sm-6">
+                <a (click)="scroll('daftar_berkas_belum_siap_sidang')" href="javascript:void(0)">
+                    <div class="card card-stats" >
+                        <div class="card-header" data-background-color="red" >
+                            <!--i class="material-icons">store</i-->
+                            <img src="/assets/images/hourglass-white.png" width="50px" height="50px">                      
+                        </div>
+                        <div class="card-content">
+                            <p class="category">Berkas Belum Siap Sidang</p>
+                            <h3 class="title">{{jumlahBerkasBelumSiapSidang}}</h3>
+                        </div>
+                    </div>
+                </a>
+            </div>
+            <div class="col-lg-3 col-md-6 col-sm-6">
+                <a (click)="scroll('daftar_berkas_sudah_distribusi')" href="javascript:void(0)">                
+                    <div class="card card-stats" >
+                        <div class="card-header" data-background-color="orange" >
+                            <!--i class="material-icons">info_outline</i-->
+                            <img src="/assets/images/send-white.png" width="50px" height="50px">                                            
+                        </div>
+                        <div class="card-content">
+                            <p class="category">Berkas Sudah Didistribusikan</p>
+                            <h3 class="title">{{jumlahBerkasSudahDistribusi}}</h3>
+                        </div>
+                    </div>
+                </a>
+            </div>
+            <div class="col-lg-3 col-md-6 col-sm-6">
+                <a (click)="scroll('daftar_berkas_sudah_penetapan')" href="javascript:void(0)">                
+                    <div class="card card-stats" >
+                        <div class="card-header" data-background-color="green" >
+                            <!--i class="fa fa-twitter"></i-->
+                            <img src="/assets/images/check-white.png" width="50px" height="50px">                      
+                        </div>
+                        <div class="card-content">
+                            <p class="category">Berkas Sudah Ditetapkan</p>
+                            <h3 class="title">{{jumlahBerkasSudahPenetapan}}</h3>
+                        </div>
+                    </div>
+                </a>
+            </div>
+        </div>
+        <div class="content">
+            <h3 id="daftar_sengketa_masuk">Daftar Sengketa Masuk</h3>
+            <app-dashboard-daftar-berkas-masuk (changeCounter)="changeJumlahBerkasMasuk($event)" style="padding-top:1%" ></app-dashboard-daftar-berkas-masuk>
+        </div>
+        <div class="content" style="padding-top:3%">
+            <h3 id="daftar_berkas_belum_siap_sidang">Daftar Berkas Belum Siap Sidang</h3>
+            <app-dashboard-daftar-berkas-belum-siap-sidang (changeCounter)="changeJumlahBerkasBelumSiapSidang($event)" style="padding-top:1%" ></app-dashboard-daftar-berkas-belum-siap-sidang>
+        </div>
+        <div class="content" style="padding-top:3%">
+            <h3 id="daftar_berkas_sudah_distribusi">Daftar Berkas yang Telah Didistribusikan</h3>
+            <app-dashboard-daftar-berkas-sudah-distribusi (changeCounter)="changeJumlahBerkasSudahDistribusi($event)" style="padding-top:1%" ></app-dashboard-daftar-berkas-sudah-distribusi>
+        </div>
+        <div class="content" style="padding-top:3%">
+            <h3 id="daftar_berkas_sudah_penetapan">Daftar Berkas yang Telah Ditetapkan</h3>
+            <app-dashboard-daftar-berkas-sudah-penetapan (changeCounter)="changeJumlahBerkasSudahPenetapan($event)" style="padding-top:1%" ></app-dashboard-daftar-berkas-sudah-penetapan>
+        </div>
+    </div>
+</div>
+
+

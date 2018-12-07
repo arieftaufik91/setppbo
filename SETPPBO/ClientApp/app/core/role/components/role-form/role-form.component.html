@@ -1,0 +1,25 @@
+<div class="dialog-content-wrapper">
+    <div mat-dialog-title class="mat-accent-bg p-16 m-0" fxLayout="row" fxLayoutAlign="space-between center">
+        <span class="title dialog-title">Role Form</span>
+        <button (click)="onNoClick()" aria-label="Close dialog" mat-icon-button>
+            <mat-icon>close</mat-icon>
+        </button>
+    </div>
+
+    <div mat-dialog-content class="p-24 m-0">
+
+        <form [formGroup]="roleForm" novalidate fxFlex fxLayout="column">
+            <mat-form-field>
+                <input matInput id="roleName" formControlName="roleName" placeholder="Nama Role" required />
+                <mat-error *ngIf="roleForm.controls['roleName'].errors">
+                    <div [hidden]="!roleForm.controls['roleName'].errors.required">Nama role wajib diisi!</div>
+                </mat-error>
+            </mat-form-field>
+        </form>
+    </div>
+
+    <div mat-dialog-actions class="m-0 p-16" fxLayout="row" fxLayoutAlign="space-between center">
+        <button mat-raised-button [disabled]="isEdit? roleForm.pristine : roleForm.invalid" color="primary" type="button" (click)="onOkClick()" tabindex="2">Simpan</button>
+        <button mat-raised-button (click)="onNoClick()" tabindex="-1">Batal</button>
+    </div>
+</div>

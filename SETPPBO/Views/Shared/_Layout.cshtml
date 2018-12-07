@@ -1,0 +1,29 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - SETPP BO</title>
+    <link rel="stylesheet" type="text/css" href="~/assets/font-awesome/css/font-awesome.min.css" />
+    <link rel="stylesheet" type="text/css" href="~/assets/material-icons/material-icons.css" />
+    <link rel="stylesheet" type="text/css" href="~/assets/css/swimlane/icons.css" />
+    <link rel="stylesheet" type="text/css" href="~/assets/css/swimlane/index.css" />
+    <link rel="stylesheet" type="text/css" href="~/assets/css/swimlane/material.css" />
+    <link rel="stylesheet" type="text/css" href="~/assets/css/splash.css" />
+    <link rel="stylesheet" type="text/css" href="~/assets/css/perfect-scrollbar.css" />
+    <link rel="stylesheet" type="text/css" href="~/assets/css/style.css" />
+    <link rel="stylesheet" type="text/css" href="~/assets/css/animate.min.css" />
+    <link rel="stylesheet" type="text/css" href="~/assets/css/primeng/themes/flick/theme.css" />
+    <link rel="stylesheet" type="text/css" href="~/assets/css/primeng/primeng.min.css" />
+    
+    <base href="~/" />
+
+    <link rel="stylesheet" href="~/dist/vendor.css" asp-append-version="true" />
+</head>
+<body>
+    <div id="layout-root">
+        @RenderBody()
+        @RenderSection("scripts", required: false)
+    </div>
+</body>
+</html>

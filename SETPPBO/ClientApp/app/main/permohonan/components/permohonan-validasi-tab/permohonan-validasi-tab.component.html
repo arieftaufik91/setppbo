@@ -1,0 +1,276 @@
+<mat-card>
+    <mat-card-content>
+        <div mat-dialog-title class="mat-accent-bg p-16 m-0" fxLayout="row" fxLayoutAlign="space-between center">
+            <span class="title dialog-title">Permohonan Banding/Gugatan</span>
+        </div>
+        <mat-tab-group class="tab-group">
+            <mat-tab label="Data Permohonan">
+                <form [formGroup]="formGroup" novalidate>
+                    <div class="content p-24" fxLayout="row" fxLayoutAlign="space-around center">
+                        <div fxLayout="column" fxFlex="50" fxLayoutAlign="space-around center">
+                            <div style="border-left:1px solid lightgrey;border-top:1px solid lightgrey;border-bottom: 3px outset lightgrey;border-right: 3px outset lightgrey;width: 90%">
+                                <div style="padding:20px">
+                                    <mat-form-field style="width:100%">
+                                        <input matInput id="NoSuratPermohonan" formControlName="NoSuratPermohonan" placeholder="No. Surat" required />
+                                        <mat-error *ngIf="formGroup.controls['NoSuratPermohonan'].errors">
+                                            <div [hidden]="!formGroup.controls['NoSuratPermohonan'].errors.required">No. Surat wajib diisi!</div>
+                                        </mat-error>
+                                    </mat-form-field>
+                                    <mat-form-field style="width:100%">
+                                        <mat-datepicker-toggle matSuffix [for]="pickerTglSuratPermohonan"></mat-datepicker-toggle>
+                                        <mat-datepicker #pickerTglSuratPermohonan></mat-datepicker>
+                                        <input matInput [matDatepicker]="pickerTglSuratPermohonan" id="TglSuratPermohonan" formControlName="TglSuratPermohonan" placeholder="Tanggal Surat" required />
+                                        <mat-error *ngIf="formGroup.controls['TglSuratPermohonan'].errors">
+                                            <div [hidden]="!formGroup.controls['TglSuratPermohonan'].errors.required">Tanggal Surat wajib diisi!</div>
+                                        </mat-error>
+                                    </mat-form-field>
+                                    <mat-form-field style="width:100%">
+                                        <mat-select placeholder="Jenis Sengketa" formControlName="RefJenisPermohonanId" name="RefJenisPermohonanId">
+                                            <mat-option *ngFor="let jenispermohonan of modelJenisPermohonan" [value]="jenispermohonan.RefJenisPermohonanId">
+                                                {{jenispermohonan.Uraian}}
+                                            </mat-option>
+                                        </mat-select>
+                                    </mat-form-field>
+                                    <mat-form-field style="width:100%">
+                                        <mat-datepicker-toggle matSuffix [for]="pickerTglTerimaPermohonan"></mat-datepicker-toggle>
+                                        <mat-datepicker #pickerTglTerimaPermohonan></mat-datepicker>
+                                        <input matInput [matDatepicker]="pickerTglTerimaPermohonan" id="TglTerimaPermohonan" formControlName="TglTerimaPermohonan" placeholder="Tanggal Terima" required />
+                                        <mat-error *ngIf="formGroup.controls['TglTerimaPermohonan'].errors">
+                                            <div [hidden]="!formGroup.controls['TglTerimaPermohonan'].errors.required">Tanggal Terima wajib diisi!</div>
+                                        </mat-error>
+                                    </mat-form-field>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div fxLayout="column" fxFlex="50" fxLayoutAlign="space-around center">
+
+                            <div style="
+          border-left:1px solid lightgrey;
+          border-top:1px solid lightgrey;
+          border-bottom: 3px outset lightgrey;
+          border-right: 3px outset lightgrey;
+          width: 90%">
+                                <div style="padding:20px">
+                                    <mat-form-field style="width:100%">
+                                        <input matInput id="NoSkp" formControlName="NoSkp" placeholder="No. SKP/SPTNP" required />
+                                        <mat-error *ngIf="formGroup.controls['NoSkp'].errors">
+                                            <div [hidden]="!formGroup.controls['NoSkp'].errors.required">No. SKP/SPTNP wajib diisi!</div>
+                                        </mat-error>
+                                    </mat-form-field>
+                                    <mat-form-field style="width:100%">
+                                        <mat-datepicker-toggle matSuffix [for]="pickerTglSkp"></mat-datepicker-toggle>
+                                        <mat-datepicker #pickerTglSkp></mat-datepicker>
+                                        <input matInput [matDatepicker]="pickerTglSkp" id="TglSkp" formControlName="TglSkp" placeholder="Tanggal SKP/SPTNP" required />
+                                        <mat-error *ngIf="formGroup.controls['TglSkp'].errors">
+                                            <div [hidden]="!formGroup.controls['TglSkp'].errors.required">Tanggal SKP/SPTNP wajib diisi!</div>
+                                        </mat-error>
+                                    </mat-form-field>
+                                    <div fxLayout="row" fxLayoutAlign="space-between center">
+                                        <mat-form-field style="width:40%">
+                                            <mat-select placeholder="Masa Awal (Bulan)" formControlName="MasaPajakAwalBulan" name="MasaPajakAwalBulan">
+                                                <mat-option *ngFor="let namabulan of modelBulan" [value]="namabulan.id">
+                                                    {{namabulan.nama}}
+                                                </mat-option>
+                                            </mat-select>
+                                        </mat-form-field>
+                                        <mat-form-field style="width:40%">
+                                            <mat-select placeholder="Masa Akhir (Bulan)" formControlName="MasaPajakAkhirBulan" name="MasaPajakAkhirBulan">
+                                                <mat-option *ngFor="let namabulan of modelBulan" [value]="namabulan.id">
+                                                    {{namabulan.nama}}
+                                                </mat-option>
+                                            </mat-select>
+                                        </mat-form-field>
+                                    </div>
+                                    <mat-form-field style="width:100%">
+                                        <input matInput id="MasaPajakAwalTahun" formControlName="MasaPajakAwalTahun" placeholder="Tahun Pajak" required />
+                                        <mat-error *ngIf="formGroup.controls['MasaPajakAwalTahun'].errors">
+                                            <div [hidden]="!formGroup.controls['MasaPajakAwalTahun'].errors.required">Masa Pajak (Tahun) wajib diisi!</div>
+                                        </mat-error>
+                                    </mat-form-field>
+
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <div class="content p-24" fxLayout="row" fxLayoutAlign="space-around center">
+
+                        <div fxLayout="column" fxFlex="50" fxLayoutAlign="space-around center">
+                            <div style="
+          border-left:1px solid lightgrey;
+          border-top:1px solid lightgrey;
+          border-bottom: 3px outset lightgrey;
+          border-right: 3px outset lightgrey;
+          width: 90%">
+                                <div style="padding:20px">
+                                    <mat-form-field style="width:100%">
+                                        <input matInput id="NoKep" formControlName="NoKep" placeholder="No. KEP/SPKTNP/S" required />
+                                        <mat-error *ngIf="formGroup.controls['NoKep'].errors">
+                                            <div [hidden]="!formGroup.controls['NoKep'].errors.required">No. KEP/SPKTNP/S wajib diisi!</div>
+                                        </mat-error>
+                                    </mat-form-field>
+                                    <mat-form-field style="width:100%">
+                                        <mat-datepicker-toggle matSuffix [for]="pickerTglKep"></mat-datepicker-toggle>
+                                        <mat-datepicker #pickerTglKep></mat-datepicker>
+                                        <input matInput [matDatepicker]="pickerTglKep" id="TglKep" formControlName="TglKep" placeholder="Tanggal KEP/SPKTNP/S" required />
+                                        <mat-error *ngIf="formGroup.controls['TglKep'].errors">
+                                            <div [hidden]="!formGroup.controls['TglKep'].errors.required">Tanggal KEP/SPKTNP/S wajib diisi!</div>
+                                        </mat-error>
+                                    </mat-form-field>
+                                    <div style="margin-bottom: 20px">
+                                        <label style="font-weight: normal !important;color:rgba(0,0,0,.54); font-size: 11px">Jenis Pajak</label>
+                                        <p-dropdown formControlName="RefJenisPajakId" [options]="modelJenisPajak" [filter]="true" optionLabel="KodeNama" [autoWidth]="false" [ngModel]="selectedPajak" [style]="{'width':'100%'}"></p-dropdown>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div fxLayout="column" fxFlex="50" fxLayoutAlign="space-around center">
+
+                        </div>
+                    </div>
+                    <div mat-dialog-actions class="m-0 p-16" fxLayout="row" fxLayoutAlign="space-between center">
+                        <button mat-raised-button (click)="onOkClick()" color="primary"
+                                type="button" tabindex="2">
+                            Simpan
+                        </button>
+                        <button mat-raised-button (click)="onOkSendClick()" *ngIf="isSend" color="primary"
+                                type="button" tabindex="3">
+                            Simpan & Kirim
+                        </button>
+
+                        <button mat-raised-button (click)="onNoClick()" tabindex="-1">Batal</button>
+                    </div>
+
+
+                </form>
+            </mat-tab>
+            <mat-tab label="Kelengkapan">
+                <div class="tab-content">
+
+                    <form [formGroup]="formGroupUpload" novalidate fxFlex fxLayout="column">
+
+                        <table>
+                            <tr>
+                                <td style="width:350px">Surat Banding/Gugatan (format pdf)</td>
+                                <td style="width:50px">
+                                    <button matTooltip="Unduh" mat-icon-button color="primary" (click)="onDownload('1')" *ngIf="isFilePdfSuratPermohonan">
+                                        <mat-icon>attach_file</mat-icon>
+                                    </button>
+                                </td>
+                                <td style="width:350px">
+                                    <div mat-dialog-content class="p-16 m-0">
+                                        <input #filePdfSuratPermohonan type="file" id="FilePdfSuratPermohonan" formControlName="FilePdfSuratPermohonan" accept=".pdf">
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td style="width:350px">Surat Banding/Gugatan (format doc)</td>
+                                <td style="width:50px">
+                                    <button matTooltip="Unduh" mat-icon-button color="primary" (click)="onDownload('2')" *ngIf="isFileDocSuratPermohonan">
+                                        <mat-icon>attach_file</mat-icon>
+                                    </button>
+
+                                </td>
+
+                                <td style="width:350px">
+                                    <div mat-dialog-content class="p-16 m-0">
+                                        <input #fileDocSuratPermohonan type="file" id="FileDocSuratPermohonan" formControlName="FileDocSuratPermohonan" accept=".doc,.docx">
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td width="350px">Salinan KEP/SPKTNP/S (format pdf)</td>
+                                <td>
+                                    <button matTooltip="Unduh" mat-icon-button color="primary" (click)="onDownload('3')" *ngIf="isFilePdfObjekSengketa">
+                                        <mat-icon>attach_file</mat-icon>
+                                    </button>
+
+                                </td>
+                                <td width="450px">
+                                    <div mat-dialog-content class="p-16 m-0">
+                                        <input #filePdfObjekSengketa type="file" id="FilePdfObjekSengketa" formControlName="FilePdfObjekSengketa" accept=".pdf">
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td width="350px">Salinan SKP/SPTNP/STP/SPP (format pdf)</td>
+                                <td>
+                                    <button matTooltip="Unduh" mat-icon-button color="primary" (click)="onDownload('4')" *ngIf="isFilePdfSkp">
+                                        <mat-icon>attach_file</mat-icon>
+                                    </button>
+
+                                </td>
+                                <td width="450px">
+                                    <div mat-dialog-content class="p-16 m-0">
+                                        <input #filePdfSkp type="file" id="FilePdfSkp" formControlName="FilePdfSkp" accept=".pdf">
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td width="350px">Salinan Bukti Bayar/SSP/SSPCP (format pdf)</td>
+                                <td>
+                                    <button matTooltip="Unduh" mat-icon-button color="primary" (click)="onDownload('5')" *ngIf="isFilePdfBuktiBayar">
+                                        <mat-icon>attach_file</mat-icon>
+                                    </button>
+
+
+                                </td>
+                                <td width="450px">
+                                    <div mat-dialog-content class="p-16 m-0">
+                                        <input #filePdfBuktiBayar type="file" id="FilePdfBuktiBayar" formControlName="FilePdfBuktiBayar" accept=".pdf" >
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+
+                                <td width="350px">Surat Kuasa Khusus (format pdf)</td>
+                                <td>
+                                    <button matTooltip="Unduh" mat-icon-button color="primary" (click)="onDownload('6')" *ngIf="isFilePdfSkk">
+                                        <mat-icon>attach_file</mat-icon>
+                                    </button>
+
+
+                                </td>
+                                <td width="450px">
+                                    <div mat-dialog-content class="p-16 m-0">
+                                        <input #filePdfSkk type="file" id="FilePdfSkk" formControlName="FilePdfSkk" accept=".pdf" >
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td width="350px">Akta Perusahaan</td>
+                                <td></td>
+                                <td width="450px">
+                                    <mat-form-field style="width:100%">
+                                        <input matInput id="AktaPerusahaan" formControlName="AktaPerusahaan" placeholder="Akta Perusahaan" />
+                                        <mat-error *ngIf="formGroupUpload.controls['AktaPerusahaan'].errors">
+                                            <div [hidden]="!formGroupUpload.controls['AktaPerusahaan'].errors.required">Akta Perusahaan wajib diisi!</div>
+                                        </mat-error>
+                                    </mat-form-field>
+                                </td>
+                            </tr>
+                        </table>
+
+                    </form>
+                </div>
+
+                <div mat-dialog-actions class="m-0 p-16" fxLayout="row" fxLayoutAlign="space-between center">
+                    <button mat-raised-button (click)="onOkUploadClick()" color="primary"
+                            type="button" tabindex="3">
+                        Simpan
+                    </button>
+                    <button mat-raised-button (click)="onOkSendUploadClick()" *ngIf="isSend" color="primary"
+                            type="button" tabindex="4">
+                        Simpan & Kirim
+                    </button>
+                    <button mat-raised-button (click)="onNoClick()" tabindex="-1">Batal</button>
+                </div>
+
+            </mat-tab>
+        </mat-tab-group>
+
+    </mat-card-content>
+
+</mat-card>

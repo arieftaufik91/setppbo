@@ -1,0 +1,91 @@
+<div class="dialog-content-wrapper">
+  <div mat-dialog-title class="mat-accent-bg p-16 m-0" fxLayout="row" fxLayoutAlign="space-between center">
+    <span class="title dialog-title">Detail Sengketa</span>
+    <button aria-label="Close dialog" mat-icon-button (click)="close()">
+      <mat-icon>close</mat-icon>
+    </button>
+  </div>
+
+  <div mat-dialog-content class="p-24 m-0">
+    <div class="table-responsive">
+      <table class="table">
+          <tr>
+              <th style="width:50%"><h5><b>No. Pendaftaran:</b></h5></th>
+              <td class="report_result"><h5>{{item?.NoPendaftaran}}</h5></td>
+          </tr>
+          <tr>
+              <th><h5><b>Nama Pemohon:</b></h5></th>
+              <td class="report_result"><h5>{{item?.Nama}}</h5></td>
+          </tr>
+          <tr>
+              <th><h5><b>Alamat:</b></h5></th>
+              <td class="report_result"><h5>{{item?.Alamat}}</h5></td>
+          </tr>
+          <tr>
+              <th><h5><b>Kota:</b></h5></th>
+              <td class="report_result"><h5>{{item?.Kota}}</h5></td>
+          </tr>
+          <tr>
+              <th><h5><b>Kode Pos:</b></h5></th>
+              <td class="report_result"><h5>{{item?.KodePos}}</h5></td>
+          </tr>
+          <tr>
+              <th><h5><b>No Telp:</b></h5></th>
+              <td class="report_result"><h5>{{item?.ContactPerson}}</h5></td>
+          </tr>
+          <tr>
+              <th><h5><b>Jenis Sengketa:</b></h5></th>
+              <td class="report_result"><h5>{{item?.JenisSengketa}}</h5></td>
+          </tr>
+          <tr>
+              <th><h5><b>No Surat Permohonan:</b></h5></th>
+              <td class="report_result"><h5>{{item?.NoSuratPermohonan}}</h5></td>
+          </tr>
+          <tr>
+              <th><h5><b>Tanggal Surat Permohonan:</b></h5></th>
+              <td class="report_result"><h5>{{item?.TglSuratPermohonan}}</h5></td>
+          </tr>
+          <tr>
+              <th><h5><b>Tanggal Terima Permohonan:</b></h5></th>
+              <td class="report_result"><h5>{{item?.TglTerimaPermohonan}}</h5></td>
+          </tr>
+          <tr>
+              <th><h5><b>NPWP:</b></h5></th>
+              <td class="report_result"><h5>{{item?.Npwp}}</h5></td>
+          </tr>
+          <tr>
+              <th><h5><b>No SKP:</b></h5></th>
+              <td class="report_result"><h5>{{item?.NoSkp}}</h5></td>
+          </tr>
+          <tr>
+              <th><h5><b>Tanggal SKP:</b></h5></th>
+              <td class="report_result"><h5>{{item?.TglSkp}}</h5></td>
+          </tr>
+          <tr>
+              <th><h5><b>Tahun Pajak:</b></h5></th>
+              <td class="report_result"><h5>{{item?.MasaPajakAkhirTahun}}</h5></td>
+          </tr>
+          <tr>
+              <th><h5><b>Masa Pajak:</b></h5></th>
+              <td class="report_result"><h5>{{item?.MasaPajak}}</h5></td>
+          </tr>
+          <tr>
+              <th><h5><b>Jenis Pajak:</b></h5></th>
+              <td class="report_result"><h5>{{item?.JenisPajak}}</h5></td>
+          </tr>
+          <tr>
+              <th><h5><b>No Kep:</b></h5></th>
+              <td class="report_result"><h5>{{item?.NoKep}}</h5></td>
+          </tr>
+          <tr>
+            <th><h5><b>Tanggal Kep:</b></h5></th>
+            <td class="report_result"><h5>{{item?.TglKep}}</h5></td>
+          </tr>
+          <tr>
+            <th><h5><b>Jenis Pemeriksaan:</b></h5></th>
+            <td class="report_result"><h5>{{item?.JenisPemeriksaan}}</h5></td>
+          </tr>
+      </table>
+  </div>
+  </div>
+</div>

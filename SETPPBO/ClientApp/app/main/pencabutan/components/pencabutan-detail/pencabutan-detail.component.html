@@ -1,0 +1,111 @@
+<div class="dialog-content-wrapper">
+  <div mat-dialog-title class="mat-accent-bg p-16 m-0" fxLayout="row" fxLayoutAlign="space-between center">
+    <span class="title dialog-title">Detail Permohonan</span>
+    <button aria-label="Close dialog" mat-icon-button (click)="close()">
+      <mat-icon>close</mat-icon>
+    </button>
+  </div>
+
+  <div mat-dialog-content class="p-24 m-0">
+    <div class="toolbar px-24 py-8" fxFlex fxLayout="row" fxLayoutAlign="space-between center">
+        <div class="content-toolbar" fxFlex="60" fxLayout="row" fxLayoutAlign="start center">
+            
+        </div>
+    </div>
+
+    <div class="content p-24">
+    <div class="table-responsive">
+      <table class="table">
+          <tr>
+              <th style="width:50%"><h5><b>No. Pendaftaran:</b></h5></th>
+              <td class="report_result"><h5>{{item?.NoPendaftaran}}</h5></td>
+          </tr>
+          <tr>
+              <th><h5><b>No. Surat:</b></h5></th>
+              <td class="report_result"><h5>{{item?.NoSuratPermohonan}}</h5></td>
+          </tr>
+
+          
+           
+        
+          <tr>
+              <th><h5><b>Tanggal Surat:</b></h5></th>
+              <td class="report_result"><h5>{{item?.TglSuratPermohonan | date:'dd-MM-yyyy'}}</h5></td>
+          </tr>
+          <tr>
+              <th><h5><b>No. Objek Sengketa:</b></h5></th>
+              <td class="report_result"><h5>{{item?.NoObjekSengketa}}</h5></td>
+          </tr>
+          <tr>
+              <th><h5><b>Tanggal Objek Sengketa:</b></h5></th>
+              <td class="report_result"><h5>{{item?.TglObjekSengketa | date:'dd-MM-yyyy'}}</h5></td>
+          </tr>
+          <tr>
+              <th><h5><b>Tanggal Terima Objek Sengketa:</b></h5></th>
+              <td class="report_result"><h5>{{item?.TglTerimaKep | date:'dd-MM-yyyy'}}</h5></td>
+          </tr>
+          <tr>
+              <th><h5><b>No. SKP:</b></h5></th>
+              <td class="report_result"><h5>{{item?.NoSkp}}</h5></td>
+          </tr>
+          <tr>
+              <th><h5><b>Tanggal SKP:</b></h5></th>
+              <td class="report_result"><h5>{{item?.TglSkp | date:'dd-MM-yyyy'}}</h5></td>
+          </tr>
+          <tr>
+              <th><h5><b>Masa Pajak:</b></h5></th>
+              <td class="report_result"><h5>{{item?.MasaPajak}}</h5></td>
+          </tr>
+          <tr>
+              <th><h5><b>Jenis Pajak:</b></h5></th>
+              <td class="report_result"><h5>{{item?.Kode}}</h5></td>
+          </tr>
+          <tr>
+              <th><h5><b>NPWP:</b></h5></th>
+              <td class="report_result"><h5>{{item?.Npwp}}</h5></td>
+          </tr>
+          <tr>
+              <th><h5><b>Nama Pemohon:</b></h5></th>
+              <td class="report_result"><h5>{{item?.Nama}}</h5></td>
+          </tr>
+          <tr>
+              <th><h5><b>Alamat:</b></h5></th>
+              <td class="report_result"><h5>{{item?.Kota}}</h5></td>
+          </tr>
+          <tr>
+              <th><h5><b>Tanggal Surat Masuk:</b></h5></th>
+              <td class="report_result"><h5>{{item?.TglSuratPermohonan | date:'dd-MM-yyyy'}}</h5></td>
+          </tr>
+          <tr>
+              <th><h5><b>Tanggal Surat Uraian Banding:</b></h5></th>
+              <td class="report_result"><h5>{{item?.TglSubSt | date:'dd-MM-yyyy'}}</h5></td>
+          </tr>
+          <tr>
+              <th><h5><b>Tanggal Surat Bantahan:</b></h5></th>
+              <td class="report_result"><h5>{{item?.TglSuratBantahan | date:'dd-MM-yyyy'}}</h5></td>
+          </tr>
+          <tr>
+              <th><h5><b>Majelis:</b></h5></th>
+              <td class="report_result"><h5>{{item?.Majelis}}</h5></td>
+          </tr>
+          <tr>
+            <th><h5><b>No Surat Pencabutan:</b></h5></th>
+            <td class="report_result"><h5>{{item?.NoSuratPencabutan}}</h5></td>
+        </tr>
+        <tr>
+            <th><h5><b>Tanggal Surat Pencabutan:</b></h5></th>
+            <td class="report_result"><h5>{{item?.TglSuratPencabutan}}</h5></td>
+        </tr>
+          <tr>
+                <th><h5><b>File Pencabutan</b></h5></th>
+                <td class="report_result">
+                    <button [disabled]="item?.FilePencabutan == null"  matTooltip="{{item?.FilePencabutan}}" mat-icon-button color="primary" (click)="download()">
+                        <mat-icon>move_to_inbox</mat-icon>
+                    </button>
+                </td>
+            </tr>
+      </table>
+  </div>
+</div>
+  </div>
+</div>

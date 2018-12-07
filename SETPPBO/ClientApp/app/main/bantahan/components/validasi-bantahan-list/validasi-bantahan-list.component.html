@@ -1,0 +1,109 @@
+<div *ngIf="!isSaved; else konfirmasiPage">
+  <div class="toolbar px-24 py-8" fxFlex fxLayout="row" fxLayoutAlign="space-between center">
+    <div class="content-toolbar" fxFlex="60" fxLayout="row" fxLayoutAlign="start center">
+       <button [disabled]="selected.length <= 0 || selected[0].NoSuratBantahan == null" matTooltip="Validasi Bantahan" mat-mini-fab color="accent" (click)="validasiBantahan()">
+            <mat-icon>done</mat-icon>
+        </button>
+        &nbsp;&nbsp;&nbsp;
+        <button [disabled]="selected.length <= 0 || selected[0].NoSuratBantahan == null" matTooltip="Update Surat Bantahan" mat-icon-button  color="primary" (click)="onEditClick()">
+            <mat-icon>edit</mat-icon>
+        </button>
+       &nbsp;&nbsp;&nbsp;
+            <button [disabled]="selected.length <= 0 || selected[0].NoSuratBantahan == null" matTooltip="Detail Surat Bantahan" mat-icon-button color="primary" (click)="showDetail()">
+            <mat-icon>visibility</mat-icon>
+        </button>
+    </div>
+    <layout-search-bar (search)="updateFilter($event)" fxFlex></layout-search-bar>
+  </div>
+    <div class="content p-24">
+      <ngx-datatable #table 
+      class="material" 
+      [rows]="items" 
+      [columnMode]="'force'" 
+      [rowHeight]="'40'" 
+      [selected]="selected"
+      [selectionType]="'single'" 
+      [selectCheck]="singleSelectCheck" 
+      (select)='onSelect($event)'
+      [headerHeight]="50" 
+      [footerHeight]="50"
+      [limit]="10">
+  
+      <ngx-datatable-column name="No.Surat Banding/Gugatan" prop = "NoSuratPermohonan" >
+        <ng-template let-row="row" ngx-datatable-cell-template>
+            {{row?.NoSuratPermohonan}}
+        </ng-template>
+      </ngx-datatable-column>
+      
+      <ngx-datatable-column name="No.Sengketa" prop ="NoSengketa" >
+        <ng-template let-row="row" ngx-datatable-cell-template>
+            {{row?.NoSengketa}}
+        </ng-template>
+      </ngx-datatable-column>
+      
+      <ngx-datatable-column name="No.SUB/ST" prop = "NoSubSt" >
+        <ng-template let-row="row" ngx-datatable-cell-template>
+            {{row?.NoSubSt}}
+        </ng-template>
+      </ngx-datatable-column>
+      
+      <ngx-datatable-column name="Tgl.SUB/ST"prop ="TglSubSt" >
+        <ng-template let-row="row" ngx-datatable-cell-template>
+            {{row?.TglSubSt | date:'dd-MM-yyyy'}}
+        </ng-template>
+      </ngx-datatable-column>
+      
+      <ngx-datatable-column name="No.Bantahan" prop ="NoSuratBantahan">
+        <ng-template let-row="row" ngx-datatable-cell-template>
+            {{row?.NoSuratBantahan}}
+        </ng-template>
+      </ngx-datatable-column>
+  
+      <ngx-datatable-column name="Status">
+        <ng-template let-row="row" ngx-datatable-cell-template>
+            <span *ngIf="row.TglValidasiBantahan==null;else sudahValid">Belum divalidasi</span>
+            <ng-template #sudahValid>Sudah divalidasi</ng-template>
+        </ng-template>
+      </ngx-datatable-column>        
+      </ngx-datatable>
+  </div>
+  </div>
+  
+  <ng-template #konfirmasiPage>
+      <div class="toolbar px-24 py-8" fxFlex fxLayout="row" fxLayoutAlign="space-between center">
+        <div class="content-toolbar" fxFlex="60" fxLayout="row" fxLayoutAlign="start center">
+          <h3 class="md-title">Konfirmasi Bantahan</h3>
+        </div>
+      </div>
+      <div class="content p-24">
+        <p>Surat Bantahan Telah Divalidasi, selanjutnya silakan cetak Tanda Terima Surat Bantahan Secara Elektronik</p>
+        <mat-card>
+          <mat-card-content>
+              <table>
+                <tr>
+                  <td>No.Surat Bantahan </td>
+                  <td>{{item.NoSuratBantahan}}</td>
+                </tr>
+                <tr>
+                  <td>Tgl. Surat Bantahan</td>
+                  <td>{{item.TglSuratBantahan | date:'dd-MM-yyyy'}}</td>
+                </tr>
+                <tr>
+                  <td>File PDF Bantahan</td>
+                  <td>{{item.FilePdfBantahan}}</td>
+                </tr>
+                <tr>
+                  <td>File DOC Bantahan</td>
+                  <td>{{item.FileDocBantahan }}</td>
+                </tr>
+              </table>
+          </mat-card-content>
+        </mat-card>
+        <p>Data sudah disimpan</p>
+        <button mat-raised-button color="primary">Cetak Tanda Terima</button>
+      </div>
+      <div>
+        <button class="back-button" mat-raised-button color="primary" (click)="backToList()">Kembali</button>
+      </div>
+    </ng-template>
+  

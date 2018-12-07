@@ -1,0 +1,36 @@
+<div class="toolbar px-24 py-8" fxFlex fxLayout="row" fxLayoutAlign="space-between center">
+    <div class="content-toolbar" fxFlex="60" fxLayout="row" fxLayoutAlign="start center">
+        <button matTooltip="Back" mat-icon-button (click)="goBack()"><mat-icon>arrow_back</mat-icon></button>
+        <div class="toolbar-separator"></div>
+        <button matTooltip="Update Role" mat-icon-button color="primary" (click)="openRoleDialog()"><mat-icon>mode_edit</mat-icon></button>
+        <button matTooltip="Delete User" mat-icon-button color="warn" (click)="delete(user)"><mat-icon>delete</mat-icon></button>
+
+    </div>
+</div>
+<div class="content p-24">
+    <div *ngIf="user">
+        <mat-card>
+            <mat-card-header>
+                <img mat-card-avatar src="{{user.Gravatar}}" alt="gravatar">
+                <mat-card-title>{{user.Nama}}</mat-card-title>
+                <mat-card-subtitle>{{user.Nip}}</mat-card-subtitle>
+            </mat-card-header>
+
+            <mat-card-content>
+                <p *ngIf="user.UserRoles.length > 0">
+                    <mat-chip-list style="width:300px">
+                        <mat-chip *ngFor="let role of user.UserRoles"
+                                  selected="true"
+                                  color="{{getChipColor(role)}}">
+                            {{role}}
+                        </mat-chip>
+                    </mat-chip-list>
+                </p>
+                <p *ngIf="user.UserRoles.length == 0">
+                    No roles assigned..
+                </p>
+            </mat-card-content>
+        </mat-card>
+    </div>
+</div>
+

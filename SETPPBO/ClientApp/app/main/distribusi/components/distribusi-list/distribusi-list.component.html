@@ -1,0 +1,97 @@
+<div class="main-content">
+    <div class="container-fluid">
+        <div class="content" *ngIf="rows">
+            <div class="toolbar px-24 py-8" fxFlex fxLayout="row" fxLayoutAlign="space-between center">
+                <wing-toolbar [add]="{visible: false}" (_search)="updateFilter($event)" (_reset)="refresh($event)" [custom]="custom" >
+                    <ng-template #custom>
+                        <div class="content-toolbar" fxFlex="60" fxLayout="row" fxLayoutAlign="start center">
+                            <button [disabled]="selected.length == rows.length" matTooltip="Pilih Semua" mat-mini-fab color="accent" (click)="selectAll()">
+                                <mat-icon>done_all</mat-icon>
+                            </button>
+                            &nbsp;&nbsp;&nbsp;
+                            <button [disabled]="selected.length <= 0" matTooltip="Batal Pilih Semua" mat-icon-button color="primary" (click)="deselectAll()">
+                                <mat-icon>clear</mat-icon>
+                            </button>
+                            &nbsp;&nbsp;&nbsp;
+                            <button [disabled]="selected.length <= 0" matTooltip="Distribusi Berkas" mat-icon-button color="primary" (click)="submitDocument()">
+                                <mat-icon>send</mat-icon>
+                            </button>
+                        </div>
+                    </ng-template>
+                </wing-toolbar>
+            </div>
+            <!--div class="toolbar px-24 py-8" fxFlex fxLayout="row" fxLayoutAlign="space-between center">
+                <div class="content-toolbar" fxFlex="60" fxLayout="row" fxLayoutAlign="start center">
+                    <button [disabled]="selected.length == rows.length" matTooltip="Pilih Semua" mat-icon-button color="green" (click)="selectAll()">
+                        <mat-icon>done_all</mat-icon>
+                    </button>
+                    &nbsp;&nbsp;&nbsp;
+                    <button [disabled]="selected.length <= 0" matTooltip="Batal Pilih Semua" mat-icon-button color="warn" (click)="deselectAll()">
+                        <mat-icon>clear</mat-icon>
+                    </button>
+                    &nbsp;&nbsp;&nbsp;
+                    <button [disabled]="selected.length <= 0" matTooltip="Distribusi Berkas" mat-icon-button color="primary" (click)="submitDocument()">
+                        <mat-icon>send</mat-icon>
+                    </button>
+                </div>
+                <!layout-search-bar (search)="updateFilter($event)" fxFlex></layout-search-bar>
+            </div-->    
+            <ngx-datatable 
+                class="material"
+                [rows]="rows"
+                [columnMode]="'force'"
+                [headerHeight]="50"
+                [footerHeight]="50"
+                [rowHeight]="'auto'"
+                [selected]="selected"
+                [selectionType]="'multiClick'"
+                [externalPaging]="true"
+                (select)='onSelect($event)'
+                [count]="count"
+                [offset]="offset"
+                [limit]="limit"
+                (page)="setPage($event)">
+                <!--ngx-datatable-column [width]="30" [sortable]="false" [canAutoResize]="false" [draggable]="false" [resizeable]="false">
+                    <ng-template ngx-datatable-header-template let-value="value" let-allRowsSelected="allRowsSelected" let-selectFn="selectFn">
+                        <input type="checkbox" [checked]="allRowsSelected" (change)="selectFn(!allRowsSelected)"/>
+                    </ng-template>
+                    <ng-template ngx-datatable-cell-template let-value="value" let-isSelected="isSelected" let-onCheckboxChangeFn="onCheckboxChangeFn">
+                        <input type="checkbox" [checked]="isSelected" (change)="onCheckboxChangeFn($event)"/>
+                    </ng-template>
+                </ngx-datatable-column-->
+                <ngx-datatable-column name="No Sengketa" prop="NoSengketa">
+                    <ng-template let-row="row" ngx-datatable-cell-template>
+                        {{row?.NoSengketa}}
+                    </ng-template>
+                </ngx-datatable-column>
+                <ngx-datatable-column name="Jenis Sengketa" prop="jenisSengketa">
+                    <ng-template let-row="row" ngx-datatable-cell-template>
+                        {{row?.jenisSengketa}}
+                    </ng-template>
+                </ngx-datatable-column>
+                <ngx-datatable-column name="Nama Pemohon" prop="Nama">
+                    <ng-template let-row="row" ngx-datatable-cell-template>
+                        {{row?.Nama}}
+                    </ng-template>
+                </ngx-datatable-column>
+                <ngx-datatable-column name="Nama Termohon" prop="NamaTermohon">
+                    <ng-template let-row="row" ngx-datatable-cell-template>
+                        {{row?.NamaTermohon}}
+                    </ng-template>
+                </ngx-datatable-column>
+                <ngx-datatable-column name="Jenis Pemeriksaan" prop="jenisPemeriksaan">
+                    <ng-template let-row="row" ngx-datatable-cell-template>
+                        {{row?.jenisPemeriksaan}}
+                    </ng-template>
+                </ngx-datatable-column>
+                <ngx-datatable-column name="Majelis Histori" prop="historiMajelis">
+                    <ng-template let-row="row" ngx-datatable-cell-template>
+                        {{row?.historiMajelis}}
+                    </ng-template>
+                </ngx-datatable-column>
+            </ngx-datatable>
+            
+        </div>
+      <!--button (click)="submitDocument()" [disabled]="selected.length <= 0" style="margin-top:2%" class="btn btn-primary pull-right">Distribusi</button-->
+    </div>
+</div>

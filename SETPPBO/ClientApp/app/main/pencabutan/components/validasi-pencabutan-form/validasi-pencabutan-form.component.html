@@ -1,0 +1,51 @@
+<div class="dialog-content-wrapper">
+  <div mat-dialog-title class="mat-accent-bg p-16 m-0" fxLayout="row" fxLayoutAlign="space-between center">
+      <span class="title dialog-title">Validasi Pencabutan</span>
+      <button aria-label="Close dialog" mat-icon-button (click)="onNoClick()">
+          <mat-icon>close</mat-icon>
+      </button> 
+  </div>
+
+  <div mat-dialog-content class="p-24 m-0">
+    <form [formGroup]="formGroup" novalidate fxFlex fxLayout="column">
+        <mat-form-field>
+            <input matInput id="NoSuratPencabutan" formControlName="NoSuratPencabutan" placeholder="Nomor Surat Pencabutan" required />
+            <mat-error *ngIf="formGroup.controls['NoSuratPencabutan'].errors">
+                <div [hidden]="!formGroup.controls['NoSuratPencabutan'].errors.required">No. Surat Pencabutan wajib diisi!</div>
+            </mat-error>
+        </mat-form-field>
+        
+        <mat-form-field>
+            <input matInput [matDatepicker]="pickerTglSuratPencabutan" id="TglSuratPencabutan" formControlName="TglSuratPencabutan" placeholder="Tanggal Surat Pencabutan" required />
+            <mat-datepicker-toggle matSuffix [for]="pickerTglSuratPencabutan"></mat-datepicker-toggle>
+            <mat-datepicker #pickerTglSuratPencabutan></mat-datepicker>
+            <mat-error *ngIf="formGroup.controls['TglSuratPencabutan'].errors">
+                <div [hidden]="!formGroup.controls['TglSuratPencabutan'].errors.required">Tanggal Surat Pencabutan wajib diisi!</div>
+            </mat-error>
+        </mat-form-field>
+
+        <mat-form-field>
+            <mat-select placeholder="Cara Kirim" formControlName="RefCaraKirimPencabutanId">
+                <mat-option *ngFor="let caraKirim of caraKirimModel" [value]="caraKirim.RefCaraKirimId">
+                    {{caraKirim.Uraian}}
+                </mat-option>
+            </mat-select>
+        </mat-form-field>
+
+        <div>
+            File Pencabutan: 
+            <button [disabled]="data?.FilePencabutan == null"  matTooltip="{{data?.FilePencabutan}}" mat-icon-button color="primary" (click)="download()">
+                <mat-icon>move_to_inbox</mat-icon>
+            </button>
+        </div>
+    </form>
+  </div>
+
+  <div mat-dialog-actions class="m-0 p-16" fxLayout="row" fxLayoutAlign="space-between center">
+      <button mat-raised-button (click)="onOkClick()" [disabled]="isEdit? formGroup.pristine : formGroup.invalid" color="primary"
+              type="button" tabindex="2">
+          Validasi
+      </button>
+      <button mat-raised-button (click)="onNoClick()" tabindex="-1">Batal</button>
+  </div>
+</div>

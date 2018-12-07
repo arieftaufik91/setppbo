@@ -1,0 +1,49 @@
+<div mat-dialog-title class="mat-accent-bg p-16 m-0" fxLayout="row" fxLayoutAlign="space-between center">
+    <span class="title dialog-title">Permohonan</span>
+</div>
+<div class="toolbar">
+    <wing-toolbar [add]="{visible:false}"
+                  (_search)="updateFilter($event)"
+                  (_reset)="refresh($event)"
+                  [custom]="custom">
+        <ng-template #custom>
+            <div class="toolbar px-24 py-8" fxFlex fxLayout="row" fxLayoutAlign="space-between center">
+                <div class="content-toolbar" fxFlex="60" fxLayout="row" fxLayoutAlign="start center">
+                    <button [disabled]="!isEdit" matTooltip="Ubah" mat-icon-button color="primary" (click)="onEditClick()">
+                        <mat-icon>edit</mat-icon>
+                    </button>
+                    &nbsp;&nbsp;&nbsp;
+                    <button [disabled]="!isSend" matTooltip="Kirim" mat-icon-button color="primary" (click)="onSendClick()">
+                        <mat-icon>send</mat-icon>
+                    </button>
+                    <!--
+                    &nbsp;&nbsp;&nbsp;
+                    <button [disabled]="!isDownload" matTooltip="Cetak" mat-icon-button color="primary" (click)="print()">
+                        <mat-icon>print</mat-icon>
+                    </button>-->
+                </div>
+            </div>
+        </ng-template>
+    </wing-toolbar>
+</div>
+<ngx-datatable #table
+               class="material"
+               [rows]="items"
+               [columns]="columns"
+               [columnMode]="'force'"
+               [rowHeight]="'40'"
+               [selected]="selected"
+               [selectionType]="'single'"
+               [selectCheck]="singleSelectCheck"
+               (select)="onSelect($event)"
+               [headerHeight]="50"
+               [footerHeight]="50"
+               [externalPaging]="true"
+               [count]="count"
+               [offset]="offset"
+               [limit]="limit"
+               (page)="setPage($event)">
+    <ng-template #tglSurat let-value="value" ngx-datatable-cell-template>
+        {{value | date: 'dd/MM/yyyy'}}
+    </ng-template>
+</ngx-datatable>

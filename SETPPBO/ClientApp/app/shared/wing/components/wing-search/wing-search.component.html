@@ -1,0 +1,10 @@
+<wing-button-icon icon="search" (click)="searchShow($event)"></wing-button-icon>
+<div *ngIf="showSearch"
+  class="wing-search" 
+  [ngClass] = "{'media-xs': mediaClass.xs, 'media-sm': mediaClass.sm, 'media-md': mediaClass.md, 'media-lg': mediaClass.lg}"
+>
+  <div class="wing-search-container" fxLayout="row" fxLayoutAlign="start center" >
+      <input [(ngModel)]="textSearch" type="text" (input)="searchChange($event)" [placeholder]="placeHolder">  
+      <wing-button-icon icon="close" (click)="searchHide($event)"></wing-button-icon>
+  </div>
+</div>

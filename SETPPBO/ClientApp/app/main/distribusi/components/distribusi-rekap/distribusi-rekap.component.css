@@ -1,0 +1,23 @@
+.mat-icon-button[disabled][disabled] {
+    color:  rgba(0,0,0,.38);
+}
+
+.mat-button.mat-light-blue, .mat-icon-button.mat-light-blue {
+    color: #5ea2e8;
+}
+
+.mat-button.mat-yellow, .mat-icon-button.mat-yellow {
+    color: #ffae00;
+}
+
+.mat-button.mat-custom, .mat-icon-button.mat-custom {
+    color: #04c585;
+}
+
+.mat-button.mat-green, .mat-icon-button.mat-green {
+    color: #04c524;
+}
+
+.content-toolbar {
+    margin-left: -3% !important;
+}

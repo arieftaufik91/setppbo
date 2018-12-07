@@ -1,0 +1,173 @@
+<div class="toolbar px-24 py-8" fxLayout="row" fxLayoutAlign="space-between center">
+  <div class="content-toolbar" fxFlex="60" fxLayout="row" fxLayoutAlign="start center">
+      <h3 class="md-title">Administrasi Banding dan Gugatan</h3>
+  </div>
+</div>
+
+<mat-card>
+  <mat-card-content>
+    <mat-tab-group class="tab-group">
+      <mat-tab label="Tanda Terima & Permintaan SUB/Tanggapan">
+        <div class="tab-content">
+          <app-tanda-terima-permintaan (messageEvent)="receiveMessage($event)"></app-tanda-terima-permintaan>
+        </div>
+      </mat-tab>
+      <mat-tab label="Permintaan Bantahan" disabled={{permintaanBantahanStat}}>
+        <div class="tab-content">
+            <div class="content p-24" fxFlex fxLayoutAlign="space-between start">
+                <div fxFlex fxLayout="row" fxLayoutAlign="space-between start">
+                    <div fxFlex fxLayout="column" fxLayoutAlign="space-around center">
+                    <div style="
+                    border-left:1px solid lightgrey;
+                    border-top:1px solid lightgrey;
+                    border-bottom: 3px outset lightgrey;
+                    border-right: 3px outset lightgrey;
+                    width: 90%">
+                  <div style="padding: 20px">
+                    <h3>
+                        Permintaan Bantahan
+                    </h3>
+                    <form [formGroup]="PermintaanBantahanFG" fxLayout="column">
+                      <mat-form-field class="permintaan-bantahan-full-width">
+                        <input matInput formControlName="NoSengketa" placeholder="Nomor Sengketa">
+                      </mat-form-field>
+        
+                      <mat-form-field class="permintaan-bantahan-full-width">
+                        <input matInput formControlName="NoSuratPermintaanBantahan" placeholder="No. Permintaan Bantahan" >
+                      </mat-form-field>
+        
+                      <mat-form-field class="permintaan-bantahan-full-width">
+                        <mat-datepicker-toggle matSuffix [for]="pickerTglSuratPermintaanBantahan"></mat-datepicker-toggle>
+                        <mat-datepicker #pickerTglSuratPermintaanBantahan></mat-datepicker>
+                        <input matInput [matDatepicker]="pickerTglSuratPermintaanBantahan" formControlName="TglSuratPermintaanBantahan" placeholder="Tgl. Permintaan Bantahan" />
+                      </mat-form-field>
+        
+                      <mat-form-field class="permintaan-bantahan-full-width">
+                          <mat-select placeholder="Penandatangan" formControlName="Penandatangan">
+                              <mat-option value="PAN">
+                                  Sekretaris
+                              </mat-option>
+                              <mat-option value="PAN.Wk">
+                                  Wakil Sekretaris
+                              </mat-option>
+                          </mat-select>
+                      </mat-form-field>
+        
+                      <div fxLayout="row" fxLayoutAlign="space-between center">
+                        <button mat-raised-button 
+                        (click)="onOkClick()" 
+                        [disabled]="isEdit? PermintaanBantahanFG.pristine : PermintaanBantahanFG.invalid" 
+                        color="primary"
+                        type="button" 
+                        tabindex="2">
+                        Simpan
+                    </button>
+                    <a href={{downloadPermintaanLink}} download 
+                        class="btn btn-primary" 
+                        *ngIf="isPermintaanSaved"
+                        (click)="onCetakPermintaanClick()"
+                        tabindex = "-1">
+                        Cetak
+                    </a>
+                      </div>
+                  </form>
+                  </div>
+                </div>
+              </div>
+            </div>
+                <div fxFlex fxLayout="column" fxLayoutAlign="space-between center">
+                    <div style="
+                    border-left:1px solid lightgrey;
+                    border-top:1px solid lightgrey;
+                    border-bottom: 3px outset lightgrey;
+                    border-right: 3px outset lightgrey;
+                    width: 90%">
+                  <div style="padding:20px">
+                    <h3>Data Pemohon</h3>
+          <form [formGroup]="dataPemohonFG" fxLayout="column">
+                <mat-form-field class="permintaan-bantahan-full-width">
+                  <input matInput formControlName="Nama" placeholder="Nama Pemohon" >
+                </mat-form-field>
+
+                <mat-form-field class="permintaan-bantahan-full-width">
+                  <textarea matInput formControlName="Alamat" placeholder="Alamat Pemohon" ></textarea>
+                </mat-form-field>
+
+                <!--mat-form-field class="permintaan-bantahan-full-width">
+                  <input matInput formControlName="Kota" placeholder="Kota" >
+                  <mat-select formControlName="RefKotaId" placeholder="Pilih Kota">
+                    <mat-option *ngFor="let cities of kota" [value]="cities.IDRefKota">
+                      {{cities.NamaKota}}
+                    </mat-option>
+                  </mat-select>
+                </mat-form-field-->
+
+                <div style="margin-bottom: 20px">
+                  <label style="font-weight: normal !important;color:rgba(0,0,0,.54); font-size: 11px">Provinsi</label>
+                  <p-dropdown formControlName="Provinsi" [(ngModel)]="selectedProvinsi" (onChange)="onProvinsiChanged()" class="permintaan-bantahan-full-width" [options]="provinsi" [filter]="true" optionLabel="NamaProvinsi" [autoWidth]="false" [style]="{'width':'100%'}"></p-dropdown>
+                </div>
+
+                <div style="margin-bottom: 20px">
+                  <label style="font-weight: normal !important;color:rgba(0,0,0,.54); font-size: 11px">Kota</label>
+                  <p-dropdown formControlName="Kota" [(ngModel)]="selectedCity" class="permintaan-bantahan-full-width" [options]="kota" [filter]="true" optionLabel="NamaKota" [autoWidth]="false" [style]="{'width':'100%'}"></p-dropdown>
+                </div>
+
+                <mat-form-field class="permintaan-bantahan-full-width">
+                  <input matInput formControlName="KodePos" placeholder="Kode Pos" >
+                </mat-form-field>
+
+                <mat-form-field class="permintaan-bantahan-full-width">
+                  <textarea matInput formControlName="AlamatKoresponden" placeholder="Alamat Koresponden" ></textarea>
+                </mat-form-field>
+
+                <div style="margin-bottom: 20px">
+                  <label style="font-weight: normal !important;color:rgba(0,0,0,.54); font-size: 11px">Provinsi Koresponden</label>
+                  <p-dropdown formControlName="ProvinsiKoresponden" [(ngModel)]="selectedProvinsiKoresponden" (onChange)="onProvinsiKorespondenChanged()" class="permintaan-bantahan-full-width" [options]="provinsi" [filter]="true" optionLabel="NamaProvinsi" [autoWidth]="false" [style]="{'width':'100%'}"></p-dropdown>
+                </div>
+
+                <div style="margin-bottom: 20px">
+                  <label style="font-weight: normal !important;color:rgba(0,0,0,.54); font-size: 11px">Kota Koresponden</label>
+                  <p-dropdown formControlName="KotaKoresponden" [(ngModel)]="selectedCityKoresponden" class="permintaan-bantahan-full-width" [options]="kotaKoresponden" [filter]="true" optionLabel="NamaKota" [autoWidth]="false" [style]="{'width':'100%'}"></p-dropdown>
+                </div>
+                
+                <mat-form-field class="permintaan-bantahan-full-width">
+                  <input matInput formControlName="KodePosKoresponden" placeholder="Kode Pos Koresponden" >
+                </mat-form-field>
+              
+                <mat-form-field class="permintaan-bantahan-full-width">
+                  <input matInput formControlName="NoSubSt" placeholder="Nomor SUB/Tanggapan" >
+                </mat-form-field>
+
+                <mat-form-field class="permintaan-bantahan-full-width">
+                  <mat-datepicker-toggle matSuffix [for]="pickerTglSubSt"></mat-datepicker-toggle>
+                  <mat-datepicker #pickerTglSubSt></mat-datepicker>
+                  <input matInput [matDatepicker]="pickerTglSubSt" formControlName="TglSubSt" placeholder="Tanggal SUB/Tanggapan" />
+                </mat-form-field>
+
+                <mat-form-field class="permintaan-bantahan-full-width">
+                  <input matInput formControlName="NoSuratPermohonan" placeholder="Nomor Surat Banding" >
+                </mat-form-field>
+
+                <mat-form-field class="permintaan-bantahan-full-width">
+                  <mat-datepicker-toggle disabled=true matSuffix [for]="pickerTglSuratPermohonan"></mat-datepicker-toggle>
+                  <mat-datepicker #pickerTglSuratPermohonan disabled=true></mat-datepicker>
+                  <input matInput disabled=true [matDatepicker]="pickerTglSuratPermohonan" formControlName="TglSuratPermohonan" placeholder="Tanggal Surat Banding" />
+                </mat-form-field>
+                <div fxLayout="row" fxLayoutAlign="end center">
+                  <button mat-raised-button color="primary" (click)="onSimpanDataClick()">Simpan</button>
+                </div>
+            </form>
+            </div>
+          </div>
+                </div>
+        </div>
+        </div>  
+      </mat-tab>
+      <mat-tab label="Penyampaian Salinan Bantahan" disabled ={{penyampaianSalinanStat}}>
+          <div class="tab-content">
+              <app-penyampaian-salinan></app-penyampaian-salinan>
+          </div>
+      </mat-tab>
+    </mat-tab-group>
+  </mat-card-content>
+</mat-card>

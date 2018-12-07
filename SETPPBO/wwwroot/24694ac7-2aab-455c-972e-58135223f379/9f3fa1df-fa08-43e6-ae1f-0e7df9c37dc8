@@ -1,0 +1,15 @@
+caffold-DbContext "Server=10.45.28.248;Database=SETPP_DW;User ID=ATB;Password=Arief010691;" Microsoft.EntityFrameworkCore.SqlServer -OutputDir Models -context MainDbContext -force
+
+Scaffold-DbContext "Server=localhost;Database=alisa;Trusted_Connection=True;" Microsoft.EntityFrameworkCore.SqlServer -OutputDir Models -context MainDbContext -force
+
+
+ ALTER TABLE ALISA_SENGKETA ADD CONSTRAINT PK_ALISA_SENGKETA PRIMARY KEY (NOSKTPJK)
+	   with cte as (
+	   select *,  ROW_NUMBER()OVER(PARTITION BY NOSKTPJK ORDER BY NOSKTPJK) as RN
+	    from ALISA_SENGKETA)
+	  delete from cte where RN > 1
+
+
+ public MainDbContext(DbContextOptions<MainDbContext> options)
+    : base(options)
+        { }

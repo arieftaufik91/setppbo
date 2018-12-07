@@ -1,0 +1,70 @@
+<div class="dialog-content-wrapper">
+    <div mat-dialog-title class="mat-accent-bg p-16 m-0" fxLayout="row" fxLayoutAlign="space-between center">
+        <span class="title dialog-title">Detail SUB/ST</span>
+        <button aria-label="Close dialog" mat-icon-button (click)="onNoClick()">
+        <mat-icon>close</mat-icon>
+        </button>
+    </div>
+    <div mat-dialog-content class="p-24 m-0">
+        <div class="table-responsive">
+            <table class="table">
+                <tr>
+                    <th style="width:50%"><h5><b>No. Sengketa:</b></h5></th>
+                    <td class="report_result"><h5>{{item?.NoSengketa}}</h5></td>
+                </tr>
+                <tr>
+                    <th><h5><b>No. SUB/ST:</b></h5></th>
+                    <td class="report_result"><h5>{{item?.NoSubSt}}</h5></td>
+                </tr>
+                <tr>
+                    <th><h5><b>Tanggal SUB/ST:</b></h5></th>
+                    <td class="report_result"><h5>{{item?.TglSubSt | date:'dd-MM-yyyy'}}</h5></td>
+                </tr>
+                <tr>
+                    <th><h5><b>Tanggal Terima SUB/ST:</b></h5></th>
+                    <td class="report_result"><h5>{{item?.TglTerimaSubSt | date:'dd-MM-yyyy'}}</h5></td>
+                </tr>
+                <tr>
+                    <th><h5><b>Cara Kirim:</b></h5></th>
+                    <td class="report_result"><h5>{{item?.TextRefCaraKirimSubStUr}}</h5></td>
+                </tr>
+                <tr>
+                    <th><h5><b>Nama Pengirim:</b></h5></th>
+                    <td class="report_result"><h5>{{item?.NamaPengirimSubSt}}</h5></td>
+                </tr>
+                <tr>
+                    <th><h5><b>Alamat Pengirim:</b></h5></th>
+                    <td class="report_result"><h5>{{item?.AlamatPengirimSubSt}}</h5></td>
+                </tr>
+                <tr>
+                    <th><h5><b>Kota Alamat Pengirim:</b></h5></th>
+                    <td class="report_result"><h5>{{item?.KotaPengirimSubSt}}</h5></td>
+                </tr>
+                <tr>
+                    <th><h5><b>Kode Pos Alamat Pengirim:</b></h5></th>
+                    <td class="report_result"><h5>{{item?.KodePosPengirimSubSt}}</h5></td>
+                </tr>
+                <tr>
+                    <th><h5><b>Tanggal Terima ABG:</b></h5></th>
+                    <td class="report_result"><h5>{{item?.TglTerimaAbgSubSt | date:'dd-MM-yyyy'}}</h5></td>
+                </tr>
+                <tr>
+                    <th><h5><b>File Doc SUB/ST:</b></h5></th>
+                    <td class="report_result">
+                        <button [disabled]="item?.FileDocSubSt == null"  matTooltip="{{item?.FileDocSubSt}}" mat-icon-button color="primary" (click)="downloadDocFile()">
+                            <mat-icon>move_to_inbox</mat-icon>
+                        </button>
+                    </td>
+                </tr>
+                <tr>
+                    <th><h5><b>File PDF SUB/ST:</b></h5></th>
+                    <td class="report_result">
+                        <button [disabled]="item?.FilePdfSubSt == null"  matTooltip="{{item?.FilePdfSubSt}}" mat-icon-button color="primary" (click)="downloadPdfFile()">
+                            <mat-icon>move_to_inbox</mat-icon>
+                        </button>
+                    </td>
+                </tr>
+            </table>
+        </div>
+    </div>
+</div>

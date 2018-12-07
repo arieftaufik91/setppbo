@@ -1,0 +1,24 @@
+.mat-mini-fab[disabled][disabled] {
+    background-color: rgba(0,0,0,.12);
+    color:  rgba(0,0,0,.38);
+}
+
+.mat-mini-fab.mat-light-blue {
+    background-color: #5ea2e8;
+    color: #fff;
+}
+
+.mat-mini-fab.mat-yellow {
+    background-color: #ffae00;
+    color: #fff;
+}
+
+.mat-mini-fab.mat-green {
+    background-color: #04c524;
+    color: #fff;
+}
+
+.mat-mini-fab.mat-custom {
+    background-color: #04c585;
+    color: #fff;
+}

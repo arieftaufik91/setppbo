@@ -1,0 +1,142 @@
+<div class="dialog-content-wrapper">
+    <div mat-dialog-title class="mat-accent-bg p-16 m-0" fxLayout="row" fxLayoutAlign="space-between center">
+        <span class="title dialog-title">Form Permohonan</span>
+        <button aria-label="Close dialog" mat-icon-button (click)="onNoClick()">
+            <mat-icon>close</mat-icon>
+        </button>
+
+    </div>
+
+    <div mat-dialog-content class="p-24 m-0">
+        <form [formGroup]="formGroup" novalidate fxFlex fxLayout="column">
+            <mat-form-field>
+                <input matInput id="RefJenisPermohonanUr" formControlName="RefJenisPermohonanUr" placeholder="Jenis Permohonan" required readonly="readonly" />
+                <mat-error *ngIf="formGroup.controls['RefJenisPermohonanUr'].errors">
+                    <div [hidden]="!formGroup.controls['RefJenisPermohonanUr'].errors.required">Jenis Permohonan wajib diisi!</div>
+                </mat-error>
+            </mat-form-field>
+        </form>
+    </div>
+
+    <div mat-dialog-content class="p-24 m-0">
+        <form [formGroup]="formGroup" novalidate fxFlex fxLayout="column">
+            <mat-form-field>
+                <input matInput id="PemohonName" formControlName="PemohonName" placeholder="Pemohon" required readonly="readonly" />
+                <mat-error *ngIf="formGroup.controls['PemohonName'].errors">
+                    <div [hidden]="!formGroup.controls['PemohonName'].errors.required">Nama Pemohon wajib diisi!</div>
+                </mat-error>
+            </mat-form-field>
+        </form>
+    </div>
+
+    <div mat-dialog-content class="p-24 m-0">
+        <form [formGroup]="formGroup" novalidate fxFlex fxLayout="column">
+            <mat-form-field>
+                <input matInput id="NoSuratPermohonan" formControlName="NoSuratPermohonan" placeholder="No. Surat Permohonan" required readonly="readonly" />
+                <mat-error *ngIf="formGroup.controls['NoSuratPermohonan'].errors">
+                    <div [hidden]="!formGroup.controls['NoSuratPermohonan'].errors.required">No. Surat Permohonan wajib diisi!</div>
+                </mat-error>
+            </mat-form-field>
+        </form>
+    </div>
+
+    <div mat-dialog-content class="p-24 m-0">
+        <form [formGroup]="formGroup" novalidate fxFlex fxLayout="column">
+            <mat-form-field>
+                <input matInput id="TglSuratPermohonan" formControlName="TglSuratPermohonan" placeholder="Tgl Surat Permohonan" required readonly="readonly" />
+                <mat-error *ngIf="formGroup.controls['TglSuratPermohonan'].errors">
+                    <div [hidden]="!formGroup.controls['TglSuratPermohonan'].errors.required">Tgl Surat Permohonan wajib diisi!</div>
+                </mat-error>
+            </mat-form-field>
+        </form>
+    </div>
+
+    <div mat-dialog-content class="p-24 m-0">
+        <form [formGroup]="formGroup" novalidate fxFlex fxLayout="column">
+            <mat-form-field>
+                <input matInput id="TglTerimaPermohonan" formControlName="TglTerimaPermohonan" placeholder="Tgl Terima Permohonan" required readonly="readonly" />
+                <mat-error *ngIf="formGroup.controls['TglTerimaPermohonan'].errors">
+                    <div [hidden]="!formGroup.controls['TglTerimaPermohonan'].errors.required">Tgl Terima Permohonan wajib diisi!</div>
+                </mat-error>
+            </mat-form-field>
+        </form>
+    </div>
+
+    <div mat-dialog-content class="p-24 m-0">
+        <form [formGroup]="formGroup" novalidate fxFlex fxLayout="column">
+            <mat-form-field>
+                <input matInput id="TglKirimPermohonan" formControlName="TglKirimPermohonan" placeholder="Tgl Kirim Permohonan" required readonly="readonly" />
+                <mat-error *ngIf="formGroup.controls['TglKirimPermohonan'].errors">
+                    <div [hidden]="!formGroup.controls['TglKirimPermohonan'].errors.required">Tgl Kirim Permohonan wajib diisi!</div>
+                </mat-error>
+            </mat-form-field>
+        </form>
+    </div>
+
+    <div mat-dialog-content class="p-24 m-0">
+        <form [formGroup]="formGroup" novalidate fxFlex fxLayout="column">
+            <mat-form-field>
+                <input matInput id="RefJenisPajakUr" formControlName="RefJenisPajakUr" placeholder="Jenis Pajak" required readonly="readonly" />
+                <mat-error *ngIf="formGroup.controls['RefJenisPajakUr'].errors">
+                    <div [hidden]="!formGroup.controls['RefJenisPajakUr'].errors.required">Jenis Pajak wajib diisi!</div>
+                </mat-error>
+            </mat-form-field>
+        </form>
+    </div>
+
+    <div mat-dialog-content class="p-24 m-0">
+        <form [formGroup]="formGroup" novalidate fxFlex fxLayout="column">
+            <mat-form-field>
+                <input matInput id="NoKep" formControlName="NoKep" placeholder="No. KEP" required readonly="readonly" />
+                <mat-error *ngIf="formGroup.controls['NoKep'].errors">
+                    <div [hidden]="!formGroup.controls['NoKep'].errors.required">No. KEP wajib diisi!</div>
+                </mat-error>
+            </mat-form-field>
+        </form>
+    </div>
+
+    <div mat-dialog-content class="p-24 m-0">
+        <form [formGroup]="formGroup" novalidate fxFlex fxLayout="column">
+            <mat-form-field>
+                <input matInput [matDatepicker]="pickerTglKep" id="TglKep" formControlName="TglKep" placeholder="Tanggal KEP" required readonly="readonly" />
+                <mat-error *ngIf="formGroup.controls['TglKep'].errors">
+                    <div [hidden]="!formGroup.controls['TglKep'].errors.required">Tanggal KEP wajib diisi!</div>
+                </mat-error>
+            </mat-form-field>
+        </form>
+    </div>
+
+    <div mat-dialog-content class="p-24 m-0">
+        <form [formGroup]="formGroup" novalidate fxFlex fxLayout="column">
+            <mat-form-field>
+                <input matInput [matDatepicker]="pickerTglTerimaKep" id="TglTerimaKep" formControlName="TglTerimaKep" placeholder="Tanggal Terima KEP" required readonly="readonly" />
+                <mat-error *ngIf="formGroup.controls['TglTerimaKep'].errors">
+                    <div [hidden]="!formGroup.controls['TglTerimaKep'].errors.required">Tanggal Terima KEP wajib diisi!</div>
+                </mat-error>
+            </mat-form-field>
+        </form>
+    </div>
+
+    <div mat-dialog-content class="p-24 m-0">
+        <form [formGroup]="formGroup" novalidate fxFlex fxLayout="column">
+            <mat-form-field>
+                <input matInput id="NoSkp" formControlName="NoSkp" placeholder="No. SKP" required readonly="readonly" />
+                <mat-error *ngIf="formGroup.controls['NoSkp'].errors">
+                    <div [hidden]="!formGroup.controls['NoSkp'].errors.required">No. SKP wajib diisi!</div>
+                </mat-error>
+            </mat-form-field>
+        </form>
+    </div>
+
+    <div mat-dialog-content class="p-24 m-0">
+        <form [formGroup]="formGroup" novalidate fxFlex fxLayout="column">
+            <mat-form-field>
+                <input matInput [matDatepicker]="pickerTglSkp" id="TglSkp" formControlName="TglSkp" placeholder="Tanggal SKP" required readonly="readonly" />
+                <mat-error *ngIf="formGroup.controls['TglSkp'].errors">
+                    <div [hidden]="!formGroup.controls['TglSkp'].errors.required">Tanggal SKP wajib diisi!</div>
+                </mat-error>
+            </mat-form-field>
+        </form>
+    </div>
+
+</div>

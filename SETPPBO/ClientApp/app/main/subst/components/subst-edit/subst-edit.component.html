@@ -1,0 +1,140 @@
+<div mat-dialog-title class="mat-accent-bg p-16 m-0" fxLayout="row" fxLayoutAlign="space-between center">
+    <span class="title dialog-title">Update Data SubSt</span>
+    <button aria-label="Close dialog" mat-icon-button (click)="onNoClick()">
+        <mat-icon>close</mat-icon>
+    </button>
+</div>
+
+<div mat-dialog-content class="p-24 m-0">
+    <form [formGroup]="formGroup" class="form-container">
+            
+        <mat-form-field style="width:100%">
+            <input matInput id="NoSengketa" formControlName="NoSengketa" placeholder="No. Sengketa" maxlength="128" required/>
+            <mat-error *ngIf="formGroup.controls['NoSengketa'].errors">
+                <div [hidden]="!formGroup.controls['NoSengketa'].errors.required">No Sengketa wajib diisi!</div>
+                <div [hidden]="!formGroup.controls['NoSengketa'].errors.maxlength">No Sengketa tidak sesuai!</div>
+            </mat-error>
+        </mat-form-field>
+        
+        <mat-form-field>
+            <input matInput id="NoSubSt" formControlName="NoSubSt" placeholder="No. SubSt" (keyup)="editForm()" required />
+            <mat-error *ngIf="formGroup.controls['NoSubSt'].errors">
+                <div [hidden]="!formGroup.controls['NoSubSt'].errors.required">No. SubSt wajib diisi!</div>
+            </mat-error>
+        </mat-form-field>
+        
+        <mat-form-field>
+            <input matInput [matDatepicker]="pickerTglSubSt" id="TglSubSt" formControlName="TglSubSt" placeholder="Tanggal SubSt" (dateChange)="editForm()" required />
+            <mat-datepicker-toggle matSuffix [for]="pickerTglSubSt"></mat-datepicker-toggle>
+            <mat-datepicker #pickerTglSubSt></mat-datepicker>
+            <mat-error *ngIf="formGroup.controls['TglSubSt'].errors">
+                <div [hidden]="!formGroup.controls['TglSubSt'].errors.required">Tanggal SubSt wajib diisi!</div>
+            </mat-error>
+        </mat-form-field>
+
+        <mat-form-field>
+            <input matInput [matDatepicker]="pickerTglTerimaSubSt" id="TglTerimaSubSt" formControlName="TglTerimaSubSt" placeholder="Tanggal Terima SubSt" (dateChange)="editForm()" required />
+            <mat-datepicker-toggle matSuffix [for]="pickerTglTerimaSubSt"></mat-datepicker-toggle>
+            <mat-datepicker #pickerTglTerimaSubSt></mat-datepicker>
+            <mat-error *ngIf="formGroup.controls['TglTerimaSubSt'].errors">
+                <div [hidden]="!formGroup.controls['TglTerimaSubSt'].errors.required">Tanggal Terima SubSt wajib diisi!</div>
+            </mat-error>
+        </mat-form-field>
+
+         <!-- <mat-form-field>
+            <mat-select placeholder="Cara Kirim" formControlName="RefCaraKirimSubStId" name="RefCaraKirimSubStId">
+                <mat-option *ngFor="let carakirim of modelCaraKirim" [value]="carakirim.RefCaraKirimId">
+                    {{carakirim.Uraian}}
+                </mat-option>
+            </mat-select>
+         </mat-form-field>   -->
+         
+         <mat-form-field>
+            <mat-select placeholder="Cara Kirim" [formControl]="RefCaraKirimSubStId" (change)="editForm()">
+                <mat-option *ngFor="let caraKirim of modelCaraKirim" [value]="caraKirim.RefCaraKirimId">
+                    {{caraKirim.Uraian}}
+                </mat-option>
+            </mat-select>
+        </mat-form-field>
+                
+        <mat-form-field>
+            <input matInput [matDatepicker]="pickerTglKirimSubSt" id="TglKirimSubSt" formControlName="TglKirimSubSt" placeholder="Tanggal Kirim Pos SubSt" [disabled]="!isSentByPostman" (dateChange)="editForm()" />
+            <mat-datepicker-toggle matSuffix [disabled]="!isSentByPostman" [for]="pickerTglKirimSubSt"></mat-datepicker-toggle>
+            <mat-datepicker #pickerTglKirimSubSt [disabled]="!isSentByPostman"></mat-datepicker>
+            <mat-error *ngIf="formGroup.controls['TglKirimSubSt'].errors">
+                <div [hidden]="!formGroup.controls['TglKirimSubSt'].errors.required">Tanggal Terima SubSt wajib diisi!</div>
+            </mat-error>
+        </mat-form-field>
+
+        <!--mat-form-field>
+            <input matInput id="NamaPengirimSubSt" formControlName="NamaPengirimSubSt" placeholder="Nama Pengirim SubSt" (keyup)="editForm()" required />
+            <mat-error *ngIf="formGroup.controls['NamaPengirimSubSt'].errors">
+                <div [hidden]="!formGroup.controls['NamaPengirimSubSt'].errors.required">Nama Pengirim SubSt wajib diisi!</div>
+            </mat-error>
+        </mat-form-field-->
+
+        <div style="margin-bottom: 20px">
+            <label class="form-autocomplete-label">Nama Pengirim SubSt</label>
+            <br>
+            <p-dropdown formControlName="NamaPengirimSubSt" [(ngModel)]="selectedSender" (onChange)="changeSender()" [options]="listSender" [filter]="true" optionLabel="UraianOrganisasi" [autoWidth]="false" [style]="{'width':'300px'}"></p-dropdown>
+        </div>
+
+        <mat-form-field>
+            <input matInput id="AlamatPengirimSubSt" formControlName="AlamatPengirimSubSt" placeholder="Alamat" (keyup)="editForm()" required />
+            <mat-error *ngIf="formGroup.controls['AlamatPengirimSubSt'].errors">
+                <div [hidden]="!formGroup.controls['AlamatPengirimSubSt'].errors.required">Alamat Pengirim wajib diisi!</div>
+            </mat-error>
+        </mat-form-field>
+
+        <mat-form-field>
+            <input matInput id="KotaPengirimSubSt" formControlName="KotaPengirimSubSt" placeholder="Kota" (keyup)="editForm()" required />
+            <mat-error *ngIf="formGroup.controls['KotaPengirimSubSt'].errors">
+                <div [hidden]="!formGroup.controls['KotaPengirimSubSt'].errors.required">Kota Alamat Pengirim wajib diisi!</div>
+            </mat-error>
+        </mat-form-field>
+
+        <mat-form-field>
+            <input matInput id="KodePosPengirimSubSt" formControlName="KodePosPengirimSubSt" placeholder="Kode Pos" (keyup)="editForm()" required />
+            <mat-error *ngIf="formGroup.controls['KodePosPengirimSubSt'].errors">
+                <div [hidden]="!formGroup.controls['KodePosPengirimSubSt'].errors.required">Kode Pos Alamat Pengirim wajib diisi!</div>
+            </mat-error>
+        </mat-form-field>
+
+        <mat-form-field>
+            <input matInput [matDatepicker]="pickerTglTerimaAbgSubSt" id="TglTerimaAbgSubSt" formControlName="TglTerimaAbgSubSt" placeholder="Tanggal Terima SubSt" (dateChange)="editForm()" required />
+            <mat-datepicker-toggle matSuffix [for]="pickerTglTerimaAbgSubSt"></mat-datepicker-toggle>
+            <mat-datepicker #pickerTglTerimaAbgSubSt></mat-datepicker>
+            <mat-error *ngIf="formGroup.controls['TglTerimaAbgSubSt'].errors">
+                <div [hidden]="!formGroup.controls['TglTerimaAbgSubSt'].errors.required">Tanggal Terima ABG SubSt wajib diisi!</div>
+            </mat-error>
+        </mat-form-field>
+        
+        <div class="form-upload-file">
+            File SUB/ST (format .doc) 
+            <!--a mat-button color="primary" (click)="downloadDocFile()" *ngIf="data?.FileDocSubSt" title="{{data.FileDocSubSt}}"><mat-icon>archive</mat-icon></a-->
+            <button [disabled]="data?.FileDocSubSt == null"  matTooltip="{{data?.FileDocSubSt}}" mat-icon-button color="primary" (click)="downloadDocFile()">
+                <mat-icon>move_to_inbox</mat-icon>
+            </button>                
+            <input #file type="file" id="FileDocSubSt" (change)="editForm()" accept=".doc, .docx">    
+        </div>
+
+        <div class="form-upload-file">
+            File SUB/ST (format .pdf)
+            <!--a mat-button color="primary" (click)="downloadPdfFile()" *ngIf="data?.FilePdfSubSt" title="{{data.FilePdfSubSt}}"><mat-icon>archive</mat-icon></a-->
+            <button [disabled]="data?.FilePdfSubSt == null"  matTooltip="{{data?.FilePdfSubSt}}" mat-icon-button color="primary" (click)="downloadPdfFile()">
+                <mat-icon>move_to_inbox</mat-icon>
+            </button>                            
+            <input #file1 type="file" id="FilePdfSubSt" (change)="editForm()" accept=".pdf"/>
+        </div>
+
+    </form>
+</div>
+
+
+<div mat-dialog-actions class="m-0 p-16" fxLayout="row" fxLayoutAlign="space-between center">
+    <button mat-raised-button (click)="onOkClick()" [disabled]="!isEdit || isUpload" color="primary"
+            type="button" tabindex="2">
+        Simpan
+    </button>
+    <button mat-raised-button (click)="onNoClick()" tabindex="-1">Batal</button>
+</div>

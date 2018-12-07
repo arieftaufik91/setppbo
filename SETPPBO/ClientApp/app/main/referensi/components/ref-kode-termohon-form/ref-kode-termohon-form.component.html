@@ -1,0 +1,83 @@
+<div class="dialog-content-wrapper">
+    <div mat-dialog-title class="mat-accent-bg p-16 m-0" fxLayout="row" fxLayoutAlign="space-between center">
+        <span class="title dialog-title">Referensi Kode Termohon</span>
+        <button aria-label="Close dialog" mat-icon-button (click)="onNoClick()">
+            <mat-icon>close</mat-icon>
+        </button>
+    </div>
+    <div mat-dialog-content class="p-24 m-0">
+        <form [formGroup]="formGroup" novalidate fxFlex fxLayout="column">
+            <mat-form-field>
+
+                    <mat-select placeholder="Organisasi" formControlName="OrganisasiId">
+                        <mat-option *ngFor="let itemOrganisasi of modelOrganisasi" [value]="itemOrganisasi.IDOrganisasi">
+                            {{itemOrganisasi.NamaOrganisasi}}
+                        </mat-option>
+                    </mat-select>
+            </mat-form-field>
+        </form>
+        <form [formGroup]="formGroup" novalidate fxFlex fxLayout="column">
+            <mat-form-field>
+                <input matInput id="KodeOrganisasi" formControlName="KodeOrganisasi" placeholder="Kode Organisasi" required />
+                <mat-error *ngIf="formGroup.controls['KodeOrganisasi'].errors">
+                    <div [hidden]="!formGroup.controls['KodeOrganisasi'].errors.required">Kode Organisasi wajib diisi!</div>
+                </mat-error>
+            </mat-form-field>
+        </form>
+        <form [formGroup]="formGroup" novalidate fxFlex fxLayout="column">
+            <mat-form-field>
+                <input matInput id="uraian" formControlName="UraianOrganisasi" placeholder="UraianOrganisasi" required />
+                <mat-error *ngIf="formGroup.controls['UraianOrganisasi'].errors">
+                    <div [hidden]="!formGroup.controls['UraianOrganisasi'].errors.required">Uraian Organisasi wajib diisi!</div>
+                </mat-error>
+            </mat-form-field>
+        </form>
+        <form [formGroup]="formGroup" novalidate fxFlex fxLayout="column">
+            <mat-form-field>
+                <input matInput id="UraianLengkapOrganisasi" formControlName="UraianLengkapOrganisasi" placeholder="UraianLengkapOrganisasi" required />
+                <mat-error *ngIf="formGroup.controls['UraianLengkapOrganisasi'].errors">
+                    <div [hidden]="!formGroup.controls['UraianLengkapOrganisasi'].errors.required">Uraian Lengkap Organisasi wajib diisi!</div>
+                </mat-error>
+            </mat-form-field>
+        </form>
+        <form [formGroup]="formGroup" novalidate fxFlex fxLayout="column">
+            <mat-form-field>
+                <input matInput id="UraianJabatan" formControlName="UraianJabatan" placeholder="UraianJabatan" required />
+                <mat-error *ngIf="formGroup.controls['UraianJabatan'].errors">
+                    <div [hidden]="!formGroup.controls['UraianJabatan'].errors.required">Uraian Jabatan wajib diisi!</div>
+                </mat-error>
+            </mat-form-field>
+        </form>
+        <form [formGroup]="formGroup" novalidate fxFlex fxLayout="column">
+            <mat-form-field>
+                <input matInput id="KodeSatker" formControlName="KodeSatker" placeholder="KodeSatker" required />
+                <mat-error *ngIf="formGroup.controls['KodeSatker'].errors">
+                    <div [hidden]="!formGroup.controls['KodeSatker'].errors.required">Kode Satker wajib diisi!</div>
+                </mat-error>
+            </mat-form-field>
+        </form>
+        <form [formGroup]="formGroup" novalidate fxFlex fxLayout="column">
+            <mat-form-field>
+                <input matInput id="Alamat" formControlName="Alamat" placeholder="Alamat" required />
+                <mat-error *ngIf="formGroup.controls['Alamat'].errors">
+                    <div [hidden]="!formGroup.controls['Alamat'].errors.required">Alamat wajib diisi!</div>
+                </mat-error>
+            </mat-form-field>
+        </form>
+        <form [formGroup]="formGroup" novalidate fxFlex fxLayout="column">
+            <mat-form-field>
+                <input matInput id="KodeSurat" formControlName="KodeSurat" placeholder="KodeSurat" required />
+                <mat-error *ngIf="formGroup.controls['KodeSurat'].errors">
+                    <div [hidden]="!formGroup.controls['KodeSurat'].errors.required">Kode Surat wajib diisi!</div>
+                </mat-error>
+            </mat-form-field>
+        </form>
+    </div>
+    <div mat-dialog-actions class="m-0 p-16" fxLayout="row" fxLayoutAlign="space-between center">
+        <button mat-raised-button (click)="onOkClick()" [disabled]="isEdit? formGroup.pristine : formGroup.invalid" color="primary"
+                type="button" tabindex="2">
+            Simpan
+        </button>
+        <button mat-raised-button (click)="onNoClick()" tabindex="-1">Batal</button>
+    </div>
+</div>

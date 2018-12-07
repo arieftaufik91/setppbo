@@ -1,0 +1,15 @@
+td{
+    padding-right: 20px;
+    padding-bottom: 10px;
+}
+p{
+    padding-top: 10px;
+}
+.back-button{
+    position:absolute;
+    width:150px;
+    bottom:50px;
+    right:25%;
+    left:50%;
+    margin-left:-75px;
+}

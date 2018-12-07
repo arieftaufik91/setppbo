@@ -1,0 +1,84 @@
+<div class="dialog-content-wrapper"></div>
+  <div mat-dialog-title class="mat-accent-bg p-16 m-0" fxLayout="row" fxLayoutAlign="space-between center">
+    <span class="title dialog-title">Bantahan Form</span>
+    <button aria-label="Close dialog" mat-icon-button (click)="onNoClick()">
+      <mat-icon>close</mat-icon>
+    </button>
+  </div>
+
+<div mat-dialog-content class="p-24 m-0">
+    <form [formGroup]="formGroup" novalidate fxFlex fxLayout="column">
+      
+      <mat-form-field>
+        <input matInput id="NoSuratBantahan" formControlName="NoSuratBantahan" placeholder="No.Surat Bantahan" required/>
+        <mat-error *ngIf="formGroup.controls['NoSuratBantahan'].errors">
+            <div [hidden]="!formGroup.controls['NoSuratBantahan'].errors.required">Surat Bantahan Wajib diisi!</div>
+        </mat-error>
+      </mat-form-field>
+
+      <mat-form-field>
+        <input matInput [matDatepicker]="pickerTglSuratBantahan" id="TglSuratBantahan" formControlName="TglSuratBantahan" placeholder="Tanggal Surat Bantahan" required />
+        <mat-datepicker-toggle matSuffix [for]="pickerTglSuratBantahan"></mat-datepicker-toggle>
+        <mat-datepicker #pickerTglSuratBantahan></mat-datepicker>
+        <mat-error *ngIf="formGroup.controls['TglSuratBantahan'].errors">
+            <div [hidden]="!formGroup.controls['TglSuratBantahan'].errors.required">Tanggal Surat Bantahan wajib diisi!</div>
+        </mat-error>
+      </mat-form-field>
+
+      <mat-form-field>
+        <input matInput [matDatepicker]="pickerTglTerimaBantahan" id="TglTerimaBantahan" formControlName="TglTerimaBantahan" placeholder="Tanggal Diterima" required />
+        <mat-datepicker-toggle matSuffix [for]="pickerTglTerimaBantahan"></mat-datepicker-toggle>
+        <mat-datepicker #pickerTglTerimaBantahan></mat-datepicker>
+        <mat-error *ngIf="formGroup.controls['TglTerimaBantahan'].errors">
+            <div [hidden]="!formGroup.controls['TglTerimaBantahan'].errors.required">Tanggal Terima Bantahan wajib diisi!</div>
+        </mat-error>
+      </mat-form-field>
+
+      <mat-form-field>
+        <mat-select placeholder="Cara Kirim" formControlName="RefCaraKirimBantahanId" (change)="checkSender()">
+            <mat-option *ngFor="let caraKirim of caraKirimModel" [value]="caraKirim.RefCaraKirimId">
+                {{caraKirim.Uraian}}
+            </mat-option>
+        </mat-select>
+    </mat-form-field>
+
+    <mat-form-field>
+        <input matInput [matDatepicker]="pickerTglKirimBantahan" id="TglKirimBantahan" formControlName="TglKirimBantahan" placeholder="Tanggal Kirim Bantahan" [disabled]="!isSentByPostman" (dateChange)="editForm()" />
+        <mat-datepicker-toggle matSuffix [disabled]="!isSentByPostman" [for]="pickerTglKirimBantahan"></mat-datepicker-toggle>
+        <mat-datepicker #pickerTglKirimBantahan [disabled]="!isSentByPostman"></mat-datepicker>
+        <mat-error *ngIf="formGroup.controls['TglKirimBantahan'].errors">
+            <div [hidden]="!formGroup.controls['TglKirimBantahan'].errors.required">Tanggal Terima Bantahan wajib diisi!</div>
+        </mat-error>
+    </mat-form-field>
+
+    <mat-form-field>
+      <input matInput [matDatepicker]="pickerTglTerimaAbgBantahan" id="TglTerimaAbgBantahan" formControlName="TglTerimaAbgBantahan" placeholder="Tanggal Terima Abg" required />
+      <mat-datepicker-toggle matSuffix [for]="pickerTglTerimaAbgBantahan"></mat-datepicker-toggle>
+      <mat-datepicker #pickerTglTerimaAbgBantahan></mat-datepicker>
+      <mat-error *ngIf="formGroup.controls['TglTerimaAbgBantahan'].errors">
+          <div [hidden]="!formGroup.controls['TglTerimaAbgBantahan'].errors.required">Tanggal Terima Bantahan wajib diisi!</div>
+      </mat-error>
+    </mat-form-field>
+
+    <div class="form-upload-file">
+        File Bantahan (format .doc) Maks (20 MB)
+        <input #file type="file" id="FileDocBantahan" accept=".doc, .docx">
+    </div>
+    
+    <div class="form-upload-file">
+        File Bantahan (format .pdf) Maks (20 MB)
+        <input #file1 type="file" id="FilePdfBantahan" accept=".pdf">
+    </div>
+
+    </form>
+</div>
+    
+<div mat-dialog-actions class="m-0 p-16" fxLayout="row" fxLayoutAlign="space-between center">
+  <button mat-raised-button (click)="onOkClick()" [disabled]="isUpload || !formReady ? true : formGroup.invalid" color="primary"
+          type="button" tabindex="2">
+      Simpan
+  </button>
+  <button mat-raised-button (click)="onNoClick()" tabindex="-1">Batal</button>
+</div>
+
+

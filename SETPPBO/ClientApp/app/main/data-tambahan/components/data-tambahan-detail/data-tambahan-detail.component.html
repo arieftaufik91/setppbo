@@ -1,0 +1,48 @@
+<div class="dialog-content-wrapper">
+    <div mat-dialog-title class="mat-accent-bg p-16 m-0" fxLayout="row" fxLayoutAlign="space-between center">
+        <span class="title dialog-title">Detail Sengketa</span>
+        <button aria-label="Close dialog" mat-icon-button (click)="close()">
+            <mat-icon>close</mat-icon>
+        </button>
+    </div>
+    <div mat-dialog-content class="p-24 m-0">
+        <div class="toolbar px-24 py-8" fxFlex fxLayout="row" fxLayoutAlign="space-between center">
+            <div class="content-toolbar" fxFlex="60" fxLayout="row" fxLayoutAlign="start center">
+
+                
+                <button [disabled]="selected.length <= 0" matTooltip="Unduh File" mat-mini-fab color="primary" (click)="download()">
+                    <mat-icon>move_to_inbox</mat-icon>
+                </button>
+            </div>
+        </div>
+        <div class="content p-24">
+            <ngx-datatable 
+            class="material"
+            [rows]="rows"
+            [columnMode]="'force'"
+            [headerHeight]="50"
+            [footerHeight]="50"
+            [selected]="selected"
+            [selectionType]="'single'" 
+            [selectCheck]="singleSelectCheck"
+            [rowHeight]="'auto'">
+                <ngx-datatable-column name="Nama File" prop="FileId">
+                    <ng-template let-row="row" ngx-datatable-cell-template>
+                        {{row?.FileId}}
+                    </ng-template>
+                </ngx-datatable-column>
+                <ngx-datatable-column name="Keterangan" prop="Keterangan">
+                    <ng-template let-row="row" ngx-datatable-cell-template>
+                        {{row?.Keterangan}}
+                    </ng-template>
+                </ngx-datatable-column>
+                <ngx-datatable-column name="Tanggal Upload" prop="CreatedDate">
+                    <ng-template let-row="row" ngx-datatable-cell-template>
+                        {{row?.CreatedDate}}
+                    </ng-template>
+                </ngx-datatable-column>
+              
+            </ngx-datatable>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,17 @@
+<div class="navbar-header">
+    <div class="logo">
+        <img class="logo-icon" src="/assets/images/logo_eprime_96.png">
+        <span class="logo-text">SETPP BO</span>
+    </div>
+
+    <button mat-icon-button (click)="openSidenav()" fxHide.lt-lg>
+        <i class="material-icons">menu</i>
+    </button>
+    <button mat-icon-button (click)="openSidenav()" fxHide.gt-md>
+        <i class="material-icons">arrow_back</i>
+    </button>
+
+</div>
+<div class="navbar-content" [perfect-scrollbar] [usePSClass]>
+    <navMenu class="nav vertical" id="main-navigation" [model]="navMenus" (onMenuClick)="handleMenuClick()"></navMenu>
+</div>

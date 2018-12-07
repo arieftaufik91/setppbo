@@ -1,0 +1,94 @@
+<div class="dialog-content-wrapper">
+    <div mat-dialog-title class="mat-accent-bg p-16 m-0" fxLayout="row" fxLayoutAlign="space-between center">
+        <span class="title dialog-title">Pemohon Form</span>
+        <button aria-label="Close dialog" mat-icon-button (click)="onNoClick()">
+            <mat-icon>close</mat-icon>
+        </button>
+    </div>
+
+    <div mat-dialog-content class="p-24 m-0">
+        <form [formGroup]="formGroup" novalidate fxFlex fxLayout="column">
+            <mat-form-field>
+                <input matInput id="nama" formControlName="nama" placeholder="Nama" maxlength="128" required />
+                <mat-error *ngIf="formGroup.controls['nama'].errors">
+                    <div [hidden]="!formGroup.controls['nama'].errors.required">Nama wajib diisi!</div>
+                    <div [hidden]="!formGroup.controls['nama'].errors.maxlength">Nama tidak sesuai!</div>
+                </mat-error>
+            </mat-form-field>
+            <mat-form-field>
+                <input matInput id="npwp" formControlName="npwp" placeholder="NPWP" minlength="15" maxlength="15" disabled [disabled]="isEdit" pattern="^[\d]*$" required />
+                <!--numberPattern = "^[\d]*$";-->
+                <mat-error *ngIf="formGroup.controls['npwp'].errors">
+                    <div [hidden]="!formGroup.controls['npwp'].errors.required">NPWP wajib diisi!</div>
+                    <div [hidden]="!formGroup.controls['npwp'].errors.pattern && !formGroup.controls['npwp'].errors.minlength && !formGroup.controls['npwp'].errors.maxlength">NPWP tidak sesuai!</div>
+                </mat-error>
+            </mat-form-field>
+            <!-- file - START -->
+            <div mat-dialog-content class="mat-form-field-wrapper mat-form-field-hint-wrapper">
+                <mat-hint>File NPWP</mat-hint>
+                <!--<input #file1 type="file" id="fileNpwp" formControlName="fileNpwp" [disabled]="isEdit" required>-->
+                <input *ngIf="isEdit == false" #fileN type="file" id="fileNpwpForm" formControlName="fileNpwpForm"
+                       accept="image/jpeg, image/png, image/gif, image/bmp, application/pdf"
+                       required>
+                <mat-hint *ngIf="isEdit == false" style="font-size:75%;">Tipe file pdf atau gambar, cth.: jpg, png, bmp</mat-hint>
+
+                <a mat-button *ngIf="isEdit == true && model.HasNpwpFile == true" color="primary" (click)="onViewNpwp()" title="Download NPWP File"><mat-icon>archive</mat-icon> File</a>
+                <p class="small" *ngIf="isEdit == true && model.HasNpwpFile == false">tidak ada file npwp</p>
+                <!--<mat-error *ngIf="formGroup.controls['npwp'].errors">
+            <div [hidden]="!formGroup.controls['npwp'].errors.required">NPWP wajib diisi!</div>
+            </div>
+        </mat-error>-->
+            </div>
+            <!-- file - END -->
+            <mat-form-field>
+                <input matInput id="contactPerson" formControlName="contactPerson" placeholder="Contact Person" maxlength="128" required />
+                <mat-error *ngIf="formGroup.controls['contactPerson'].errors">
+                    <div [hidden]="!formGroup.controls['contactPerson'].errors.required">Contact Person wajib diisi!</div>
+                    <div [hidden]="!formGroup.controls['contactPerson'].errors.maxlength">Contact Person tidak sesuai!</div>
+                </mat-error>
+            </mat-form-field>
+            <mat-form-field>
+                <input matInput id="alamat" formControlName="alamat" placeholder="Alamat" required />
+                <mat-error *ngIf="formGroup.controls['alamat'].errors">
+                    <div [hidden]="!formGroup.controls['alamat'].errors.required">Alamat wajib diisi!</div>
+                </mat-error>
+            </mat-form-field>
+            <div>
+                <mat-hint>Provinsi</mat-hint>
+                <p-dropdown formControlName="provinsi" [(ngModel)]="selectedProvinsi" (onChange)="onChangeProvinsi()" [options]="provinsi" [filter]="true" optionLabel="NamaProvinsi" [autoWidth]="false" [style]="{'width':'100%'}"></p-dropdown>
+            </div>
+            <div>
+                <mat-hint>Kota</mat-hint>
+                <p-dropdown formControlName="kota" [(ngModel)]="selectedKota" [options]="kota" [filter]="true" optionLabel="NamaKota" [autoWidth]="false" [style]="{'width':'100%'}"></p-dropdown>
+            </div>
+            <!--<mat-form-field>
+                <mat-error *ngIf="formGroup.controls['kota'].errors">
+                    <div [hidden]="!formGroup.controls['kota'].errors.required">Kota wajib diisi!</div>
+                    <div [hidden]="!formGroup.controls['kota'].errors.maxlength">Kota tidak sesuai!</div>
+                </mat-error>
+            </mat-form-field>-->
+            <mat-form-field>
+                <input matInput id="kodePos" formControlName="kodePos" placeholder="KodePos" minlength="4" maxlength="6" pattern="^[\d]*$" required />
+                <mat-error *ngIf="formGroup.controls['kodePos'].errors">
+                    <div [hidden]="!formGroup.controls['kodePos'].errors.required">Kode Pos wajib diisi!</div>
+                    <div [hidden]="!formGroup.controls['kodePos'].errors.pattern && !formGroup.controls['kodePos'].errors.minlength && !formGroup.controls['kodePos'].errors.maxlength">
+                        Kode Pos tidak sesuai!
+                    </div>
+                </mat-error>
+            </mat-form-field>
+            <mat-form-field>
+                <input matInput id="email" formControlName="email" placeholder="Email" minlength="6" maxlength="128" [pattern]="emailPattern" required />
+                <mat-error *ngIf="formGroup.controls['email'].errors">
+                    <div [hidden]="!formGroup.controls['email'].errors.required">Email wajib diisi!</div>
+                    <div [hidden]="!formGroup.controls['email'].errors.pattern && !formGroup.controls['email'].errors.minlength && !formGroup.controls['email'].errors.maxlength">Email tidak sesuai!</div>
+                </mat-error>
+            </mat-form-field>
+        </form>
+    </div>
+
+    <div mat-dialog-actions class="m-0 p-16" fxLayout="row" fxLayoutAlign="space-between center">
+        <button *ngIf="!isEdit" mat-raised-button (click)="onOkClick()" [disabled]="formGroup.invalid" color="primary" type="button" tabindex="2">Simpan</button>
+        <button *ngIf="isEdit" mat-raised-button (click)="onUpdateClick()" color="primary" type="button" tabindex="2">Update</button>
+        <button mat-raised-button (click)="onNoClick()" tabindex="-1">Batal</button>
+    </div>
+</div>

@@ -1,0 +1,30 @@
+<div class="toolbar px-24 py-8" fxFlex fxLayout="row" fxLayoutAlign="space-between center">
+  <div class="content-toolbar" fxFlex="60" fxLayout="row" fxLayoutAlign="start center">
+    <button matTooltip="Add Root" mat-mini-fab color="accent" (click)="onAddClick()">
+      <mat-icon>add</mat-icon>
+    </button>
+
+    <div *ngIf="selectedMenu != null" class="toolbar-separator">
+    </div>
+    <button *ngIf="selectedMenu != null && !isItemSelected" matTooltip="Add Child" mat-icon-button color="accent" (click)="onChildAddClick()">
+      <mat-icon>playlist_add</mat-icon>
+    </button>
+    <button *ngIf="selectedMenu != null" matTooltip="Delete" mat-icon-button color="warn" (click)="onDeleteClick()">
+      <mat-icon>delete</mat-icon>
+    </button>
+    <button *ngIf="selectedMenu != null" matTooltip="Update" mat-icon-button color="primary" (click)="onEditClick()">
+      <mat-icon>mode_edit</mat-icon>
+    </button>
+
+  </div>
+  <layout-search-bar (search)="updateFilter($event)" fxFlex></layout-search-bar>
+</div>
+<div class="content p-24">
+  <p-treeTable [value]="treeMenus" selectionMode="single" [(selection)]="selectedMenu" [metaKeySelection]="false" (onNodeSelect)="onNodeSelect($event)">
+    <p-column field="Name" header="Name"></p-column>
+    <p-column field="Link" header="Link"></p-column>
+    <p-column field="Icon" header="Icon"></p-column>
+    <p-column field="Order" header="Order"></p-column>
+      <p-column field="Roles" header="Roles"></p-column>
+  </p-treeTable>
+</div>

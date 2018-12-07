@@ -1,0 +1,161 @@
+<div class="dialog-content-wrapper">
+  <div mat-dialog-title class="mat-accent-bg p-16 m-0" fxLayout="row" fxLayoutAlign="space-between center">
+      <span class="title dialog-title">Form Permohonan</span>
+      <button aria-label="Close dialog" mat-icon-button (click)="onNoClick()">
+          <mat-icon>close</mat-icon>
+      </button>
+  </div>
+
+  <div mat-dialog-content class="p-24 m-0">
+
+
+        <form [formGroup]="formGroup" novalidate fxFlex fxLayout="column">
+        
+        <p>Data Permohonan</p> 
+
+        <mat-form-field>
+            <input matInput id="NoSengketa" formControlName="NoSengketa" placeholder="Nomor Sengketa"  />
+        </mat-form-field>
+
+        <div style="margin-bottom: 20px">
+            <label style="font-weight: normal !important;color:rgba(0,0,0,.54); font-size: 11px">Pemohon</label>
+            <p-dropdown formControlName="PemohonId"  [(ngModel)]="selectedPemohon" [options]="modelpemohon" [filter]="true" optionLabel="Nama" [autoWidth]="false" [style]="{'width':'100%'}"></p-dropdown>
+        </div>
+
+        <div style="margin-bottom: 20px">
+            <label style="font-weight: normal !important;color:rgba(0,0,0,.54); font-size: 11px">Jenis Pajak</label>
+            <p-dropdown formControlName="JenisPajakId"  [(ngModel)]="selectedJenisPajak" [options]="modeljenispajak" [filter]="true" optionLabel="Uraian" [autoWidth]="false" [style]="{'width':'100%'}"></p-dropdown>
+        </div>
+                
+        <mat-form-field>
+            <input matInput id="NoKep" formControlName="NoKep" placeholder="Nomor KEP" />
+        </mat-form-field>
+
+        <mat-form-field>
+                <input matInput [matDatepicker]="pickerTglKep" id="TglKep" formControlName="TglKep" placeholder="Tanggal Keputusan"  />
+                <mat-datepicker-toggle matSuffix [for]="pickerTglKep"></mat-datepicker-toggle>
+                <mat-datepicker #pickerTglKep></mat-datepicker>
+        </mat-form-field>
+
+        <mat-form-field>
+            <input matInput id="NoSkp" formControlName="NoSkp" placeholder="Nomor SKP" />
+        </mat-form-field>
+
+        <mat-form-field>
+            <input matInput [matDatepicker]="pickerTglSkp" id="TglSkp" formControlName="TglSkp" placeholder="Tanggal SKP"  />
+            <mat-datepicker-toggle matSuffix [for]="pickerTglSkp"></mat-datepicker-toggle>
+            <mat-datepicker #pickerTglSkp></mat-datepicker>
+        </mat-form-field>
+
+        <div fxLayout="row" fxLayoutAlign="space-between center">
+          <mat-form-field style="width:40%">
+            <mat-select placeholder="Masa Awal (Bulan)" formControlName="MasaPajakAwalBulan" name="MasaPajakAwalBulan">
+                <mat-option *ngFor="let namabulan of modelbulan" [value]="namabulan.id">
+                    {{namabulan.nama}}
+                </mat-option>
+            </mat-select>
+          </mat-form-field>
+          <mat-form-field style="width:40%">
+            <mat-select placeholder="Masa Akhir (Bulan)" formControlName="MasaPajakAkhirBulan" name="MasaPajakAkhirBulan">
+                <mat-option *ngFor="let namabulan of modelbulan" [value]="namabulan.id">
+                    {{namabulan.nama}}
+                </mat-option>
+            </mat-select>
+          </mat-form-field>
+       </div>
+
+        <mat-form-field>
+            <input matInput id="MasaPajakAwalTahun" formControlName="MasaPajakAwalTahun" placeholder="Tahun Pajak" />
+        </mat-form-field>
+
+        <mat-form-field style="width:40%">
+                <mat-select placeholder="Pembagian Berkas ABG" formControlName="RefPembagianBerkasId" name="RefPembagianBerkasId">
+                    <mat-option *ngFor="let Organisasi of modelOrganisasi" [value]="Organisasi.IdOrganisasi">
+                        {{Organisasi.NamaOrganisasi}}
+                    </mat-option>
+                </mat-select>
+        </mat-form-field>
+
+        <mat-form-field>
+                <input matInput id="NoSuratPermohonan" formControlName="NoSuratPermohonan" placeholder="Nomor Surat Permohonan" />
+        </mat-form-field>
+
+        <mat-form-field>
+                <input matInput [matDatepicker]="pickerTglSurat" id="TglSuratPermohonan" formControlName="TglSuratPermohonan" placeholder="Tanggal Surat Permohonan"  />
+                <mat-datepicker-toggle matSuffix [for]="pickerTglSurat"></mat-datepicker-toggle>
+                <mat-datepicker #pickerTglSurat></mat-datepicker>
+        </mat-form-field>
+      
+        <mat-form-field>
+                <mat-select  formControlName="RefJenisPermohonanId"  placeholder="Jenis Permohonan"  >
+                    <mat-option *ngFor="let jnsPermohonan of jenispermohonan" [value]="jnsPermohonan.RefJenisPermohonanId">
+                        {{jnsPermohonan.Uraian}}
+                    </mat-option>
+                </mat-select>
+            </mat-form-field>
+
+            <mat-form-field>
+                <mat-select placeholder="Status" formControlName="RefStatus" >
+                    <mat-option *ngFor="let status of refStatusModel" [value]="status.RefStatusId">
+                        {{status.Uraian}}
+                    </mat-option>
+                </mat-select>
+            </mat-form-field>
+
+            <mat-form-field>
+                <mat-select placeholder="Cara Kirim" formControlName="Refcarakirimpermohonan" >
+                    <mat-option *ngFor="let caraKirim of caraKirimModel" [value]="caraKirim.RefCaraKirimId">
+                        {{caraKirim.Uraian}}
+                    </mat-option>
+                </mat-select>
+            </mat-form-field>
+      
+           
+            <p>Jenis Pemeriksaan</p> 
+
+            <div fxLayout="row" fxLayoutAlign="space-between center">
+                <div style="width:40%">
+                    <input disabled   type="radio" name="RefJenisPemeriksaanId" [value]=1 [(ngModel)]="chekcedJenisPemeriksaan"  formControlName="RefJenisPemeriksaanId" > Acara Cepat<br>
+                </div>
+                <div style="width:40%">
+                    <input  disabled type="radio" name="RefJenisPemeriksaanId" [value]=2  [(ngModel)]="chekcedJenisPemeriksaan" formControlName="RefJenisPemeriksaanId" > Acara Biasa<br>
+                </div>
+            </div>
+            <br />
+            <p>Syarat Format</p> 
+            <table>
+                <tr>
+                    <td><input type="checkbox" class="checkbox" formControlName="syarat1" value=0 [checked]="syarat1" (change)="checkValue(syarat1)">  </td>
+                    <td><p align="justify"> <label>Diajukan secara tertulis dalam Bahasa Indonesia (Psl 35(1))Jangka Waktu</label></p></td>
+                </tr>
+                <tr>
+                    <td><input type="checkbox" class="checkbox" formControlName="syarat2" value=0 [checked]="syarat2" (change)="checkValue(syarat2)"> </td>
+                    <td><p align="justify"><label>Banding Pajak 3 bulan sejak tanggal diterima Surat Keputusan (Psl 35(2))</label>
+                        <label>Banding Kepabean dan Cukai 60 hari sejak tanggal diterima Surat Keputusan (Psl 95(1)) UU Keputusan No 17 Tahun 2005)</label></p>
+                    </td>
+                </tr>
+                <tr>
+                    <td><input type="checkbox" class="checkbox" formControlName="syarat3" value=0 [checked]="syarat3" (change)="checkValue(syarat2)"></td>
+                    <td><p align="justify"> <label>Diajukan untuk satu Keputusan/Surat Pelaksanaan Penagihan (Psl 36(1) dan 40 (6))</label></p></td>
+                </tr>
+                <tr>
+                    <td><input type="checkbox" class="checkbox" formControlName="syarat4" value=0 [checked]="syarat4"(change)="checkValue(syarat2)"> </td>
+                    <td><p align="justify"><label>Dilampiri bukti pembayaran 50% pajak terutang (Psl 36(4))</label> </td>
+                </tr>
+            </table>
+           
+
+           
+          
+       
+    </form>
+  </div>
+ 
+  <div mat-dialog-actions class="m-0 p-16" fxLayout="row" fxLayoutAlign="space-between center">
+      <button mat-raised-button (click)="onOkClick()" [disabled]="isUploading? true : formGroup.invalid" color="primary"
+              type="button" tabindex="2">
+          Simpan
+      </button>
+      <button mat-raised-button (click)="onNoClick()" tabindex="-1">Batal</button>
+  </div>
+</div>

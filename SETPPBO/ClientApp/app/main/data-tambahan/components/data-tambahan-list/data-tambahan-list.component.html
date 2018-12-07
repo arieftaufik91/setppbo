@@ -1,0 +1,54 @@
+<div class="toolbar px-24 py-8" fxFlex fxLayout="row" fxLayoutAlign="space-between center">
+  <div class="content-toolbar" fxFlex="60" fxLayout="row" fxLayoutAlign="start center">
+
+      <button  matTooltip="Tambah Surat Pengantar" mat-mini-fab color="accent" (click)="onAddClick()">
+          <mat-icon>add</mat-icon>
+        </button>
+        &nbsp;&nbsp;&nbsp;
+
+        <button [disabled]="selected.length <= 0 || selected.length > 1" matTooltip="Delete Data" mat-icon-button  color="primary"  (click)="onDeleteClick()">
+                <mat-icon>clear</mat-icon>
+            </button>
+            &nbsp;&nbsp;&nbsp;    
+
+
+        <button [disabled]="selected.length <= 0 || selected.length > 1" matTooltip="Detail Data" mat-icon-button  color="primary"  (click)="showDetail()">
+            <mat-icon>visibility</mat-icon>
+        </button>
+        &nbsp;&nbsp;&nbsp;
+
+    
+
+        <button [disabled]="selected.length <= 0" matTooltip="Cetak" mat-icon-button  color="primary"  (click)="print()">
+            <mat-icon>print</mat-icon>
+        </button>
+        &nbsp;&nbsp;&nbsp;
+
+  </div>
+  <layout-search-bar (search)="updateFilter($event)" fxFlex></layout-search-bar>
+</div>
+<div class="content p-24">
+  <ngx-datatable #table class="material" [rows]="items"  [columnMode]="'force'" [rowHeight]="'40'" [selected]="selected"
+      [selectionType]="'single'" [selectCheck]="singleSelectCheck" (select)='onSelect($event)' [headerHeight]="50" [footerHeight]="50"
+      [limit]="15">
+      <ngx-datatable-column name="Nomor Surat Pengantar" prop="NoSuratPengantar">
+        <ng-template let-row="row" ngx-datatable-cell-template>
+            {{row.NoSuratPengantar}}
+        </ng-template>
+      </ngx-datatable-column>
+      <ngx-datatable-column name="Tanggal Terima" prop="TglTerima">
+        <ng-template let-row="row" ngx-datatable-cell-template>
+            {{row.TglTerima | date:'dd-MM-yyyy'}}
+        </ng-template>
+      </ngx-datatable-column>
+      <ngx-datatable-column name="Tanggal Surat" prop="TglSuratPengantar">
+        <ng-template let-row="row" ngx-datatable-cell-template>
+            {{row.TglSuratPengantar | date:'dd-MM-yyyy'}}
+        </ng-template>
+      </ngx-datatable-column>
+      
+     
+  </ngx-datatable>
+  
+</div>
+<h3>{{mssage}}</h3>

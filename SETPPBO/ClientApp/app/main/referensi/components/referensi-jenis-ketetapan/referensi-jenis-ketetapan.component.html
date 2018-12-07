@@ -1,0 +1,23 @@
+<div class="toolbar px-24 py-8" fxFlex fxLayout="row" fxLayoutAlign="space-between center">
+    <div class="content-toolbar" fxFlex="60" fxLayout="row" fxLayoutAlign="start center">
+      <button [@myRotation]="state" matTooltip="Add" mat-mini-fab color="accent" (click)="onAddClick()">
+        <mat-icon>add</mat-icon>
+      </button>
+  
+      <div [@myState]="state" *ngIf="state=='active'" class="toolbar-separator"></div>
+      <button [@myState]="state" *ngIf="state=='active'" matTooltip="Delete" mat-icon-button color="warn" (click)="onDeleteClick()">
+        <mat-icon>delete</mat-icon>
+      </button>
+      <button [@myState]="state" *ngIf="state=='active'" matTooltip="Update" mat-icon-button color="primary" (click)="onEditClick()">
+        <mat-icon>mode_edit</mat-icon>
+      </button>
+  
+    </div>
+    <layout-search-bar (search)="updateFilter($event)" fxFlex></layout-search-bar>
+  </div>
+  <div class="content p-24">
+    <ngx-datatable #table class="material" [rows]="items" [columns]="columns" [columnMode]="'force'" [rowHeight]="'40'" [selected]="selected"
+      [selectionType]="'single'" [selectCheck]="singleSelectCheck" (select)='onSelect($event)' [headerHeight]="50" [footerHeight]="50"
+      [limit]="itemLimit">
+    </ngx-datatable>
+  </div>

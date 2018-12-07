@@ -1,0 +1,80 @@
+<mat-step>
+    <div mat-dialog-title class="mat-accent-bg p-16 m-0" fxLayout="row" fxLayoutAlign="space-between center">
+        <span class="title dialog-title">Form Permohonan</span>
+        <button aria-label="Close dialog" mat-icon-button (click)="onNoClick()">
+            <mat-icon>close</mat-icon>
+        </button>
+    </div>
+    <div mat-dialog-content class="p-24 m-0">
+        <!--
+    <form [formGroup]="formGroup" novalidate fxFlex fxLayout="column">
+
+
+        <table>
+            <tr>
+                <td width="350px">Surat Banding/Gugatan (format pdf)</td>
+                <td width="25px">&nbsp;:&nbsp;</td>
+                <td width="450px">
+                    <div>
+                        <input #file1 type="file" id="File1Id" formControlName="File1Id" />
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td width="350px">Surat Banding/Gugatan (format doc)</td>
+                <td width="25px">&nbsp;:&nbsp;</td>
+                <td width="450px">
+                    <div>
+                        <input #file2 type="file" id="File2Id" formControlName="File2Id" />
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td width="350px">Salinan Objek Sengketa</td>
+                <td width="25px">&nbsp;:&nbsp;</td>
+                <td width="450px">
+                    <div>
+                        <input #file3 type="file" id="File3Id" formControlName="File3Id" />
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td width="350px">Salinan SKP/SPTNP/STP/SPP</td>
+                <td width="25px">&nbsp;:&nbsp;</td>
+                <td width="450px">
+                    <div>
+                        <input #file4 type="file" id="File4Id" formControlName="File4Id" />
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td width="350px">Salinan Bukti Bayar/SSP/SSPCP</td>
+                <td width="25px">&nbsp;:&nbsp;</td>
+                <td width="450px">
+                    <div>
+                        <input #file5 type="file" id="File5Id" formControlName="File5Id" />
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td width="350px">Surat Kuasa Khusus</td>
+                <td width="25px">&nbsp;:&nbsp;</td>
+                <td width="450px">
+                    <div>
+                        <input #file6 type="file" id="File6Id" formControlName="File6Id" />
+                    </div>
+                </td>
+            </tr>
+
+        </table>
+
+    </form>-->
+    </div>
+    <div mat-dialog-actions class="m-0 p-16" fxLayout="row" fxLayoutAlign="space-between center">
+        <button mat-raised-button (click)="onOkClick()" [disabled]="isEdit? formGroup.pristine : formGroup.invalid" color="primary"
+                type="button" tabindex="2">
+            Simpan
+        </button>
+        <button mat-raised-button (click)="onNoClick()" tabindex="-1">Batal</button>
+    </div>
+</mat-step>

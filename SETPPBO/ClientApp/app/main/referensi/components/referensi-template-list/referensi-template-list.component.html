@@ -1,0 +1,59 @@
+<div class="toolbar px-24 py-8" fxFlex fxLayout="row" fxLayoutAlign="space-between center">
+  <div class="content-toolbar" fxFlex="60" fxLayout="row" fxLayoutAlign="start center">
+      <button [@myRotation]="state" matTooltip="Add" mat-mini-fab color="accent" (click)="onAddClick()">
+          <mat-icon>add</mat-icon>
+      </button>
+
+      <div [@myState]="state" class="toolbar-separator"></div>
+      <!--button [@myState]="state" [disabled]="!isVisible" matTooltip="Delete" mat-icon-button color="warn" (click)="onDeleteClick()">
+          <mat-icon>delete</mat-icon>
+      </button-->
+      <button [@myState]="state" [disabled]="!isVisible" matTooltip="Update" mat-icon-button color="primary" (click)="onEditClick()">
+          <mat-icon>mode_edit</mat-icon>
+      </button>
+
+  </div>
+  <layout-search-bar (search)="updateFilter($event)" fxFlex></layout-search-bar>
+</div>
+<div class="content p-24">
+  <ngx-datatable #table 
+    class="material" 
+    [rows]="items" 
+    [columnMode]="'force'" 
+    [rowHeight]="'40'"
+    [selected]="selected"
+    [selectionType]="'single'" 
+    [selectCheck]="singleSelectCheck" 
+    (select)='onSelect($event)'
+    [headerHeight]="50"  
+    [footerHeight]="50"
+    [limit]="10"
+  >
+    <ngx-datatable-column name="No. Id" prop="RefTemplateId">
+      <ng-template let-row="row" ngx-datatable-cell-template>
+          {{row.RefTemplateId}}
+      </ng-template>
+    </ngx-datatable-column>
+    <ngx-datatable-column name="Uraian" prop="Uraian">
+        <ng-template let-row="row" ngx-datatable-cell-template>
+            {{row.Uraian}}
+        </ng-template>
+      </ngx-datatable-column>
+      <ngx-datatable-column name="File Template" prop="FileId">
+        <ng-template let-row="row" ngx-datatable-cell-template>
+            {{row.FileId}}
+        </ng-template>
+      </ngx-datatable-column>
+      <ngx-datatable-column name="Jenis File" prop="Jenis File">
+        <ng-template let-row="row" ngx-datatable-cell-template>
+            {{row.JenisFile}}
+        </ng-template>
+      </ngx-datatable-column>
+      <ngx-datatable-column name="Status" prop="Status">
+        <ng-template let-row="row" ngx-datatable-cell-template>
+            <span *ngIf="row.Status;else elseStatus">Aktif</span>
+            <ng-template #elseStatus>Tidak Aktif</ng-template>
+        </ng-template>
+      </ngx-datatable-column>
+  </ngx-datatable>
+</div>

@@ -1,0 +1,18 @@
+@{
+    ViewData["Title"] = "Home Page";
+}
+
+<!-- <app asp-prerender-module="ClientApp/dist/main-server">Loading...</app> -->
+<layout-main claims="@ViewBag.Claims">
+    <div id="loader-wrapper">		
+        <div id="loader"></div>		
+        <div class="section-logo"><img src="~/assets/images/logo_eprime_96.png"/></div>
+        <div class="loader-section section-left"></div>
+        <div class="loader-section section-right"></div>
+    </div>    
+</layout-main> 
+<script src="http://cdn.jsdelivr.net/g/filesaver.js"></script>
+<script src="~/dist/vendor.js" asp-append-version="true"></script>
+@section scripts {
+    <script src="~/dist/main-client.js" asp-append-version="true"></script>
+}

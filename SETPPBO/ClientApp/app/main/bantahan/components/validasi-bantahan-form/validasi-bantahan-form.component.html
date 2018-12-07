@@ -1,0 +1,37 @@
+<div class="dialog-content-wrapper">
+  <div mat-dialog-title class="mat-accent-bg p-16 m-0" fxLayout="row" fxLayoutAlign="space-between center">
+      <span class="title dialog-title">Validasi Bantahan</span>
+      <button aria-label="Close dialog" mat-icon-button (click)="onNoClick()">
+          <mat-icon>close</mat-icon>
+      </button> 
+  </div>
+
+  <div mat-dialog-content class="p-24 m-0">
+    <form [formGroup]="formGroup" novalidate fxFlex fxLayout="column">
+        <mat-form-field>
+            <input matInput id="NoSuratBantahan" formControlName="NoSuratBantahan" placeholder="Nomor Surat Bantahan" required />
+            <mat-error *ngIf="formGroup.controls['NoSuratBantahan'].errors">
+                <div [hidden]="!formGroup.controls['NoSuratBantahan'].errors.required">No. Surat Bantahan wajib diisi!</div>
+            </mat-error>
+        </mat-form-field>
+        
+        <mat-form-field>
+            <input matInput [matDatepicker]="pickerTglSuratBantahan" id="TglSuratBantahan" formControlName="TglSuratBantahan" placeholder="Tanggal Surat Bantahan" required />
+            <mat-datepicker-toggle matSuffix [for]="pickerTglSuratBantahan"></mat-datepicker-toggle>
+            <mat-datepicker #pickerTglSuratBantahan></mat-datepicker>
+            <mat-error *ngIf="formGroup.controls['TglSuratBantahan'].errors">
+                <div [hidden]="!formGroup.controls['TglSuratBantahan'].errors.required">Tanggal Surat Bantahan wajib diisi!</div>
+            </mat-error>
+        </mat-form-field>
+
+
+    </form>
+  </div>
+
+  <div mat-dialog-actions class="m-0 p-16" fxLayout="row" fxLayoutAlign="space-between center">
+      <button mat-raised-button (click)="onOkClick()" [disabled]="isEdit? formGroup.pristine : formGroup.invalid" color="primary"
+              type="button" tabindex="2"> Validasi
+      </button>
+      <button mat-raised-button (click)="onNoClick()" tabindex="-1">Batal</button>
+  </div>
+</div>

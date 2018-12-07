@@ -1,0 +1,30 @@
+<div class="dialog-content-wrapper">
+    <div mat-dialog-title class="mat-accent-bg p-16 m-0" fxLayout="row" fxLayoutAlign="space-between center">
+        <span class="title dialog-title">Role Action Form</span>
+        <button (click)="onCancel()" aria-label="Close dialog" mat-icon-button>
+            <mat-icon>close</mat-icon>
+        </button>
+    </div>
+
+    <div mat-dialog-content class="p-24 m-0">
+
+        <ngx-datatable class="material" style="width:600px" [rows]="sysCtrl" [columnMode]="'force'" [headerHeight]="50" [footerHeight]="50"
+            [rowHeight]="'auto'" [limit]="10" [selected]="selected" [selectionType]="'checkbox'">
+            <ngx-datatable-column [width]="30" [sortable]="false" [canAutoResize]="false" [draggable]="false" [resizeable]="false">
+                <ng-template ngx-datatable-header-template let-value="value" let-allRowsSelected="allRowsSelected" let-selectFn="selectFn">
+                    <input type="checkbox" [checked]="allRowsSelected" (change)='onSelectAll(allRowsSelected)' />
+                </ng-template>
+                <ng-template ngx-datatable-cell-template let-row="row" let-isSelected="isSelected" let-onCheckboxChangeFn="onCheckboxChangeFn">
+                    <input type="checkbox" [checked]="isChecked(row)" (change)='onSelect($event, row)' />
+                </ng-template>
+            </ngx-datatable-column>
+            <ngx-datatable-column [width]="150" name="Controller Name" prop="ControllerName"></ngx-datatable-column>
+            <ngx-datatable-column name="Action Name" prop="ActionName"></ngx-datatable-column>
+        </ngx-datatable>
+    </div>
+
+    <div mat-dialog-actions class="m-0 p-16" fxLayout="row" fxLayoutAlign="space-between center">
+        <button mat-raised-button color="primary" type="button" tabindex="2" (click)="onOk()">Simpan</button>
+        <button mat-raised-button tabindex="-1" (click)="onCancel()">Batal</button>
+    </div>
+</div>

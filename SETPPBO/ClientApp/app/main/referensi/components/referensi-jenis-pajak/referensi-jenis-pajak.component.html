@@ -1,0 +1,25 @@
+<div class="toolbar px-24 py-8" fxFlex fxLayout="row" fxLayoutAlign="space-between center">
+  <div class="content-toolbar" fxFlex="60" fxLayout="row" fxLayoutAlign="start center">
+    <button   matTooltip="Tambah Jenis Pajak" mat-mini-fab color="accent" (click)="addJenisPajak()">
+        <mat-icon>add</mat-icon>
+    </button>
+     &nbsp;&nbsp;&nbsp;
+     <button [disabled]="selected.length <= 0 || selected[0].RefJenisPajakId == null" matTooltip="Edit"  mat-icon-button  color="primary" (click)="editJenisPajak()">
+        <mat-icon>edit</mat-icon>
+    </button>
+     &nbsp;&nbsp;&nbsp;
+     <button [disabled]="selectedclear" matTooltip="Delete"  mat-icon-button  color="primary" (click)="deleteJenisPajak()">
+        <mat-icon>clear</mat-icon>
+    </button>
+     &nbsp;&nbsp;&nbsp;
+    
+  
+ </div>
+      <layout-search-bar (search)="updateFilter($event)" fxFlex></layout-search-bar>
+</div>
+<div class="content p-24">
+  <ngx-datatable #table class="material" [rows]="items" [columns]="columns" [columnMode]="'force'" [rowHeight]="'40'" [selected]="selected"
+    [selectionType]="'single'" [selectCheck]="singleSelectCheck" (select)='onSelect($event)' [headerHeight]="50" [footerHeight]="50"
+    [limit]="itemLimit">
+  </ngx-datatable>
+</div>

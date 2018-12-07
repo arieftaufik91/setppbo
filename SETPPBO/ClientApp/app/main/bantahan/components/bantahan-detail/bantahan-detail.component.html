@@ -1,0 +1,56 @@
+<div class="dialog-content-wrapper">
+  <div mat-dialog-title class="mat-accent-bg p-16 m-0" fxLayout="row" fxLayoutAlign="space-between center">
+    <span class="title dialog-title">Detail Surat Bantahan</span>
+    <button aria-label="Close dialog" mat-icon-button (click)="onNoClick()">
+      <mat-icon>close</mat-icon>
+    </button>
+  </div>
+
+  <div mat-dialog-content class="p-24 m-0">
+    <div class="table-responsive">
+      <table class="table">
+        <tr>
+            <th style="width:50%"><h5><b>No. Sengketa:</b></h5></th>
+            <td class="report_result"><h5>{{item?.NoSengketa}}</h5></td>
+        </tr>
+        <tr>
+            <th><h5><b>No. Surat Bantahan:</b></h5></th>
+            <td class="report_result"><h5>{{item?.NoSuratBantahan}}</h5></td>
+        </tr>
+        <tr>
+            <th><h5><b>Tanggal Surat Bantahan:</b></h5></th>
+            <td class="report_result"><h5>{{item?.TglSuratBantahan | date:'dd-MM-yyyy'}}</h5></td>
+        </tr>
+        <tr>
+            <th><h5><b>Tanggal Terima Bantahan:</b></h5></th>
+            <td class="report_result"><h5>{{item?.TglTerimaBantahan | date:'dd-MM-yyyy'}}</h5></td>
+        </tr>
+        <tr>
+            <th><h5><b>Cara Kirim:</b></h5></th>
+            <td class="report_result"><h5>{{item?.UraianCaraKirimBantahan}}</h5></td>
+        </tr>
+        <tr>
+            <th><h5><b>Tanggal Terima ABG:</b></h5></th>
+            <td class="report_result"><h5>{{item?.TglTerimaAbgBantahan | date:'dd-MM-yyyy'}}</h5></td>
+        </tr>
+        <tr>
+            <th><h5><b>File Doc Bantahan:</b></h5></th>
+            <td class="report_result">
+                <button [disabled]="item?.FileDocBantahan == null"  matTooltip="{{item?.FileDocBantahan}}" mat-icon-button color="primary" (click)="downloadDocFile()">
+                    <mat-icon>move_to_inbox</mat-icon>
+                </button>
+            </td>
+        </tr>
+        <tr>
+            <th><h5><b>File PDF Bantahan:</b></h5></th>
+            <td class="report_result">
+                <button [disabled]="item?.FilePdfBantahan == null"  matTooltip="{{item?.FilePdfBantahan}}" mat-icon-button color="primary" (click)="downloadPdfFile()">
+                    <mat-icon>move_to_inbox</mat-icon>
+                </button>
+            </td>
+        </tr>
+
+    </table>    
+  </div>
+  </div>
+</div>

@@ -1,0 +1,75 @@
+<div mat-dialog-title class="mat-accent-bg p-16 m-0" fxLayout="row" fxLayoutAlign="space-between center">
+    <span class="title dialog-title">Penetapan</span>
+  </div>
+  
+  <div class="toolbar px-24 py-8" fxFlex fxLayout="row" fxLayoutAlign="space-between center">
+  <div class="content-toolbar" fxFlex="60" fxLayout="row" fxLayoutAlign="start center">
+      <button  matTooltip="Add" mat-mini-fab color="accent" (click)="onAddClick()">
+          <mat-icon>add</mat-icon>
+      </button>
+      &nbsp;&nbsp;&nbsp;
+      <button [disabled]="selected.length <= 0" matTooltip="Delete" mat-icon-button color="primary" (click)="onDeleteClick()">
+          <mat-icon>clear</mat-icon>
+      </button>
+      &nbsp;&nbsp;&nbsp;
+      <button [disabled]="selected.length <= 0 || selected.length > 1" matTooltip="Edit Penetapan" mat-icon-button color="primary" (click)="onEditClick()">
+          <mat-icon>edit</mat-icon>
+      </button>
+      &nbsp;&nbsp;&nbsp;
+      <button [disabled]="selected.length <= 0 || selected.length > 1" matTooltip="Update Termohon" mat-icon-button color="primary" (click)="onEditTermohonClick()">
+        <mat-icon>build</mat-icon>
+      </button>
+        &nbsp;&nbsp;&nbsp;
+      <button [disabled]="selected.length <= 0" matTooltip="Cetak" mat-icon-button color="primary" (click)="print()">
+          <mat-icon>print</mat-icon>
+      </button>
+  
+  </div>
+  <layout-search-bar (search)="updateFilter($event)" fxFlex></layout-search-bar>
+  </div>
+  
+  
+  <div class="content p-24">
+    <ngx-datatable #table class="material" [rows]="items"  [columnMode]="'force'" [rowHeight]="'40'" [selected]="selected"
+        [selectionType]="'single'" [selectCheck]="singleSelectCheck" (select)='onSelect($event)' [headerHeight]="50" [footerHeight]="50"
+        [limit]="15">
+        <ngx-datatable-column name="Nomor Penetapan" prop="NoPenetapan">
+          <ng-template let-row="row" ngx-datatable-cell-template>
+              {{row.NoPenetapan}}
+          </ng-template>
+        </ngx-datatable-column>
+        <ngx-datatable-column name="Tanggal Penetapan" prop="TglPenetapan">
+          <ng-template let-row="row" ngx-datatable-cell-template>
+              {{row.TglPenetapan | date:'dd-MM-yyyy'}}
+          </ng-template>
+        </ngx-datatable-column>
+        <ngx-datatable-column name="No Sengketa" prop="No Sengketa">
+            <ng-template let-row="row" ngx-datatable-cell-template>
+                {{row.NoSengketa}}
+            </ng-template>
+          </ngx-datatable-column>
+        <ngx-datatable-column name="Pemohon" prop="Pemohon">
+          <ng-template let-row="row" ngx-datatable-cell-template>
+              {{row.Nama}}
+          </ng-template>
+        </ngx-datatable-column>
+        <ngx-datatable-column name="Termohon" prop="Termohon">
+            <ng-template let-row="row" ngx-datatable-cell-template>
+                {{row.NamaTermohon}}
+            </ng-template>
+        </ngx-datatable-column>
+        <ngx-datatable-column name="UP Termohon" prop="UPTermohon">
+            <ng-template let-row="row" ngx-datatable-cell-template>
+                {{row.NamaUpTermohon}}
+            </ng-template>
+        </ngx-datatable-column>
+        
+       
+    </ngx-datatable>
+    
+  </div>
+  
+
+  
+  
+  

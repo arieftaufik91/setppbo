@@ -1,0 +1,34 @@
+<div class="dialog-content-wrapper">
+    <div mat-dialog-title class="mat-accent-bg p-16 m-0" fxLayout="row" fxLayoutAlign="space-between center">
+        <span class="title dialog-title">Pemohon Form (Passive)</span>
+        <button aria-label="Close dialog" mat-icon-button (click)="onNoClick()">
+            <mat-icon>close</mat-icon>
+        </button>
+    </div>
+
+    <div mat-dialog-content class="p-24 m-0">
+        <form [formGroup]="formGroup" novalidate fxFlex fxLayout="column">
+            <mat-form-field>
+                <input matInput id="nama" formControlName="nama" placeholder="Nama" maxlength="128" required />
+                <mat-error *ngIf="formGroup.controls['nama'].errors">
+                    <div [hidden]="!formGroup.controls['nama'].errors.required">Nama wajib diisi!</div>
+                    <div [hidden]="!formGroup.controls['nama'].errors.maxlength">Nama tidak sesuai!</div>
+                </mat-error>
+            </mat-form-field>
+            <mat-form-field>
+                <input matInput id="npwp" formControlName="npwp" placeholder="NPWP" minlength="15" maxlength="15" disabled [disabled]="isEdit" pattern="^[\d]*$" required />
+                <!--numberPattern = "^[\d]*$";-->
+                <mat-error *ngIf="formGroup.controls['npwp'].errors">
+                    <div [hidden]="!formGroup.controls['npwp'].errors.required">NPWP wajib diisi!</div>
+                    <div [hidden]="!formGroup.controls['npwp'].errors.pattern && !formGroup.controls['npwp'].errors.minlength && !formGroup.controls['npwp'].errors.maxlength">NPWP tidak sesuai!</div>
+                </mat-error>
+            </mat-form-field>
+        </form>
+    </div>
+
+    <div mat-dialog-actions class="m-0 p-16" fxLayout="row" fxLayoutAlign="space-between center">
+        <button mat-raised-button (click)="onOkClick()" [disabled]="isEdit? formGroup.pristine : formGroup.invalid" color="primary"
+            type="button" tabindex="2">Simpan</button>
+        <button mat-raised-button (click)="onNoClick()" tabindex="-1">Batal</button>
+    </div>
+</div>

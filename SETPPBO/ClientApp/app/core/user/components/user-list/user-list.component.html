@@ -1,0 +1,29 @@
+﻿<div class="toolbar px-24 py-8" fxFlex fxLayout="row" fxLayoutAlign="space-between center">
+    
+    <div class="content-toolbar" fxFlex="60" fxLayout="row" fxLayoutAlign="start center">
+        <button *ngIf="selected.length > 0" matTooltip="Assign Role" mat-mini-fab color="accent" (click)="onAssignRoleClick()">
+            <mat-icon>playlist_add_check</mat-icon>
+        </button>
+
+        <!-- suspend/un-suspend user account (pemohon only) -->
+        <!-- suspend user if not suspended, un-suspend user if suspended -->
+        <!-- exception: itself -->
+        <button *ngIf="selected.length > 0 && selected[0].UserRoles[0]=='Pemohon'" matTooltip="Suspend/Un-suspend" mat-icon-button
+                color="primary" (click)="onSuspendClick()">
+            <mat-icon>block</mat-icon>
+        </button>
+    </div>
+    <layout-search-bar (search)="updateFilter($event)" fxFlex></layout-search-bar>
+</div>
+<div class="content p-24">
+    <ngx-datatable #table class="material" [rows]="users" [columns]="columns" [columnMode]="'force'" [rowHeight]="'50'" [selected]="selected"
+        [selectionType]="'single'" [selectCheck]="singleSelectCheck" (select)='onSelect($event)' [headerHeight]="50" [footerHeight]="50"
+        [limit]="10">
+    </ngx-datatable>
+
+    <ng-template #gravatar let-row="row" let-value="value">
+        <div class="gravatar">
+            <img src="{{value}}" alt="gravatar">
+        </div>
+    </ng-template>
+</div>

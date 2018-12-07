@@ -1,0 +1,43 @@
+
+<div class="row" style="padding-top:1%;padding-right:2%">
+      <button routerLink="/proses-distribusi" class="btn btn-primary pull-right">Proses Distribusi Berkas</button>  
+</div>
+<div class="row" *ngIf="chartDataMajelisPajak" style="padding-bottom:2%">
+  <div class="col-lg-offset-2 col-lg-8">
+    <h3 class="text-center">Beban Kerja Majelis Pajak</h3>
+    <canvas style="padding-top:1%"
+        baseChart
+        height="100"
+        [chartType]="'bar'"
+        [labels]="chartLabelsMajelisPajak"
+        [datasets]="chartDataMajelisPajak"
+        [options]="chartOptions">
+    </canvas>
+  </div>
+</div>
+<div class="row" *ngIf="chartDataMajelisBeaCukai" style="padding-bottom:2%">
+  <div class="col-lg-offset-2 col-lg-8">
+    <h3 class="text-center">Beban Kerja Majelis BC</h3>
+    <canvas style="padding-top:1%"
+        baseChart
+        height="100"
+        [chartType]="'bar'"
+        [labels]="chartLabelsMajelisBeaCukai"
+        [datasets]="chartDataMajelisBeaCukai"
+        [options]="chartOptions">
+    </canvas>
+  </div>
+</div>
+<div class="row" *ngIf="chartDataHakimTunggal" style="padding-bottom:2%">
+  <div class="col-lg-offset-2 col-lg-8">
+    <h3 class="text-center">Beban Kerja Hakim Tunggal</h3>
+    <canvas style="padding-top:1%"
+        baseChart
+        height="100"
+        [chartType]="'bar'"
+        [labels]="chartLabelsHakimTunggal"
+        [datasets]="chartDataHakimTunggal"
+        [options]="chartOptions">
+    </canvas>
+  </div>
+</div>

@@ -1,0 +1,9 @@
+<div fxFlex fxLayout="row" fxLayoutAlign="space-between center">
+  <div fxLayout="row" fxLayoutAlign="start center">
+    <i class="material-icons {{snackbarClass}}">{{icon}}</i> 
+    <span class="snackbar-title">{{data.msg}}</span>
+  </div>
+  <div>
+    <button mat-icon-button (click)="close()"><i class="material-icons">close</i></button>
+  </div>
+</div>

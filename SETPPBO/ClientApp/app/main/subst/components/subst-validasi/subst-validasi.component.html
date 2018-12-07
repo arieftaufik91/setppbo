@@ -1,0 +1,74 @@
+
+<div class="toolbar px-24 py-8" fxFlex fxLayout="row" fxLayoutAlign="space-between center">
+    <div class="content-toolbar" fxFlex="60" fxLayout="row" fxLayoutAlign="start center">
+            <button [disabled]="selected.length <= 0 || selected[0].NoSubSt == null" matTooltip="Validasi Sub/St" mat-mini-fab color="accent" (click)="validasiSubSt()">
+                <mat-icon>done</mat-icon>
+            </button>
+            &nbsp;&nbsp;&nbsp;
+            <button [disabled]="selected.length <= 0 || selected[0].NoSubSt == null" matTooltip="Update Sub/St" mat-icon-button  color="primary" (click)="editSubSt()">
+                <mat-icon>edit</mat-icon>
+            </button>
+            &nbsp;&nbsp;&nbsp;
+            <button [disabled]="selected.length <= 0 || selected[0].NoSubSt == null" matTooltip="Detail Sub/St" mat-icon-button color="primary" (click)="detailSubSt()">
+            <mat-icon>visibility</mat-icon>
+        </button>
+    </div>
+    <layout-search-bar (search)="updateFilter($event)" fxFlex></layout-search-bar>
+</div>
+<div class="content p-24">
+    <ngx-datatable #table 
+    class="material" 
+    [rows]="items" 
+    [columnMode]="'force'" 
+    [rowHeight]="'40'" 
+    [selected]="selected"
+    [selectionType]="'single'" 
+    [selectCheck]="singleSelectCheck" 
+    (select)='onSelect($event)'
+    [headerHeight]="50" 
+    [footerHeight]="50"
+    [limit]="10">
+        <ngx-datatable-column name="No.Surat" prop = "NoSuratPermohonan" >
+            <ng-template let-row="row" ngx-datatable-cell-template>
+                {{row?.NoSuratPermohonan}}
+            </ng-template>
+        </ngx-datatable-column>
+    
+        <ngx-datatable-column name="Tanggal Surat Banding/Gugatan" prop ="TglSuratPermohonan" >
+            <ng-template let-row="row" ngx-datatable-cell-template>
+                {{row?.TglSuratPermohonan | date:'dd-MM-yyyy'}}
+            </ng-template>
+        </ngx-datatable-column>
+    
+        <ngx-datatable-column name="Nama Pemohon" prop="TextPemohonName" >
+            <ng-template let-row="row" ngx-datatable-cell-template>
+                {{row?.TextPemohonName}}
+            </ng-template>
+        </ngx-datatable-column>
+
+        <ngx-datatable-column name="Jenis Sengketa" prop ="TextRefJenisPermohonanUr">
+            <ng-template let-row="row" ngx-datatable-cell-template>
+                {{row?.TextRefJenisPermohonanUr}}
+            </ng-template>
+        </ngx-datatable-column>
+
+        <ngx-datatable-column name="No. Sengketa" prop ="NoSengketa">
+            <ng-template let-row="row" ngx-datatable-cell-template>
+                {{row?.NoSengketa}}
+            </ng-template>
+        </ngx-datatable-column>
+
+        <ngx-datatable-column name="No.SUB/Tanggapan" prop = "NoSubSt" >
+            <ng-template let-row="row" ngx-datatable-cell-template>
+                {{row?.NoSubSt}}
+            </ng-template>
+        </ngx-datatable-column>
+
+        <ngx-datatable-column name="Status" prop = "Status" >
+            <ng-template let-row="row" ngx-datatable-cell-template>
+                {{row?.Status}}
+            </ng-template>
+        </ngx-datatable-column>
+        
+    </ngx-datatable>
+</div>

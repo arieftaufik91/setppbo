@@ -1,0 +1,44 @@
+<mat-step>
+    <div mat-dialog-title class="mat-accent-bg p-16 m-0" fxLayout="row" fxLayoutAlign="space-between center">
+        <span class="title dialog-title">Form Permohonan</span>
+        <button aria-label="Close dialog" mat-icon-button (click)="onNoClick()">
+            <mat-icon>close</mat-icon>
+        </button>
+    </div>
+
+    <div mat-dialog-content class="p-24 m-0">
+        <form [formGroup]="formGroup" class="form-container">
+            <mat-form-field>
+                <input matInput id="NoPendaftaran" formControlName="NoPendaftaran" placeholder="No. Pendaftaran" readonly="readonly" required />
+                <mat-error *ngIf="formGroup.controls['NoPendaftaran'].errors">
+                    <div [hidden]="!formGroup.controls['NoPendaftaran'].errors.required">No. Pendaftaran wajib diisi!</div>
+                </mat-error>
+            </mat-form-field>
+            <mat-form-field>
+                <input matInput id="RefJenisPermohonanUr" formControlName="RefJenisPermohonanUr" placeholder="Jenis Permohonan" readonly="readonly" required />
+                <mat-error *ngIf="formGroup.controls['RefJenisPermohonanUr'].errors">
+                    <div [hidden]="!formGroup.controls['RefJenisPermohonanUr'].errors.required">Jenis Permohonan wajib diisi!</div>
+                </mat-error>
+            </mat-form-field>
+            <mat-form-field>
+                <input matInput id="NoSuratPermohonan" formControlName="NoSuratPermohonan" placeholder="No. Surat" readonly="readonly" required />
+                <mat-error *ngIf="formGroup.controls['NoSuratPermohonan'].errors">
+                    <div [hidden]="!formGroup.controls['NoSuratPermohonan'].errors.required">No. Surat wajib diisi!</div>
+                </mat-error>
+            </mat-form-field>
+            <mat-form-field>
+                <input matInput id="TglSuratPermohonan" formControlName="TglSuratPermohonan" value="{{TglSuratPermohonan | date: 'dd-MM-yyyy'}}" placeholder="Tgl. Surat" readonly="readonly" required />
+                <mat-error *ngIf="formGroup.controls['TglSuratPermohonan'].errors">
+                    <div [hidden]="!formGroup.controls['TglSuratPermohonan'].errors.required">Tgl. Surat wajib diisi!</div>
+                </mat-error>
+            </mat-form-field>
+        </form>
+    </div>
+    <div mat-dialog-actions class="m-0 p-16" fxLayout="row" fxLayoutAlign="space-between center">
+        <button mat-raised-button (click)="onOkClick()" [disabled]="isEdit? formGroup.pristine : formGroup.invalid" color="primary"
+                type="button" tabindex="2">
+            Kirim Permohonan
+        </button>
+        <button mat-raised-button (click)="onNoClick()" tabindex="-1">Batal</button>
+    </div>
+</mat-step>
